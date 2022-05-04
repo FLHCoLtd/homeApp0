@@ -91,6 +91,7 @@ class AccessoryBrowserViewController: HMCatalogViewController, ModifyAccessoryDe
     }
     
     /// Sets the accessory, home, and delegate of a ModifyAccessoryViewController.
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
 
@@ -237,6 +238,7 @@ class AccessoryBrowserViewController: HMCatalogViewController, ModifyAccessoryDe
     // MARK: ModifyAccessoryDelegate Methods
     
     /// Adds the accessory to the internal array and reloads the views.
+    @available(iOS 13.0, *)
     func accessoryViewController(_ accessoryViewController: ModifyAccessoryViewController, didSaveAccessory accessory: HMAccessory) {
         addedAccessories.append(accessory)
         reloadTable()

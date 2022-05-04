@@ -77,9 +77,10 @@ class HomeViewController: HMCatalogViewController, HMAccessoryDelegate {
         
         switch segue.identifier! {
             case Identifiers.showRoomSegue:
+            if #available(iOS 13.0, *) {
                 let roomVC = destinationViewController as! RoomViewController
                 roomVC.room = homeKitObject as? HMRoom
-                
+            }
             case Identifiers.showZoneSegue:
                 let zoneViewController = destinationViewController as! ZoneViewController
                 zoneViewController.homeZone = homeKitObject as? HMZone
@@ -103,8 +104,13 @@ class HomeViewController: HMCatalogViewController, HMAccessoryDelegate {
                 detailVC.cellDelegate = AccessoryUpdateController()
                 
             case Identifiers.modifyAccessorySegue:
+            if #available(iOS 13.0, *) {
                 let addAccessoryVC = destinationViewController as! ModifyAccessoryViewController
                 addAccessoryVC.accessory = homeKitObject as? HMAccessory
+            } else {
+                // Fallback on earlier versions
+            }
+                
                 
             case Identifiers.showTimerTriggerSegue:
                 let triggerVC = destinationViewController as! TimerTriggerViewController
@@ -645,7 +651,15 @@ class HomeViewController: HMCatalogViewController, HMAccessoryDelegate {
     
     /// Navigates into the browse accessory view controller.
     private func browseForAccessories() {
-        performSegue(withIdentifier: Identifiers.addAccessoriesSegue, sender: self)
+        let home = homeStore.home
+        home?.addAndSetupAccessories { error in
+            if let error = error {
+                print(error)
+            } else {
+                // Make no assumption about changes; just reload everything.
+               
+            }
+        }
     }
     
     // MARK: Dialog Creation Methods

@@ -175,7 +175,7 @@ class ActionSetViewController: HMCatalogViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let characteristic = actionSetCreator.allCharacteristics[indexPath.row]
-            actionSetCreator.removeTargetValueForCharacteristic(characteristic) {
+            actionSetCreator.removeTargetValueForCharacteristic(characteristic) {  //remove Sense 刪除場景
                 if self.actionSetCreator.containsActions {
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                 }

@@ -11,6 +11,7 @@ import UIKit
 import HomeKit
 
 /// A view controller that lists the accessories within a room.
+@available(iOS 13.0, *)
 class RoomViewController: HMCatalogViewController, HMAccessoryDelegate {
     // MARK: Types
     

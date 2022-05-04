@@ -449,6 +449,7 @@
 				TargetAttributes = {
 					DC1310BD1A14201E004E5DB5 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = BMAENCBPZB;
 						LastSwiftMigration = 1020;
 						SystemCapabilities = {
 							com.apple.HomeKit = {
@@ -618,7 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -669,7 +670,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -685,12 +686,12 @@
 				CODE_SIGN_ENTITLEMENTS = HMCatalog.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BMAENCBPZB;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/HMCatalog/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.HMCatalog";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.HMCatalog04192";
 				PRODUCT_NAME = HMCatalog;
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 5.0;
@@ -704,12 +705,12 @@
 				CODE_SIGN_ENTITLEMENTS = HMCatalog.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = BMAENCBPZB;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/HMCatalog/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.HMCatalog";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.HMCatalog04192";
 				PRODUCT_NAME = HMCatalog;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
