@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Scheme LastUpgradeVersion="1010" version="1.3">
+	<AnalyzeAction buildConfiguration="Debug" />
+	<ArchiveAction buildConfiguration="Release" revealArchiveInOrganizer="YES" />
+	<TestAction buildConfiguration="Debug" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB" shouldUseLaunchSchemeArgsEnv="YES" codeCoverageEnabled="NO" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB">
+		<Testables />
+		<MacroExpansion>
+			<BuildableReference BlueprintIdentifier="C2E57CFA21C958200033740B" BuildableName="AccessoryUI.app" BuildableIdentifier="primary" BlueprintName="AccessoryUI" ReferencedContainer="container:AccessoryUI.xcodeproj" />
+		</MacroExpansion>
+	</TestAction>
+	<ProfileAction buildConfiguration="Release" shouldUseLaunchSchemeArgsEnv="YES" debugDocumentVersioning="YES" useCustomWorkingDirectory="NO" savedToolIdentifier="">
+		<BuildableProductRunnable runnableDebuggingMode="0">
+			<BuildableReference BlueprintIdentifier="C2E57CFA21C958200033740B" BuildableName="AccessoryUI.app" BuildableIdentifier="primary" BlueprintName="AccessoryUI" ReferencedContainer="container:AccessoryUI.xcodeproj" />
+		</BuildableProductRunnable>
+	</ProfileAction>
+	<BuildAction buildImplicitDependencies="YES" parallelizeBuildables="YES">
+		<BuildActionEntries>
+			<BuildActionEntry buildForTesting="YES" buildForArchiving="YES" buildForAnalyzing="YES" buildForProfiling="YES" buildForRunning="YES">
+				<BuildableReference BlueprintIdentifier="C2E57CFA21C958200033740B" BuildableName="AccessoryUI.app" BuildableIdentifier="primary" BlueprintName="AccessoryUI" ReferencedContainer="container:AccessoryUI.xcodeproj" />
+			</BuildActionEntry>
+		</BuildActionEntries>
+	</BuildAction>
+	<LaunchAction buildConfiguration="Debug" debugDocumentVersioning="YES" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" allowLocationSimulation="YES" debugServiceExtension="internal" ignoresPersistentStateOnLaunch="NO" useCustomWorkingDirectory="NO" launchStyle="0" selectedLauncherIdentifier="Xcode.DebuggerFoundation.Launcher.LLDB">
+		<BuildableProductRunnable runnableDebuggingMode="0">
+			<BuildableReference BlueprintIdentifier="C2E57CFA21C958200033740B" BuildableName="AccessoryUI.app" BuildableIdentifier="primary" BlueprintName="AccessoryUI" ReferencedContainer="container:AccessoryUI.xcodeproj" />
+		</BuildableProductRunnable>
+	</LaunchAction>
+</Scheme>
