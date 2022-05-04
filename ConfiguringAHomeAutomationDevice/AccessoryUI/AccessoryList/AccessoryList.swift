@@ -28,7 +28,7 @@ class AccessoryList: UICollectionViewController {
 
         guard let home = home else { return }
 
-        for accessory in home.accessories.filter({ $0.manufacturer == "Kilgo Devices, Inc." }) {
+        for accessory in home.accessories.filter({ $0.manufacturer == "Compnay Name" }) {
             accessory.delegate = HomeStore.shared
             
             for service in accessory.services.filter({ $0.isUserInteractive }) {

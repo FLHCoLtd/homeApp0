@@ -14,5 +14,5 @@ https://developer.apple.com/documentation/homekit/interacting_with_a_home_automa
 > Download
 
 ===Other===
-SC_VijaySharma-master
+SC_VijaySharma-master  (找燈炮裝置)
 https://github.com/raywenderlich/SC_VijaySharma/blob/master/replaykit/Final%20Projects/section-3/tic-tac-toe/TicTacToe/HandDrawnShapes.otf
