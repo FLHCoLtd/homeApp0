@@ -93,13 +93,13 @@ class ModifyAccessoryViewController: HMCatalogViewController, HMAccessoryDelegat
     }
     
     /// Replaces the activity indicator with the 'Add' or 'Save' button.
-    @available(iOS 13.0, *)
+   // @available(iOS 13.0, *)
     func hideActivityIndicator() {
         activityIndicator.stopAnimating()
         navigationItem.rightBarButtonItem = addButton
     }
     
-    @available(iOS 13.0, *)
+    //@available(iOS 13.0, *)
     /// Temporarily replaces the 'Add' or 'Save' button with an activity indicator.
     func showActivityIndicator() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)

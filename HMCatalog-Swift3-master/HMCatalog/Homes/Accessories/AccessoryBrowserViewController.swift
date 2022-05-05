@@ -238,7 +238,7 @@ class AccessoryBrowserViewController: HMCatalogViewController, ModifyAccessoryDe
     // MARK: ModifyAccessoryDelegate Methods
     
     /// Adds the accessory to the internal array and reloads the views.
-    @available(iOS 13.0, *)
+   // @available(iOS 13.0, *)
     func accessoryViewController(_ accessoryViewController: ModifyAccessoryViewController, didSaveAccessory accessory: HMAccessory) {
         addedAccessories.append(accessory)
         reloadTable()
