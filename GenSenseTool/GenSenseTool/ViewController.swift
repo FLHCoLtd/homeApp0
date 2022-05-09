@@ -14,7 +14,9 @@ class ViewController: UIViewController {
     var home: HMHome? = nil
     var accessories = [HMAccessory]()
     var discoveredAccessories = [HMAccessory]()
-
+    //--
+    var actionSet: HMActionSet?
+    var aAction: HMAction?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,25 @@ class ViewController: UIViewController {
                         print (" - chara.service.name=\(name)")
                         print (" - chara.value=\(value)")
                         print ("---")
+                        
+                        aAction = HMCharacteristicWriteAction(characteristic: chara, targetValue: true as NSCopying)
+                        
+                        print ("*aAction \(String(describing: aAction))")
+                        //00大房間開關  ==>  大房間開關
+                        home.addActionSet(withName: name.replacingOccurrences(of: "00", with: "")) { actionSet, error in
+                            if let error = error {
+                                print("HomeKit: Error creating action set: \(error.localizedDescription)")
+                                 
+                            }
+                            else {
+                                // There is no error, so the action set has a value.
+//                                self.saveActionSet(actionSet!)
+                            }
+                        }
+                        
+
+                        
+                        print ("* actionSet=\(actionSet)")
                     }
                     
                 }
