@@ -65,11 +65,16 @@ class AccessoryViewController: BaseCollectionViewController {
 
     let accessory = accessories[indexPath.row]
 
-    guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) else {
-      return
+//    guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) else {
+//      return
+//    }
+      
+    guard let characteristic = accessory.find(serviceType: HMServiceTypeSwitch, characteristicType: HMCharacteristicMetadataFormatBool) else {
+        return
     }
 
     let toggleState = (characteristic.value as! Bool) ? false : true
+    
     characteristic.writeValue(NSNumber(value: toggleState), completionHandler: { (error) -> Void in
       if error != nil {
         print("Something went wrong when attempting to update the service characteristic.")
@@ -84,7 +89,7 @@ class AccessoryViewController: BaseCollectionViewController {
     }
 
     for accessory in homeAccessories {
-      if let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) {
+      if let characteristic = accessory.find(serviceType: HMServiceTypeSwitch, characteristicType: HMCharacteristicMetadataFormatBool) {
         accessories.append(accessory)
         accessory.delegate = self
         characteristic.enableNotification(true, completionHandler: { (error) -> Void in

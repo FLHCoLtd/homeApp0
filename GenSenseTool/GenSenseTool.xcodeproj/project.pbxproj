@@ -16,6 +16,7 @@
 		FAB3879628280726008C6009 /* GenSenseToolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3879528280726008C6009 /* GenSenseToolTests.swift */; };
 		FAB387A028280726008C6009 /* GenSenseToolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3879F28280726008C6009 /* GenSenseToolUITests.swift */; };
 		FAB387A228280726008C6009 /* GenSenseToolUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */; };
+		FAB387B22828073A008C6009 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB387B12828073A008C6009 /* HomeKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,9 @@
 		FAB3879B28280726008C6009 /* GenSenseToolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenSenseToolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB3879F28280726008C6009 /* GenSenseToolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenSenseToolUITests.swift; sourceTree = "<group>"; };
 		FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenSenseToolUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FAB387AE2828073A008C6009 /* GenSenseTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenSenseTool.entitlements; sourceTree = "<group>"; };
+		FAB387AF2828073A008C6009 /* GenSenseTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenSenseTool.entitlements; sourceTree = "<group>"; };
+		FAB387B12828073A008C6009 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB387B22828073A008C6009 /* HomeKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +88,7 @@
 				FAB3879428280726008C6009 /* GenSenseToolTests */,
 				FAB3879E28280726008C6009 /* GenSenseToolUITests */,
 				FAB3877C28280725008C6009 /* Products */,
+				FAB387B02828073A008C6009 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +105,8 @@
 		FAB3877D28280725008C6009 /* GenSenseTool */ = {
 			isa = PBXGroup;
 			children = (
+				FAB387AF2828073A008C6009 /* GenSenseTool.entitlements */,
+				FAB387AE2828073A008C6009 /* GenSenseTool.entitlements */,
 				FAB3877E28280725008C6009 /* AppDelegate.swift */,
 				FAB3878028280725008C6009 /* SceneDelegate.swift */,
 				FAB3878228280725008C6009 /* ViewController.swift */,
@@ -125,6 +133,14 @@
 				FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */,
 			);
 			path = GenSenseToolUITests;
+			sourceTree = "<group>";
+		};
+		FAB387B02828073A008C6009 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAB387B12828073A008C6009 /* HomeKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -437,6 +453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GenSenseTool/GenSenseTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
@@ -465,6 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GenSenseTool/GenSenseTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
