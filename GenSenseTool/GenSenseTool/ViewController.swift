@@ -57,32 +57,50 @@ class ViewController: UIViewController {
     }
     
     func reloadDisplayData(for home: HMHome?) {
-  
-   
-        
+        var processServiceName = ""
         if let home = home {
-            
-            // characteristicsの中からPowerStateを抽出
-            let service = home.servicesWithTypes([HMServiceTypeSwitch])?[0]
+            for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
+                print ("*serv = \(serv)")
+                let characteristics = serv.characteristics
+                print ("-characteristics = \(characteristics)")
+                for chara in characteristics {
+                   
+                    if let value = chara.value, let name = chara.service?.name
+                    ,let format = chara.metadata?.format{
+                        print (" - chara.metadata?.format=\(format)")
+                        processServiceName = name
+                        print (" - chara.service.name=\(name)")
+                        print (" - chara.value=\(value)")
+                        print ("---")
+                    }
+                    
+                }
+                print ("===")
+               
+            }
+            let service = home.servicesWithTypes([HMServiceTypeSwitch])?[1]
+            print ("* service =\(service)")
             //On    00000025-0000-1000-8000-0026BB765291
             let candidates = service?.characteristics
-                .filter { $0.characteristicType == "00000025-0000-1000-8000-0026BB765291" }
+                .filter { $0.characteristicType != "" }
 
             guard let powerState = candidates?.first else {
                 return
             }
 
-            // powerState.value に取得済みのvalueが入っているが
-            // readValueでデバイスから最新のvalueを再読み込み可能
-            powerState.readValue { error in
-                // PowerStateはBool(NSNumber)でvalueが返ってくる
-                guard let value = powerState.value as? Bool else {
-                    return
-                }
-                // ライトが点灯中ならtrue
-                // ライトが消灯中ならfalse
-                print("# powerState: \(value)")
-            }
+            print("# powerState: \(String(describing: powerState.value))")
+            
+//            // powerState.value に取得済みのvalueが入っているが
+//            // readValueでデバイスから最新のvalueを再読み込み可能
+//            powerState.readValue { error in
+//                // PowerStateはBool(NSNumber)でvalueが返ってくる
+//                guard let value = powerState.value as? Bool else {
+//                    return
+//                }
+//                // ライトが点灯中ならtrue
+//                // ライトが消灯中ならfalse
+//                print("# powerState: \(value)")
+//            }
         }
     }
 }
