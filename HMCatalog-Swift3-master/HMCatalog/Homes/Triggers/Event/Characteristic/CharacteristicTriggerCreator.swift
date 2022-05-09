@@ -5,7 +5,7 @@
     Abstract:
     The `CharacteristicTriggerCreator` creates characteristic triggers.
 */
-
+ 
 import UIKit
 import HomeKit
 

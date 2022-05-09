@@ -50,6 +50,26 @@ class ActionSetCreator: CharacteristicCellDelegate {
         }
     }
 
+    
+    /**
+        Adds all of the actions that have been requested to the Action Set, then runs a completion block.
+        
+        - parameter completion: A closure to be called when all of the actions have been added.
+    */
+    func saveActionSetSwitchOn(_ actionSet: HMActionSet) {
+        let actions = actionsFromMapTable(targetValueMap)
+        for action in actions {
+            saveActionSetGroup.enter()
+            addAction(action, toActionSet: actionSet) { error in
+                if let error = error {
+                    print("HomeKit: Error adding action: \(error.localizedDescription)")
+                    self.saveError = error
+                }
+                self.saveActionSetGroup.leave()
+            }
+        }
+    }
+    
     /**
         Adds all of the actions that have been requested to the Action Set, then runs a completion block.
         
@@ -123,6 +143,9 @@ class ActionSetCreator: CharacteristicCellDelegate {
             existingAction.updateTargetValue(action.targetValue, completionHandler: completion)
         }
         else {
+            //action diy
+              
+//            let action = HMCharacteristicWriteAction(characteristic: characteristic, targetValue: true)
             actionSet.addAction(action, completionHandler: completion)
         }
     }

@@ -1,0 +1,629 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FAB3877F28280725008C6009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3877E28280725008C6009 /* AppDelegate.swift */; };
+		FAB3878128280725008C6009 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3878028280725008C6009 /* SceneDelegate.swift */; };
+		FAB3878328280725008C6009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3878228280725008C6009 /* ViewController.swift */; };
+		FAB3878628280725008C6009 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB3878428280725008C6009 /* Main.storyboard */; };
+		FAB3878828280726008C6009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAB3878728280726008C6009 /* Assets.xcassets */; };
+		FAB3878B28280726008C6009 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB3878928280726008C6009 /* LaunchScreen.storyboard */; };
+		FAB3879628280726008C6009 /* GenSenseToolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3879528280726008C6009 /* GenSenseToolTests.swift */; };
+		FAB387A028280726008C6009 /* GenSenseToolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3879F28280726008C6009 /* GenSenseToolUITests.swift */; };
+		FAB387A228280726008C6009 /* GenSenseToolUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAB3879228280726008C6009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB3877328280725008C6009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB3877A28280725008C6009;
+			remoteInfo = GenSenseTool;
+		};
+		FAB3879C28280726008C6009 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB3877328280725008C6009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAB3877A28280725008C6009;
+			remoteInfo = GenSenseTool;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FAB3877B28280725008C6009 /* GenSenseTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenSenseTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB3877E28280725008C6009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAB3878028280725008C6009 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FAB3878228280725008C6009 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAB3878528280725008C6009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FAB3878728280726008C6009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAB3878A28280726008C6009 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FAB3878C28280726008C6009 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB3879128280726008C6009 /* GenSenseToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenSenseToolTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB3879528280726008C6009 /* GenSenseToolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenSenseToolTests.swift; sourceTree = "<group>"; };
+		FAB3879B28280726008C6009 /* GenSenseToolUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenSenseToolUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAB3879F28280726008C6009 /* GenSenseToolUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenSenseToolUITests.swift; sourceTree = "<group>"; };
+		FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenSenseToolUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAB3877828280725008C6009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB3878E28280726008C6009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB3879828280726008C6009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FAB3877228280725008C6009 = {
+			isa = PBXGroup;
+			children = (
+				FAB3877D28280725008C6009 /* GenSenseTool */,
+				FAB3879428280726008C6009 /* GenSenseToolTests */,
+				FAB3879E28280726008C6009 /* GenSenseToolUITests */,
+				FAB3877C28280725008C6009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FAB3877C28280725008C6009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAB3877B28280725008C6009 /* GenSenseTool.app */,
+				FAB3879128280726008C6009 /* GenSenseToolTests.xctest */,
+				FAB3879B28280726008C6009 /* GenSenseToolUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAB3877D28280725008C6009 /* GenSenseTool */ = {
+			isa = PBXGroup;
+			children = (
+				FAB3877E28280725008C6009 /* AppDelegate.swift */,
+				FAB3878028280725008C6009 /* SceneDelegate.swift */,
+				FAB3878228280725008C6009 /* ViewController.swift */,
+				FAB3878428280725008C6009 /* Main.storyboard */,
+				FAB3878728280726008C6009 /* Assets.xcassets */,
+				FAB3878928280726008C6009 /* LaunchScreen.storyboard */,
+				FAB3878C28280726008C6009 /* Info.plist */,
+			);
+			path = GenSenseTool;
+			sourceTree = "<group>";
+		};
+		FAB3879428280726008C6009 /* GenSenseToolTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAB3879528280726008C6009 /* GenSenseToolTests.swift */,
+			);
+			path = GenSenseToolTests;
+			sourceTree = "<group>";
+		};
+		FAB3879E28280726008C6009 /* GenSenseToolUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FAB3879F28280726008C6009 /* GenSenseToolUITests.swift */,
+				FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */,
+			);
+			path = GenSenseToolUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAB3877A28280725008C6009 /* GenSenseTool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB387A528280726008C6009 /* Build configuration list for PBXNativeTarget "GenSenseTool" */;
+			buildPhases = (
+				FAB3877728280725008C6009 /* Sources */,
+				FAB3877828280725008C6009 /* Frameworks */,
+				FAB3877928280725008C6009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GenSenseTool;
+			productName = GenSenseTool;
+			productReference = FAB3877B28280725008C6009 /* GenSenseTool.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FAB3879028280726008C6009 /* GenSenseToolTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB387A828280726008C6009 /* Build configuration list for PBXNativeTarget "GenSenseToolTests" */;
+			buildPhases = (
+				FAB3878D28280726008C6009 /* Sources */,
+				FAB3878E28280726008C6009 /* Frameworks */,
+				FAB3878F28280726008C6009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAB3879328280726008C6009 /* PBXTargetDependency */,
+			);
+			name = GenSenseToolTests;
+			productName = GenSenseToolTests;
+			productReference = FAB3879128280726008C6009 /* GenSenseToolTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FAB3879A28280726008C6009 /* GenSenseToolUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAB387AB28280726008C6009 /* Build configuration list for PBXNativeTarget "GenSenseToolUITests" */;
+			buildPhases = (
+				FAB3879728280726008C6009 /* Sources */,
+				FAB3879828280726008C6009 /* Frameworks */,
+				FAB3879928280726008C6009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAB3879D28280726008C6009 /* PBXTargetDependency */,
+			);
+			name = GenSenseToolUITests;
+			productName = GenSenseToolUITests;
+			productReference = FAB3879B28280726008C6009 /* GenSenseToolUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAB3877328280725008C6009 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1310;
+				LastUpgradeCheck = 1310;
+				TargetAttributes = {
+					FAB3877A28280725008C6009 = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					FAB3879028280726008C6009 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = FAB3877A28280725008C6009;
+					};
+					FAB3879A28280726008C6009 = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = FAB3877A28280725008C6009;
+					};
+				};
+			};
+			buildConfigurationList = FAB3877628280725008C6009 /* Build configuration list for PBXProject "GenSenseTool" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAB3877228280725008C6009;
+			productRefGroup = FAB3877C28280725008C6009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAB3877A28280725008C6009 /* GenSenseTool */,
+				FAB3879028280726008C6009 /* GenSenseToolTests */,
+				FAB3879A28280726008C6009 /* GenSenseToolUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAB3877928280725008C6009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB3878B28280726008C6009 /* LaunchScreen.storyboard in Resources */,
+				FAB3878828280726008C6009 /* Assets.xcassets in Resources */,
+				FAB3878628280725008C6009 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB3878F28280726008C6009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB3879928280726008C6009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAB3877728280725008C6009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB3878328280725008C6009 /* ViewController.swift in Sources */,
+				FAB3877F28280725008C6009 /* AppDelegate.swift in Sources */,
+				FAB3878128280725008C6009 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB3878D28280726008C6009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB3879628280726008C6009 /* GenSenseToolTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAB3879728280726008C6009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB387A228280726008C6009 /* GenSenseToolUITestsLaunchTests.swift in Sources */,
+				FAB387A028280726008C6009 /* GenSenseToolUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAB3879328280726008C6009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB3877A28280725008C6009 /* GenSenseTool */;
+			targetProxy = FAB3879228280726008C6009 /* PBXContainerItemProxy */;
+		};
+		FAB3879D28280726008C6009 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAB3877A28280725008C6009 /* GenSenseTool */;
+			targetProxy = FAB3879C28280726008C6009 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FAB3878428280725008C6009 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB3878528280725008C6009 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FAB3878928280726008C6009 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAB3878A28280726008C6009 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAB387A328280726008C6009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAB387A428280726008C6009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAB387A628280726008C6009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GenSenseTool/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAB387A728280726008C6009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GenSenseTool/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseTool;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FAB387A928280726008C6009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseToolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GenSenseTool.app/GenSenseTool";
+			};
+			name = Debug;
+		};
+		FAB387AA28280726008C6009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseToolTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GenSenseTool.app/GenSenseTool";
+			};
+			name = Release;
+		};
+		FAB387AC28280726008C6009 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseToolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GenSenseTool;
+			};
+			name = Debug;
+		};
+		FAB387AD28280726008C6009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseToolUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GenSenseTool;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAB3877628280725008C6009 /* Build configuration list for PBXProject "GenSenseTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB387A328280726008C6009 /* Debug */,
+				FAB387A428280726008C6009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB387A528280726008C6009 /* Build configuration list for PBXNativeTarget "GenSenseTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB387A628280726008C6009 /* Debug */,
+				FAB387A728280726008C6009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB387A828280726008C6009 /* Build configuration list for PBXNativeTarget "GenSenseToolTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB387A928280726008C6009 /* Debug */,
+				FAB387AA28280726008C6009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAB387AB28280726008C6009 /* Build configuration list for PBXNativeTarget "GenSenseToolUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAB387AC28280726008C6009 /* Debug */,
+				FAB387AD28280726008C6009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAB3877328280725008C6009 /* Project object */;
+}
