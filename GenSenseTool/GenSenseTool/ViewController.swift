@@ -7,6 +7,8 @@
 import UIKit
 import HomeKit
 
+typealias CellValueType = NSCopying
+
 class ViewController: UIViewController {
     var homes = [HMHome]()
     let homeManager = HMHomeManager()
@@ -17,7 +19,11 @@ class ViewController: UIViewController {
     //--
     var actionSet: HMActionSet?
     var aAction: HMAction?
-
+    //--
+    let targetValueMap = NSMapTable<HMCharacteristic, CellValueType>.strongToStrongObjects()
+    /// A dispatch group to wait for all of the individual components of the saving process.
+    let saveActionSetGroup = DispatchGroup()
+    var saveError: Error?
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
@@ -32,10 +38,6 @@ class ViewController: UIViewController {
       for home in homes {
         self.homes.append(home)
       }
-//      collectionView?.reloadData()
-        print ("* self.homes=\(self.homes)")
-        
-        
     }
     
     private func loadAccessories() {
@@ -54,12 +56,9 @@ class ViewController: UIViewController {
           })
         }
       }
-
-//      collectionView?.reloadData()
     }
     
     func reloadDisplayData(for home: HMHome?) {
-        var processServiceName = ""
         if let home = home {
             for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
                 print ("*serv = \(serv)")
@@ -68,61 +67,121 @@ class ViewController: UIViewController {
                 for chara in characteristics {
                    
                     if let value = chara.value, let name = chara.service?.name
-                    ,let format = chara.metadata?.format{
+                        ,let format = chara.metadata?.format , let desc=chara.metadata?.manufacturerDescription{
                         print (" - chara.metadata?.format=\(format)")
-                        processServiceName = name
                         print (" - chara.service.name=\(name)")
                         print (" - chara.value=\(value)")
+                        print (" - chara.metadata?.description=\(desc)")
                         print ("---")
                         
-                        aAction = HMCharacteristicWriteAction(characteristic: chara, targetValue: true as NSCopying)
-                        
-                        print ("*aAction \(String(describing: aAction))")
-                        //00大房間開關  ==>  大房間開關
-                        home.addActionSet(withName: name.replacingOccurrences(of: "00", with: "")) { actionSet, error in
-                            if let error = error {
-                                print("HomeKit: Error creating action set: \(error.localizedDescription)")
-                                 
+                        if  desc == "Power State" {
+                            print ("Before name:\(name)")
+                            let afterName = name.replacingOccurrences(of: "00", with: "")
+                            print ("After name:\(afterName)")
+                            
+                            
+                            
+                            if let target = targetValueForCharacteristic(chara) {
+//                                cell.setCharacteristic(characteristic, targetValue: target)
+                                aAction = HMCharacteristicWriteAction(characteristic: chara, targetValue: target)
                             }
-                            else {
-                                // There is no error, so the action set has a value.
-//                                self.saveActionSet(actionSet!)
+                            
+                            
+                           
+
+                            
+                            actionSet?.addAction(aAction!, completionHandler: { _ in
+                                print ("*done")
+                            })
+                            
+                            home.addActionSet(withName: afterName) { actionSet, error in
+                                if let error = error {
+                                    print("HomeKit: Error creating action set: \(error.localizedDescription)")
+    
+                                }
+                                else {
+                                    // There is no error, so the action set has a value.
+                                 
+//                                    self.saveActionSet(actionSet!,chara)
+                                    self.saveActionSet(actionSet!, chara: chara)
+                                }
                             }
                         }
-                        
 
-                        
-                        print ("* actionSet=\(actionSet)")
                     }
                     
                 }
                 print ("===")
                
             }
-            let service = home.servicesWithTypes([HMServiceTypeSwitch])?[1]
-            print ("* service =\(service)")
-            //On    00000025-0000-1000-8000-0026BB765291
-            let candidates = service?.characteristics
-                .filter { $0.characteristicType != "" }
-
-            guard let powerState = candidates?.first else {
-                return
-            }
-
-            print("# powerState: \(String(describing: powerState.value))")
             
-//            // powerState.value に取得済みのvalueが入っているが
-//            // readValueでデバイスから最新のvalueを再読み込み可能
-//            powerState.readValue { error in
-//                // PowerStateはBool(NSNumber)でvalueが返ってくる
-//                guard let value = powerState.value as? Bool else {
-//                    return
-//                }
-//                // ライトが点灯中ならtrue
-//                // ライトが消灯中ならfalse
-//                print("# powerState: \(value)")
-//            }
+
+            
+
         }
+    }
+    
+    func targetValueForCharacteristic(_ characteristic: HMCharacteristic) -> CellValueType? {
+        if let value = targetValueMap.object(forKey: characteristic) {
+            return value
+        }
+        else if let actions = actionSet?.actions {
+            for case let writeAction as HMCharacteristicWriteAction<CellValueType> in actions {
+                if writeAction.characteristic == characteristic {
+                    return writeAction.targetValue
+                }
+            }
+        }
+
+        return nil
+    }
+    
+    func saveActionSet(_ actionSet: HMActionSet, chara: HMCharacteristic) {
+//        let actions = actionsFromMapTable(targetValueMap)
+        
+        //這邊自己組裝
+        let a = HMCharacteristicWriteAction(characteristic: chara, targetValue: 1 as NSCopying)
+//        for action in actions {
+            saveActionSetGroup.enter()
+            addAction(a, toActionSet: actionSet) { error in
+                if let error = error {
+                    print("HomeKit: Error adding action: \(error.localizedDescription)")
+                    self.saveError = error
+                }else{
+                    print ("Create sense name ok ")
+                }
+                self.saveActionSetGroup.leave()
+            }
+//        }
+    }
+    
+    func actionsFromMapTable(_ table: NSMapTable<HMCharacteristic, CellValueType>) -> [HMCharacteristicWriteAction<CellValueType>] {
+        return targetValueMap.keyEnumerator().allObjects.map { key in
+            let characteristic = key as! HMCharacteristic
+            let targetValue =  targetValueMap.object(forKey: characteristic)!
+            return HMCharacteristicWriteAction(characteristic: characteristic, targetValue: targetValue)
+        }
+    }
+    
+    func addAction(_ action: HMCharacteristicWriteAction<NSCopying>, toActionSet actionSet: HMActionSet, completion: @escaping (Error?) -> Void) {
+        if let existingAction = existingActionInActionSetMatchingAction(action) {
+            existingAction.updateTargetValue(action.targetValue, completionHandler: completion)
+        }
+        else {
+            //action diy
+//            let action = HMCharacteristicWriteAction(characteristic: characteristic, targetValue: true)
+            actionSet.addAction(action, completionHandler: completion)
+        }
+    }
+    func existingActionInActionSetMatchingAction(_ action: HMCharacteristicWriteAction<CellValueType>) -> HMCharacteristicWriteAction<CellValueType>? {
+        if let actionSet = actionSet {
+            for case let existingAction as HMCharacteristicWriteAction<CellValueType> in actionSet.actions {
+                if action.characteristic == existingAction.characteristic {
+                    return existingAction
+                }
+            }
+        }
+        return nil
     }
 }
 
@@ -134,8 +193,7 @@ extension ViewController: HMHomeManagerDelegate {
       for home1 in manager.homes {
         print ("(2)")
         print ("* read home:\(home1)")
-        loadAccessories()
-        print ("* accessories=\(accessories)")
+
         reloadDisplayData(for: home1)
         print ("* accessories=\(accessories)")
       }

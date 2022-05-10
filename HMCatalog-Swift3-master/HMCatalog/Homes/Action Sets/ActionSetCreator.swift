@@ -122,6 +122,7 @@ class ActionSetCreator: CharacteristicCellDelegate {
             }
             else {
                 // There is no error, so the action set has a value.
+                print ("** actionSet: \(actionSet)")
                 self.saveActionSet(actionSet!)
             }
             self.saveActionSetGroup.leave()

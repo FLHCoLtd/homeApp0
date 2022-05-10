@@ -50,6 +50,7 @@ class ActionSetViewController: HMCatalogViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         actionSetCreator = ActionSetCreator(actionSet: actionSet, home: home)
+        print ("** actionSet=\(actionSet)")
         displayedAccessories = home.sortedControlAccessories        //
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Identifiers.accessoryCell)
