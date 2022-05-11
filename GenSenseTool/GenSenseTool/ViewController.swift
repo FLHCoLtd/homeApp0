@@ -10,12 +10,16 @@ import HomeKit
 typealias CellValueType = NSCopying
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var tfOutput: UITextView!
+    @IBOutlet weak var btnOpenHomeApp: UIButton!
+    
     var homes = [HMHome]()
     let homeManager = HMHomeManager()
     //--
     var home: HMHome? = nil
     var accessories = [HMAccessory]()
-    var discoveredAccessories = [HMAccessory]()
+//    var discoveredAccessories = [HMAccessory]()
     //--
     var actionSet: HMActionSet?
     var aAction: HMAction?
@@ -30,6 +34,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
+        tfOutput.text = ""
+        tfOutput.isUserInteractionEnabled = false
     }
     
     func addHomes(_ homes: [HMHome]) {
@@ -55,7 +61,9 @@ class ViewController: UIViewController {
             //把情境中所有的actionSet找出來建立一陣列列表
             getActionsArray(home:home)
 
-            //找 Switch 
+            //找 Switch
+            if let _ = home.servicesWithTypes([HMServiceTypeSwitch]) {
+            printDebug(output: "=== \(home.name) ===")
             for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
                 print ("*serv = \(serv)")
                 let characteristics = serv.characteristics
@@ -79,9 +87,10 @@ class ViewController: UIViewController {
                             
                             //建立判別情境是否有的旗標
                             if arrActionName.contains(createSenseName) {
-                                print ("*** \(createSenseName) had. ***")
+                                printDebug(output: "*** Sense: \(createSenseName) had. ***")
                             }else{
-                                print ("*** \(createSenseName) had not. ***")
+//                                printDebug(output: "*** \(createSenseName) had not. ***")
+                                print("*** \(createSenseName) had not. ***")
                                 saveActionSetGroup.enter()
                                 home.addActionSet(withName: createSenseName) { actionSet, error in
                                     if let error = error {
@@ -100,15 +109,19 @@ class ViewController: UIViewController {
                     
                 }
                 print ("===")
-               
             }
-            
-
-            
-
+            }else{
+//                printDebug(output: "=== \(home.name)===\n *** 下沒有switch *** ")
+                  print("=== \(home.name)===\n *** 下沒有switch *** ")
+            }
         }
     }
     
+    func printDebug(output:String)
+    {
+        print (output)
+        tfOutput.text += output+"\n"
+    }
     /**
         Searches through the target value map and existing `HMCharacteristicWriteActions`
         to find the target value for the characteristic in question.
@@ -145,7 +158,11 @@ class ViewController: UIViewController {
                     self.saveError = error
                 }else{
                     if let name=chara.service?.name {
-                        print ("Sense \(name.replacingOccurrences(of: "00", with: "")) create ok ")
+//                        print ("Sense \(name.replacingOccurrences(of: "00", with: "")) create ok ")
+                        
+                        let ouputText = "Sense: \(name.replacingOccurrences(of: "00", with: "")) create ok. "
+                        print (ouputText)
+                        self.tfOutput.text += ouputText+"\n"
                     }
                 }
                 self.saveActionSetGroup.leave()
@@ -181,34 +198,37 @@ class ViewController: UIViewController {
         }
         return nil
     }
+ 
+    @IBAction func openHomeApp(_ sender: UIButton) {
+          let url = URL(string: "com.apple.home://launch")!
+          UIApplication.shared.open(url)
+//        btnOpenHomeApp.isEnabled = false;
+//         self.timerEanbled()
+     }
+    
 }
 
 //更新完抓到所有的home
 extension ViewController: HMHomeManagerDelegate {
   func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
     addHomes(manager.homes)
-      
       for home1 in manager.homes {
         print ("(2)")
         print ("* read home:\(home1)")
-
         genSense(for: home1)
-       
       }
-      
   }
 }
 
 //--
 extension ViewController: HMAccessoryDelegate {
   func accessory(_ accessory: HMAccessory, service: HMService, didUpdateValueFor characteristic: HMCharacteristic) {
-//    collectionView?.reloadData()
   }
 }
 
 extension ViewController: HMAccessoryBrowserDelegate {
   func accessoryBrowser(_ browser: HMAccessoryBrowser, didFindNewAccessory accessory: HMAccessory) {
-    discoveredAccessories.append(accessory)
+//    discoveredAccessories.append(accessory)
   }
 }
 
