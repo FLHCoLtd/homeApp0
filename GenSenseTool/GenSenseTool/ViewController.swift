@@ -60,41 +60,60 @@ class ViewController: UIViewController {
     
     func genSense(for home: HMHome?) {
         if let home = home {
+            
+            //把情境中所有的actionSet找出來建立一陣列列表
+            var arrActionName = [String]()
+            print ("* home.actionSets = \(home.actionSets)")
+            for findAction in home.actionSets
+            {
+                print ("* findAction.name=\(findAction.name)")
+                arrActionName.append(findAction.name)
+            }
+            print ("* arrActionName=\(arrActionName)")
+            
             //Find Switch
             for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
                 print ("*serv = \(serv)")
                 let characteristics = serv.characteristics
                 print ("-characteristics = \(characteristics)")
                 for chara in characteristics {
-                   
                     if let value = chara.value, let name = chara.service?.name
                         ,let format = chara.metadata?.format , let desc=chara.metadata?.manufacturerDescription{
                    
-                            //Find "Powe State" switch and Check name 00xxxxxx00
+                            //找"Powe State" (switch) 前後綴為都 00
                         if  desc == "Power State" && name.hasPrefix("00") && name.hasSuffix("00") {
                             
                             print (" - chara.metadata?.format=\(format)")
-                            print (" - chara.service.name=\(name)")
+//                            print (" - chara.service.name=\(name)")
                             print (" - chara.value=\(value)")
                             print (" - chara.metadata?.description=\(desc)")
                             print ("---")
                             
-                            print ("Before name:\(name)")
-                            let afterName = name.replacingOccurrences(of: "00", with: "")
-                            print ("After name:\(afterName)")
+                            print ("chara.service.name name:\(name)")
+                            let createSenseName = name.replacingOccurrences(of: "00", with: "")
+                            print ("createSenseName name:\(createSenseName)")
                             
-                            saveActionSetGroup.enter()
+                            //建立判別情境是否有的旗標
+                            var isHadSense = false
+                            if arrActionName.contains(createSenseName) {
+                                isHadSense = true
+                                print ("*** \(createSenseName) had. ***")
+                            }else{
+                                print ("*** \(createSenseName) had not. ***")
+                            }
                             
-                            print ("*actionSet :\(actionSet)")
-                            home.addActionSet(withName: afterName) { actionSet, error in
-                                if let error = error {
-                                    print("HomeKit: Error creating action set: \(error.localizedDescription)")
+                            //沒有建立新情境
+                            if !isHadSense {
+                                saveActionSetGroup.enter()
+                                home.addActionSet(withName: createSenseName) { actionSet, error in
+                                    if let error = error {
+                                        print("HomeKit: Error creating action set: \(error.localizedDescription)")
+                                    }
+                                    else {
+                                        self.saveActionSet(actionSet!, chara: chara)
+                                    }
+                                    self.saveActionSetGroup.leave()
                                 }
-                                else {
-                                    // There is no error, so the action set has a value.
-                                    self.saveActionSet(actionSet!, chara: chara)
-                                }
-                                self.saveActionSetGroup.leave()
                             }
                         }
 
@@ -111,6 +130,14 @@ class ViewController: UIViewController {
         }
     }
     
+    /**
+        Searches through the target value map and existing `HMCharacteristicWriteActions`
+        to find the target value for the characteristic in question.
+        
+        - parameter characteristic: The characteristic in question.
+        
+        - returns:  The target value for this characteristic, or nil if there is no target.
+    */
     func targetValueForCharacteristic(_ characteristic: HMCharacteristic) -> CellValueType? {
         if let value = targetValueMap.object(forKey: characteristic) {
             return value
@@ -133,14 +160,14 @@ class ViewController: UIViewController {
 //        for action in actions {
             saveActionSetGroup.enter()
         
-             actionSet?.actions
-        
             addAction(a, toActionSet: actionSet) { error in
                 if let error = error {
                     print("HomeKit: Error adding action: \(error.localizedDescription)")
                     self.saveError = error
                 }else{
-                    print ("Create sense name ok ")
+                    if let name=chara.service?.name {
+                        print ("Sense \(name.replacingOccurrences(of: "00", with: "")) create ok ")
+                    }
                 }
                 self.saveActionSetGroup.leave()
             }
