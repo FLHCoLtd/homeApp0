@@ -19,18 +19,18 @@ class ViewController: UIViewController {
     //--
     var actionSet: HMActionSet?
     var aAction: HMAction?
-    //--
+    //--Sense
     let targetValueMap = NSMapTable<HMCharacteristic, CellValueType>.strongToStrongObjects()
     /// A dispatch group to wait for all of the individual components of the saving process.
     let saveActionSetGroup = DispatchGroup()
     var saveError: Error?
+    //--
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
-        print ("(1)")
-        addHomes(homeManager.homes)
-        
-       
+//        print ("(1)")
+//        addHomes(homeManager.homes)
     }
     
     func addHomes(_ homes: [HMHome]) {
@@ -58,8 +58,9 @@ class ViewController: UIViewController {
       }
     }
     
-    func reloadDisplayData(for home: HMHome?) {
+    func genSense(for home: HMHome?) {
         if let home = home {
+            //Find Switch
             for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
                 print ("*serv = \(serv)")
                 let characteristics = serv.characteristics
@@ -68,43 +69,32 @@ class ViewController: UIViewController {
                    
                     if let value = chara.value, let name = chara.service?.name
                         ,let format = chara.metadata?.format , let desc=chara.metadata?.manufacturerDescription{
-                        print (" - chara.metadata?.format=\(format)")
-                        print (" - chara.service.name=\(name)")
-                        print (" - chara.value=\(value)")
-                        print (" - chara.metadata?.description=\(desc)")
-                        print ("---")
-                        
-                        if  desc == "Power State" {
+                   
+                            //Find "Powe State" switch and Check name 00xxxxxx00
+                        if  desc == "Power State" && name.hasPrefix("00") && name.hasSuffix("00") {
+                            
+                            print (" - chara.metadata?.format=\(format)")
+                            print (" - chara.service.name=\(name)")
+                            print (" - chara.value=\(value)")
+                            print (" - chara.metadata?.description=\(desc)")
+                            print ("---")
+                            
                             print ("Before name:\(name)")
                             let afterName = name.replacingOccurrences(of: "00", with: "")
                             print ("After name:\(afterName)")
                             
+                            saveActionSetGroup.enter()
                             
-                            
-                            if let target = targetValueForCharacteristic(chara) {
-//                                cell.setCharacteristic(characteristic, targetValue: target)
-                                aAction = HMCharacteristicWriteAction(characteristic: chara, targetValue: target)
-                            }
-                            
-                            
-                           
-
-                            
-                            actionSet?.addAction(aAction!, completionHandler: { _ in
-                                print ("*done")
-                            })
-                            
+                            print ("*actionSet :\(actionSet)")
                             home.addActionSet(withName: afterName) { actionSet, error in
                                 if let error = error {
                                     print("HomeKit: Error creating action set: \(error.localizedDescription)")
-    
                                 }
                                 else {
                                     // There is no error, so the action set has a value.
-                                 
-//                                    self.saveActionSet(actionSet!,chara)
                                     self.saveActionSet(actionSet!, chara: chara)
                                 }
+                                self.saveActionSetGroup.leave()
                             }
                         }
 
@@ -138,11 +128,13 @@ class ViewController: UIViewController {
     
     func saveActionSet(_ actionSet: HMActionSet, chara: HMCharacteristic) {
 //        let actions = actionsFromMapTable(targetValueMap)
-        
         //這邊自己組裝
         let a = HMCharacteristicWriteAction(characteristic: chara, targetValue: 1 as NSCopying)
 //        for action in actions {
             saveActionSetGroup.enter()
+        
+             actionSet?.actions
+        
             addAction(a, toActionSet: actionSet) { error in
                 if let error = error {
                     print("HomeKit: Error adding action: \(error.localizedDescription)")
@@ -194,8 +186,8 @@ extension ViewController: HMHomeManagerDelegate {
         print ("(2)")
         print ("* read home:\(home1)")
 
-        reloadDisplayData(for: home1)
-        print ("* accessories=\(accessories)")
+        genSense(for: home1)
+       
       }
       
   }
