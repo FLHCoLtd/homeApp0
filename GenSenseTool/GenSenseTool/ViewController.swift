@@ -25,12 +25,11 @@ class ViewController: UIViewController {
     let saveActionSetGroup = DispatchGroup()
     var saveError: Error?
     //--
+    var arrActionName = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
-//        print ("(1)")
-//        addHomes(homeManager.homes)
     }
     
     func addHomes(_ homes: [HMHome]) {
@@ -40,38 +39,23 @@ class ViewController: UIViewController {
       }
     }
     
-    private func loadAccessories() {
-      guard let homeAccessories = home?.accessories else {
-        return
-      }
-
-      for accessory in homeAccessories {
-        if let characteristic = accessory.find(serviceType: HMServiceTypeSwitch, characteristicType: HMCharacteristicMetadataFormatBool) {
-          accessories.append(accessory)
-          accessory.delegate = self
-          characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-            if error != nil {
-              print("Something went wrong when enabling notification for a chracteristic.")
-            }
-          })
+    func getActionsArray(home:HMHome)
+    {
+        arrActionName = [String]()
+        for findAction in home.actionSets
+        {
+            arrActionName.append(findAction.name)
         }
-      }
+        print ("* arrActionName=\(arrActionName)")
     }
     
     func genSense(for home: HMHome?) {
         if let home = home {
-            
+    
             //把情境中所有的actionSet找出來建立一陣列列表
-            var arrActionName = [String]()
-            print ("* home.actionSets = \(home.actionSets)")
-            for findAction in home.actionSets
-            {
-                print ("* findAction.name=\(findAction.name)")
-                arrActionName.append(findAction.name)
-            }
-            print ("* arrActionName=\(arrActionName)")
-            
-            //Find Switch
+            getActionsArray(home:home)
+
+            //找 Switch 
             for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
                 print ("*serv = \(serv)")
                 let characteristics = serv.characteristics
@@ -94,16 +78,10 @@ class ViewController: UIViewController {
                             print ("createSenseName name:\(createSenseName)")
                             
                             //建立判別情境是否有的旗標
-                            var isHadSense = false
                             if arrActionName.contains(createSenseName) {
-                                isHadSense = true
                                 print ("*** \(createSenseName) had. ***")
                             }else{
                                 print ("*** \(createSenseName) had not. ***")
-                            }
-                            
-                            //沒有建立新情境
-                            if !isHadSense {
                                 saveActionSetGroup.enter()
                                 home.addActionSet(withName: createSenseName) { actionSet, error in
                                     if let error = error {
@@ -115,6 +93,7 @@ class ViewController: UIViewController {
                                     self.saveActionSetGroup.leave()
                                 }
                             }
+                            
                         }
 
                     }
