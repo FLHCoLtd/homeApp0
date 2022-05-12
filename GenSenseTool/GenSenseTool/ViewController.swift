@@ -32,7 +32,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     //--
     var arrCreateSenseName = ["NewRoom2","NewRoom3","Mybedroom2","Mybedroom1"]
+    var arrCreateCharacteristics = [HMCharacteristic]()
     
+    var arrData = [Dictionary<String, Any>]()
+    var totalCount = 0
+    var perCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,10 +66,32 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func genSense(for home: HMHome?) {
         if let home = home {
-    
+            
+            
             //把情境中所有的actionSet找出來建立一陣列列表
             getActionsArray(home:home)
-
+            
+            //找出需要轉換的總筆數
+            if let _ = home.servicesWithTypes([HMServiceTypeSwitch]) {
+              for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
+                  print ("*serv = \(serv)")
+                  let characteristics = serv.characteristics
+                  print ("-characteristics = \(characteristics)")
+                  for chara in characteristics {
+                      if let value = chara.value, let name = chara.service?.name
+                          ,let format = chara.metadata?.format , let desc=chara.metadata?.manufacturerDescription{
+                          if  desc == "Power State" && name.hasPrefix("00") && name.hasSuffix("00") {
+                              let createSenseName = name.replacingOccurrences(of: "00", with: "")
+                              if !arrActionName.contains(createSenseName) {
+                                  totalCount+=1
+                              }
+                             }
+                      }
+                  }
+              }
+            }
+            print ("*totalCount=\(totalCount)")
+    
             //找 Switch
             if let _ = home.servicesWithTypes([HMServiceTypeSwitch]) {
             printDebug(output: "=== \(home.name) ===")
@@ -105,6 +131,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                         self.saveActionSet(actionSet!, chara: chara)
                                     }
                                     self.saveActionSetGroup.leave()
+                                    self.tableView.reloadData()
                                 }
                             }
                             
@@ -114,6 +141,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     
                 }
                 print ("===")
+              
             }
             }else{
 //                printDebug(output: "=== \(home.name)===\n *** 下沒有switch *** ")
@@ -164,13 +192,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }else{
                     if let name=chara.service?.name {
 //                        print ("Sense \(name.replacingOccurrences(of: "00", with: "")) create ok ")
-                        
-                        let ouputText = "Sense: \(name.replacingOccurrences(of: "00", with: "")) create ok. "
+                        let createName = name.replacingOccurrences(of: "00", with: "")
+                        let ouputText = "Sense: \(createName) create ok. "
                         print (ouputText)
                         self.tfOutput.text += ouputText+"\n"
+                        
+                        self.arrData.append(["name":createName,"chars":chara])
+                        print ("*arrData: \(self.arrData)")
+                        self.totalCount -= 1
+//                        print ("*perCount: \(self.perCount)")
+                        print ("*totalCount: \(self.totalCount)")
+                        if self.totalCount==0 {
+                            self.tableView.reloadData()
+                        }
+                        
                     }
                 }
                 self.saveActionSetGroup.leave()
+              
             }
 //        }
     }
@@ -213,14 +252,38 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     //MARK: - tableview
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrCreateSenseName.count
+        return arrData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
-        cell.lbSenseName.text = arrCreateSenseName[indexPath.row]
+        print ("* indexPath.row:\(indexPath.row)")
+        let isIndexValid = arrData.indices.contains(indexPath.row)
+        if isIndexValid{
+            if let name=arrData[indexPath.row]["name"]{
+                cell.lbSenseName.text = name as! String
+            }
+        }else{
+            print ("out of array")
+        }
         return cell
     }
+    
+    /// Removes the action associated with the index path.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+//            let characteristic = actionSetCreator.allCharacteristics[indexPath.row]
+//            actionSetCreator.removeTargetValueForCharacteristic(characteristic) {  //remove Sense 刪除場景
+//                if self.actionSetCreator.containsActions {
+//                    tableView.deleteRows(at: [indexPath], with: .automatic)
+//                }
+//                else {
+//                    tableView.reloadRows(at: [indexPath], with: .automatic)
+//                }
+//            }
+        }
+    }
+    
     //MARK: -
     
 }
