@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     //--
     var home: HMHome? = nil
     var accessories = [HMAccessory]()
-//    var discoveredAccessories = [HMAccessory]()
     //--
     var actionSet: HMActionSet?
     var aAction: HMAction?
@@ -35,7 +34,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         homeManager.delegate = self
         tfOutput.text = ""
-        tfOutput.isUserInteractionEnabled = false
+        tfOutput.isEditable = false
     }
     
     func addHomes(_ homes: [HMHome]) {

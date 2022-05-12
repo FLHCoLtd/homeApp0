@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XYg-t6-RYg">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,50 +13,55 @@
             <objects>
                 <viewController id="XYg-t6-RYg" customClass="ViewController" customModule="GenSenseTool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xux-Qx-s62">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generat Sense Tool" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="If7-Jb-N7C">
-                                <rect key="frame" x="16" y="69" width="343" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pHr-mJ-bVb">
-                                <rect key="frame" x="16" y="474.33333333333331" width="343" height="203.66666666666669"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="pHr-mJ-bVb" secondAttribute="height" multiplier="191:134" constant="52.738805970149258" id="d9X-td-S3U"/>
-                                    <constraint firstAttribute="height" constant="231" id="y0I-J3-uO5"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="h0s-cI-tnd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ag3-Y3-qmz">
-                                <rect key="frame" x="146" y="700" width="82" height="31"/>
+                                <rect key="frame" x="138" y="616" width="82" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="打開家庭"/>
                                 <connections>
                                     <action selector="openHomeApp:" destination="XYg-t6-RYg" eventType="touchUpInside" id="KgO-dH-qgS"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.75" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pHr-mJ-bVb">
+                                <rect key="frame" x="20" y="487" width="335" height="121"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="121" id="jWC-Km-R7j"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generat Sense Tool" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="If7-Jb-N7C">
+                                <rect key="frame" x="20" y="25" width="335" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dSQ-aS-Pqz"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.76862752440000004" green="0.80000001190000003" blue="0.88235294819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="If7-Jb-N7C" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="25" id="4Ts-EN-PQ0"/>
-                            <constraint firstItem="If7-Jb-N7C" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="16" id="IfY-De-jvc"/>
-                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="pHr-mJ-bVb" secondAttribute="trailing" constant="16" id="JXq-l6-NCb"/>
-                            <constraint firstItem="Ag3-Y3-qmz" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="146" id="Ko9-Qh-0ZN"/>
-                            <constraint firstItem="pHr-mJ-bVb" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="MeL-5w-ITi"/>
-                            <constraint firstItem="pHr-mJ-bVb" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="16" id="cfi-kb-fAT"/>
-                            <constraint firstItem="If7-Jb-N7C" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="fCP-3R-swg"/>
-                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="If7-Jb-N7C" secondAttribute="trailing" constant="16" id="jqn-L0-K33"/>
-                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="bottom" secondItem="pHr-mJ-bVb" secondAttribute="bottom" constant="100" id="u8q-24-A3X"/>
-                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="bottom" secondItem="Ag3-Y3-qmz" secondAttribute="bottom" constant="47" id="ulH-aM-7VO"/>
-                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Ag3-Y3-qmz" secondAttribute="trailing" constant="147" id="w8r-KU-qwr"/>
+                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="bottom" secondItem="Ag3-Y3-qmz" secondAttribute="bottom" constant="20" id="85X-Dh-yiU"/>
+                            <constraint firstItem="If7-Jb-N7C" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="AmT-Dx-Elx"/>
+                            <constraint firstAttribute="bottom" secondItem="h0s-cI-tnd" secondAttribute="bottom" id="BJE-t2-SxO"/>
+                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="pHr-mJ-bVb" secondAttribute="trailing" constant="20" id="Sk8-CC-sjB"/>
+                            <constraint firstItem="pHr-mJ-bVb" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="WcU-KO-vvQ"/>
+                            <constraint firstItem="If7-Jb-N7C" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="25" id="XI4-Ov-Ra7"/>
+                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="h0s-cI-tnd" secondAttribute="trailing" id="YCb-6c-zb0"/>
+                            <constraint firstItem="h0s-cI-tnd" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" id="YIC-aA-zo6"/>
+                            <constraint firstItem="Ag3-Y3-qmz" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="138" id="dg3-gn-P0U"/>
+                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Ag3-Y3-qmz" secondAttribute="trailing" constant="155" id="fp2-Pb-hAZ"/>
+                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="If7-Jb-N7C" secondAttribute="trailing" constant="20" id="gp5-CD-XBH"/>
+                            <constraint firstItem="If7-Jb-N7C" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="ndV-YI-7X8"/>
+                            <constraint firstItem="h0s-cI-tnd" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" id="rVd-hN-sq3"/>
+                            <constraint firstItem="Ag3-Y3-qmz" firstAttribute="top" secondItem="pHr-mJ-bVb" secondAttribute="bottom" constant="8" id="zBK-oo-oXa"/>
                         </constraints>
                     </view>
                     <connections>
@@ -66,10 +71,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxh-ae-He6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="824.63768115942037" y="14.732142857142856"/>
+            <point key="canvasLocation" x="821.60000000000002" y="13.043478260869566"/>
         </scene>
     </scenes>
     <resources>
+        <image name="background" width="375" height="667"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
