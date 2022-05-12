@@ -9,10 +9,10 @@ import HomeKit
 
 typealias CellValueType = NSCopying
 
-class ViewController: UIViewController {
-    
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tfOutput: UITextView!
     @IBOutlet weak var btnOpenHomeApp: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     var homes = [HMHome]()
     let homeManager = HMHomeManager()
@@ -30,11 +30,17 @@ class ViewController: UIViewController {
     //--
     var arrActionName = [String]()
     
+    //--
+    var arrCreateSenseName = ["NewRoom2","NewRoom3","Mybedroom2","Mybedroom1"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
         tfOutput.text = ""
         tfOutput.isEditable = false
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     func addHomes(_ homes: [HMHome]) {
@@ -205,7 +211,23 @@ class ViewController: UIViewController {
 //         self.timerEanbled()
      }
     
+    //MARK: - tableview
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrCreateSenseName.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
+        cell.lbSenseName.text = arrCreateSenseName[indexPath.row]
+        return cell
+    }
+    //MARK: -
+    
 }
+
+
+
+
 
 //更新完抓到所有的home
 extension ViewController: HMHomeManagerDelegate {

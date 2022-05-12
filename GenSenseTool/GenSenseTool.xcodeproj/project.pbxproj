@@ -17,6 +17,7 @@
 		FAB387A028280726008C6009 /* GenSenseToolUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3879F28280726008C6009 /* GenSenseToolUITests.swift */; };
 		FAB387A228280726008C6009 /* GenSenseToolUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */; };
 		FAB387B22828073A008C6009 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB387B12828073A008C6009 /* HomeKit.framework */; };
+		FABE9622282CB9F9003F8E21 /* SenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		FAB387AE2828073A008C6009 /* GenSenseTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenSenseTool.entitlements; sourceTree = "<group>"; };
 		FAB387AF2828073A008C6009 /* GenSenseTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenSenseTool.entitlements; sourceTree = "<group>"; };
 		FAB387B12828073A008C6009 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
+		FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenseTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 			children = (
 				FAB387AF2828073A008C6009 /* GenSenseTool.entitlements */,
 				FAB387AE2828073A008C6009 /* GenSenseTool.entitlements */,
+				FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */,
 				FAB3877E28280725008C6009 /* AppDelegate.swift */,
 				FAB3878028280725008C6009 /* SceneDelegate.swift */,
 				FAB3878228280725008C6009 /* ViewController.swift */,
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FABE9622282CB9F9003F8E21 /* SenseTableViewCell.swift in Sources */,
 				FAB3878328280725008C6009 /* ViewController.swift in Sources */,
 				FAB3877F28280725008C6009 /* AppDelegate.swift in Sources */,
 				FAB3878128280725008C6009 /* SceneDelegate.swift in Sources */,
