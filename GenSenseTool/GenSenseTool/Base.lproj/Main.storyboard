@@ -33,14 +33,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="121" id="jWC-Km-R7j"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generat Sense Tool" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="If7-Jb-N7C">
-                                <rect key="frame" x="20" y="25" width="335" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Generat Sense Tool" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvq-05-r5l">
+                                <rect key="frame" x="20" y="20" width="335" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -49,18 +49,17 @@
                         <color key="backgroundColor" red="0.76862752440000004" green="0.80000001190000003" blue="0.88235294819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="bottom" secondItem="Ag3-Y3-qmz" secondAttribute="bottom" constant="20" id="85X-Dh-yiU"/>
-                            <constraint firstItem="If7-Jb-N7C" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="AmT-Dx-Elx"/>
                             <constraint firstAttribute="bottom" secondItem="h0s-cI-tnd" secondAttribute="bottom" id="BJE-t2-SxO"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="pHr-mJ-bVb" secondAttribute="trailing" constant="20" id="Sk8-CC-sjB"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="WcU-KO-vvQ"/>
-                            <constraint firstItem="If7-Jb-N7C" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="25" id="XI4-Ov-Ra7"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="h0s-cI-tnd" secondAttribute="trailing" id="YCb-6c-zb0"/>
                             <constraint firstItem="h0s-cI-tnd" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" id="YIC-aA-zo6"/>
+                            <constraint firstItem="Zvq-05-r5l" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="20" id="cTT-KW-Yax"/>
                             <constraint firstItem="Ag3-Y3-qmz" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="138" id="dg3-gn-P0U"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Ag3-Y3-qmz" secondAttribute="trailing" constant="155" id="fp2-Pb-hAZ"/>
-                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="If7-Jb-N7C" secondAttribute="trailing" constant="20" id="gp5-CD-XBH"/>
-                            <constraint firstItem="If7-Jb-N7C" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="ndV-YI-7X8"/>
                             <constraint firstItem="h0s-cI-tnd" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" id="rVd-hN-sq3"/>
+                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Zvq-05-r5l" secondAttribute="trailing" constant="20" id="uIE-gJ-fNv"/>
+                            <constraint firstItem="Zvq-05-r5l" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="w3B-Se-UYI"/>
                             <constraint firstItem="Ag3-Y3-qmz" firstAttribute="top" secondItem="pHr-mJ-bVb" secondAttribute="bottom" constant="8" id="zBK-oo-oXa"/>
                         </constraints>
                     </view>
