@@ -32,12 +32,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var arrActionName = [String]()
     
     //--
-//    var arrCreateSenseName = ["NewRoom2","NewRoom3","Mybedroom2","Mybedroom1"]
-//    var arrCreateCharacteristics = [HMCharacteristic]()
     
     var arrData = [Dictionary<String, Any>]()
     var totalCount = 0
-//    var perCount = 0
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,7 +105,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 for chara in characteristics {
                     if let value = chara.value, let name = chara.service?.name
                         ,let format = chara.metadata?.format , let desc=chara.metadata?.manufacturerDescription{
-                   
+                        
                             //找"Powe State" (switch) 前後綴為都 00
                         if  desc == "Power State" && name.hasPrefix("00") && name.hasSuffix("00") {
                             
@@ -201,7 +199,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         print (ouputText)
                         self.tfOutput.text += ouputText+"\n"
                         
-                        self.arrData.append(["name":createName,"chars":chara])
+                        self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet])
                         print ("*arrData: \(self.arrData)")
                         
                         self.totalCount -= 1
@@ -215,8 +213,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.saveActionSetGroup.leave()
                 
                 self.saveActionSetGroup.notify(queue: DispatchQueue.main){
-                // group裡所有任務完成後執行．．．
                     self.tableView.reloadData()
+                    print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
+//                    self.actionSet = actionSet
+                    print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
                 }
             }
 //        }
@@ -254,11 +254,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBAction func openHomeApp(_ sender: UIButton) {
           let url = URL(string: "com.apple.home://launch")!
           UIApplication.shared.open(url)
-//        btnOpenHomeApp.isEnabled = false;
-//         self.timerEanbled()
      }
     
     //MARK: - tableview
+    func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath)
+    {
+        actionSet = arrData[indexPath.row]["actionSet"] as! HMActionSet
+        print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrData.count
     }
@@ -269,8 +273,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let isIndexValid = arrData.indices.contains(indexPath.row)
         if isIndexValid{
             if let name=arrData[indexPath.row]["name"]{
-                cell.lbSenseName.text = name as! String //+ "已建立"
-                
+                cell.lbSenseName.text = name as! String
             }
         }else{
             print ("out of array")
@@ -278,22 +281,99 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return cell
     }
     
-    /// Removes the action associated with the index path.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-                    
-            let characteristic = arrData[indexPath.row]["chars"]
-            removeTargetValueForCharacteristic(characteristic as! HMCharacteristic) {  //remove Sense 刪除場景
-//                if self.actionSetCreator.containsActions {
-//                    tableView.deleteRows(at: [indexPath], with: .automatic)
-//                }
-//                else {
-//                    tableView.reloadRows(at: [indexPath], with: .automatic)
-//                }
+    
+    func updateNameIfNecessary(_ name: String,indexPath: IndexPath) {
+        saveActionSetGroup.enter()
+        print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
+        actionSet?.updateName(name) { error in
+            if let error = error {
+                let perr = "HomeKit: Error updating name: \(error.localizedDescription)"
+                print(perr)
+                let alert = UIAlertController(title: "Alert", message: perr, preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                self.saveError = error
+            }else{
+                self.arrData[indexPath.row]["name"]=name
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
             }
+            self.saveActionSetGroup.leave()
+         
+            
+            
         }
     }
     
+//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+//
+//        // action one
+//        let editAction = UITableViewRowAction(style: .default, title: "Rename", handler: { (action, indexPath) in
+//            print("Edit tapped")
+//        })
+//        editAction.backgroundColor = UIColor.blue
+//
+//        // action two
+//        let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+//            print("Delete tapped")
+//        })
+//        deleteAction.backgroundColor = UIColor.red
+//
+//        return [editAction, deleteAction]
+//    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Rename"
+    }
+    
+    /// Removes the action associated with the index path.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            //把情境中所有的actionSet找出來建立一陣列列表
+//            if home != nil {
+//                getActionsArray(home: self.home!)
+//            }
+            actionSet = arrData[indexPath.row]["actionSet"] as! HMActionSet
+            print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
+            print ("* arrActionName =\(arrActionName)")
+            
+            
+            let alert = UIAlertController(title: "Alert", message: "改名不要再執行此工具，不然會有多個情境對一個按鈕Switch", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {_ in 
+                
+                let alertController = UIAlertController(title: "Scene Name rename to", message: "", preferredStyle: UIAlertController.Style.alert)
+                alertController.addTextField { (textField : UITextField!) -> Void in
+                    textField.placeholder = "請入要修改的名稱"
+                    }
+                let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
+                    if let textField = alertController.textFields?[0] {
+                                if textField.text!.count > 0 {
+                                    print("Text :: \(textField.text ?? "")")
+                                    if textField.text != nil {
+                                        self.updateNameIfNecessary( textField.text! ,indexPath: indexPath)
+                                    }
+                                }
+                            }
+                })
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
+                        (action : UIAlertAction!) -> Void in })
+                
+                    alertController.addAction(saveAction)
+                    alertController.addAction(cancelAction)
+                
+                self.present(alertController, animated: true, completion: nil)
+                
+            }))
+            self.present(alert, animated: true, completion: nil)
+            
+
+                         
+         }
+        }
+    }
+    
+
+
     /**
         First removes the characteristic from the `targetValueMap`.
         Then removes any `HMCharacteristicWriteAction`s from the action set
@@ -309,32 +389,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             in the target value map. We want to run the completion closure only one time,
             to ensure we've removed both.
         */
-        let group = DispatchGroup()
-        if targetValueMap.object(forKey: characteristic) != nil {
-            // Remove the characteristic from the target value map.
-            DispatchQueue.main.async(group: group) {
-                self.targetValueMap.removeObject(forKey: characteristic)
-            }
-        }
-        if let actions = actionSet?.actions {
-            for case let action as HMCharacteristicWriteAction<CellValueType> in actions {
-                if action.characteristic == characteristic {
-                    /*
-                        Also remove the action, and only relinquish the dispatch group
-                        once the action set has finished.
-                    */
-                    group.enter()
-                    actionSet?.removeAction(action) { error in
-                        if let error = error {
-                            print(error.localizedDescription)
-                        }
-                        group.leave()
-                    }
-                }
-            }
-        }
-        // Once we're positive both have finished, run the completion closure on the main queue.
-        group.notify(queue: DispatchQueue.main, execute: completion)
+//        let group = DispatchGroup()
+//        if targetValueMap.object(forKey: characteristic) != nil {
+//            // Remove the characteristic from the target value map.
+//            DispatchQueue.main.async(group: group) {
+//                self.targetValueMap.removeObject(forKey: characteristic)
+//            }
+//        }
+     
+
+           
+
     }
 //    func tableView(_ tableView: UITableView, titleForHeaderInSection
 //                                section: Int) -> String? {
@@ -342,7 +407,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //    }
     //MARK: -
     
-}
+
 
 
 
@@ -368,7 +433,7 @@ extension ViewController: HMAccessoryDelegate {
 
 extension ViewController: HMAccessoryBrowserDelegate {
   func accessoryBrowser(_ browser: HMAccessoryBrowser, didFindNewAccessory accessory: HMAccessory) {
-//    discoveredAccessories.append(accessory)
+//      discoveredAccessories.append(accessory)
   }
 }
 
