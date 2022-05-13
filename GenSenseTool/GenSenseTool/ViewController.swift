@@ -13,6 +13,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var tfOutput: UITextView!
     @IBOutlet weak var btnOpenHomeApp: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var lbNoHad: UILabel!
     
     var homes = [HMHome]()
     let homeManager = HMHomeManager()
@@ -31,12 +32,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var arrActionName = [String]()
     
     //--
-    var arrCreateSenseName = ["NewRoom2","NewRoom3","Mybedroom2","Mybedroom1"]
-    var arrCreateCharacteristics = [HMCharacteristic]()
+//    var arrCreateSenseName = ["NewRoom2","NewRoom3","Mybedroom2","Mybedroom1"]
+//    var arrCreateCharacteristics = [HMCharacteristic]()
     
     var arrData = [Dictionary<String, Any>]()
     var totalCount = 0
-    var perCount = 0
+//    var perCount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tfOutput.isEditable = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        lbNoHad.isHidden = true
     }
     
     func addHomes(_ homes: [HMHome]) {
@@ -91,7 +93,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
               }
             }
             print ("*totalCount=\(totalCount)")
-    
+            if totalCount == 0 {
+                lbNoHad.isHidden = false
+            }
+            
             //找 Switch
             if let _ = home.servicesWithTypes([HMServiceTypeSwitch]) {
             printDebug(output: "=== \(home.name) ===")
@@ -131,7 +136,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                         self.saveActionSet(actionSet!, chara: chara)
                                     }
                                     self.saveActionSetGroup.leave()
-                                    self.tableView.reloadData()
+//                                    self.tableView.reloadData()
                                 }
                             }
                             
@@ -191,7 +196,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     self.saveError = error
                 }else{
                     if let name=chara.service?.name {
-//                        print ("Sense \(name.replacingOccurrences(of: "00", with: "")) create ok ")
                         let createName = name.replacingOccurrences(of: "00", with: "")
                         let ouputText = "Sense: \(createName) create ok. "
                         print (ouputText)
@@ -199,17 +203,21 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         
                         self.arrData.append(["name":createName,"chars":chara])
                         print ("*arrData: \(self.arrData)")
+                        
                         self.totalCount -= 1
-//                        print ("*perCount: \(self.perCount)")
                         print ("*totalCount: \(self.totalCount)")
                         if self.totalCount==0 {
-                            self.tableView.reloadData()
+//                            self.tableView.reloadData()
                         }
                         
                     }
                 }
                 self.saveActionSetGroup.leave()
-              
+                
+                self.saveActionSetGroup.notify(queue: DispatchQueue.main){
+                // group裡所有任務完成後執行．．．
+                    self.tableView.reloadData()
+                }
             }
 //        }
     }
@@ -261,7 +269,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let isIndexValid = arrData.indices.contains(indexPath.row)
         if isIndexValid{
             if let name=arrData[indexPath.row]["name"]{
-                cell.lbSenseName.text = name as! String
+                cell.lbSenseName.text = name as! String //+ "已建立"
+                
             }
         }else{
             print ("out of array")
@@ -272,18 +281,65 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     /// Removes the action associated with the index path.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-//            let characteristic = actionSetCreator.allCharacteristics[indexPath.row]
-//            actionSetCreator.removeTargetValueForCharacteristic(characteristic) {  //remove Sense 刪除場景
+                    
+            let characteristic = arrData[indexPath.row]["chars"]
+            removeTargetValueForCharacteristic(characteristic as! HMCharacteristic) {  //remove Sense 刪除場景
 //                if self.actionSetCreator.containsActions {
 //                    tableView.deleteRows(at: [indexPath], with: .automatic)
 //                }
 //                else {
 //                    tableView.reloadRows(at: [indexPath], with: .automatic)
 //                }
-//            }
+            }
         }
     }
     
+    /**
+        First removes the characteristic from the `targetValueMap`.
+        Then removes any `HMCharacteristicWriteAction`s from the action set
+        which set the specified characteristic.
+        
+        - parameter characteristic: The `HMCharacteristic` to remove.
+        - parameter completion: The closure to invoke when the characteristic has been removed.
+    */
+    func removeTargetValueForCharacteristic(_ characteristic: HMCharacteristic, completion: @escaping () -> Void) {
+        /*
+            We need to create a dispatch group here, because in many cases
+            there will be one characteristic saved in the Action Set, and one
+            in the target value map. We want to run the completion closure only one time,
+            to ensure we've removed both.
+        */
+        let group = DispatchGroup()
+        if targetValueMap.object(forKey: characteristic) != nil {
+            // Remove the characteristic from the target value map.
+            DispatchQueue.main.async(group: group) {
+                self.targetValueMap.removeObject(forKey: characteristic)
+            }
+        }
+        if let actions = actionSet?.actions {
+            for case let action as HMCharacteristicWriteAction<CellValueType> in actions {
+                if action.characteristic == characteristic {
+                    /*
+                        Also remove the action, and only relinquish the dispatch group
+                        once the action set has finished.
+                    */
+                    group.enter()
+                    actionSet?.removeAction(action) { error in
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        group.leave()
+                    }
+                }
+            }
+        }
+        // Once we're positive both have finished, run the completion closure on the main queue.
+        group.notify(queue: DispatchQueue.main, execute: completion)
+    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection
+//                                section: Int) -> String? {
+//       return "已轉換出"
+//    }
     //MARK: -
     
 }
