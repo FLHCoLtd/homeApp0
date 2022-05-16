@@ -30,6 +30,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRR-8h-aCb">
+                                                    <rect key="frame" x="8" y="5.5" width="359" height="99"/>
+                                                    <color key="backgroundColor" systemColor="placeholderTextColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="99" id="b1w-Oq-CDC"/>
+                                                    </constraints>
+                                                </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-5u-xnx">
                                                     <rect key="frame" x="72" y="40" width="250" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -58,17 +65,21 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Cdz-5u-xnx" firstAttribute="centerY" secondItem="by1-dn-fvn" secondAttribute="centerY" id="41N-lV-cPM"/>
+                                                <constraint firstItem="pRR-8h-aCb" firstAttribute="leading" secondItem="by1-dn-fvn" secondAttribute="leading" constant="8" id="4Wu-rr-gtR"/>
+                                                <constraint firstAttribute="trailing" secondItem="pRR-8h-aCb" secondAttribute="trailing" constant="8" id="EEo-rA-a7h"/>
                                                 <constraint firstItem="cF2-mD-dVO" firstAttribute="centerY" secondItem="Cdz-5u-xnx" secondAttribute="centerY" id="KSM-EV-EOm"/>
                                                 <constraint firstItem="Cdz-5u-xnx" firstAttribute="top" secondItem="by1-dn-fvn" secondAttribute="topMargin" constant="29" id="PFX-gF-xKb"/>
                                                 <constraint firstAttribute="trailing" secondItem="Cdz-5u-xnx" secondAttribute="trailing" constant="53" id="ejW-wW-f05"/>
                                                 <constraint firstItem="Cdz-5u-xnx" firstAttribute="centerY" secondItem="2dd-tc-qPb" secondAttribute="centerY" id="gQT-MT-paF"/>
                                                 <constraint firstItem="2dd-tc-qPb" firstAttribute="leading" secondItem="by1-dn-fvn" secondAttribute="leadingMargin" id="k0y-HF-tZh"/>
                                                 <constraint firstAttribute="trailing" secondItem="cF2-mD-dVO" secondAttribute="trailing" constant="20" id="kwz-ym-okW"/>
+                                                <constraint firstItem="pRR-8h-aCb" firstAttribute="centerY" secondItem="by1-dn-fvn" secondAttribute="centerY" id="uot-hs-QYU"/>
                                                 <constraint firstItem="2dd-tc-qPb" firstAttribute="top" secondItem="by1-dn-fvn" secondAttribute="topMargin" constant="22" id="v7y-wB-XE9"/>
                                                 <constraint firstItem="Cdz-5u-xnx" firstAttribute="leading" secondItem="2dd-tc-qPb" secondAttribute="trailing" constant="12" id="zIt-Pw-S2v"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cellBackgroundView" destination="pRR-8h-aCb" id="bea-Lk-PsO"/>
                                             <outlet property="imgSense" destination="2dd-tc-qPb" id="U8P-mK-l7s"/>
                                             <outlet property="lbSenseName" destination="Cdz-5u-xnx" id="Zmd-w4-lDA"/>
                                         </connections>
@@ -157,6 +168,9 @@
         <image name="square.and.pencil" catalog="system" width="128" height="115"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

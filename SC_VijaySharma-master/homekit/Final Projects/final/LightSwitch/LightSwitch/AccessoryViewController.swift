@@ -65,9 +65,9 @@ class AccessoryViewController: BaseCollectionViewController {
 
     let accessory = accessories[indexPath.row]
 
-//    guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) else {
-//      return
-//    }
+    guard let characteristic = accessory.find(serviceType: HMServiceTypeSwitch ,characteristicType: HMCharacteristicMetadataFormatBool) else {
+      return
+    }
       
     guard let characteristic = accessory.find(serviceType: HMServiceTypeSwitch, characteristicType: HMCharacteristicMetadataFormatBool) else {
         return
