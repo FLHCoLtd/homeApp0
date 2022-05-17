@@ -14,6 +14,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var btnOpenHomeApp: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbNoHad: UILabel!
+    @IBOutlet weak var pgProcess: UIProgressView!
     
     var homes = [HMHome]()
     let homeManager = HMHomeManager()
@@ -37,8 +38,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--
     var findcharacteristics = [HMCharacteristic?]()
     var findAccessorys = [HMAccessory]()
+    var findHomes = [HMHome?]()
+    
+    
     let manufacturerKeyWord = "Fibarogroup"
     let modelKeyWord = "FibaroScene"
+    
+    var update = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,7 +85,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print ("*- accessorie name:\(accessorie.name)")
             print ("*- accessorie manufacturer:\(accessorie.manufacturer ?? "")")
             print ("*- accessorie model:\(accessorie.model ?? "")")
-            
             //以Switch條件
             let accsChara = accessorie.find(serviceType: HMServiceTypeSwitch , characteristicType: HMCharacteristicMetadataFormatBool)
             print ("*- accs:\(accsChara)")
@@ -92,21 +97,23 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     if !arrActionName.contains(accessorie.name) {
                         findcharacteristics.append(accsChara)
                         findAccessorys.append(accessorie)
+                        findHomes.append(home)
                         totalCount+=1
                     }
                 }
             }
         }
         
-        print ("*totalCount=\(totalCount)")
-        if totalCount == 0 {
-            lbNoHad.isHidden = false
-        }
+//        print ("*totalCount=\(totalCount)")
+//        if totalCount == 0 {
+//            lbNoHad.isHidden = false
+//        }
         
         if let home = home {
             //我們要的Switch
                 print ("-characteristics = \(findcharacteristics)")
                 for  (i,chara) in findcharacteristics.enumerated() {
+                    print ("**4 findAccessorys count:\(findAccessorys.count)")
                             let name = findAccessorys[i].name
                             print ("findAccessorys[\(i)]:\(name)")
 //                            let createSenseName = name.replacingOccurrences(of: "00", with: "")
@@ -119,20 +126,27 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                             }else{
                                 print("*** \(createSenseName) had not. ***")
                                 saveActionSetGroup.enter()
-                                home.addActionSet(withName: createSenseName) { [self] actionSet, error in
-                                    if let error = error {
-                                        print("HomeKit: Error creating action set: \(error.localizedDescription)")
+                                print ("**4: 5 \(self.findHomes[i]) == \(home)")
+                                if findHomes[i] == home {
+                                    print ("**4: 5 done")
+                                    home.addActionSet(withName: createSenseName) { [self] actionSet, error in
+                                        if let error = error {
+                                            print("HomeKit: Error creating action set: \(error.localizedDescription)")
+                                        }
+                                        else {
+                                            self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
+                                        }
+                                        self.saveActionSetGroup.leave()
+                                        self.tableView.reloadData()
                                     }
-                                    else {
-                                        self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
-                                    }
-                                    self.saveActionSetGroup.leave()
                                 }
                             }
                 }
-                print ("===")
-              
+                
+               
         }
+        
+       
     }
 
     
@@ -149,6 +163,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                   let characteristics = serv.characteristics
                   print ("-characteristics = \(characteristics)")
                   for chara in characteristics {
+                      print ("*  chara.metadata?.manufacturerDescription = \(chara.metadata?.manufacturerDescription)")
+                      
                       if let value = chara.value, let name = chara.service?.name
                           ,let format = chara.metadata?.format , let desc=chara.metadata?.manufacturerDescription{
                           if  desc == "Power State" && name.hasPrefix("00") && name.hasSuffix("00") {
@@ -161,10 +177,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                   }
               }
             }
-            print ("*totalCount=\(totalCount)")
-            if totalCount == 0 {
-                lbNoHad.isHidden = false
-            }
+//            print ("*totalCount=\(totalCount)")
+//            if totalCount == 0 {
+//                lbNoHad.isHidden = false
+//            }
             
             //找 Switch
             if let _ = home.servicesWithTypes([HMServiceTypeSwitch]) {
@@ -202,7 +218,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                         print("HomeKit: Error creating action set: \(error.localizedDescription)")
                                     }
                                     else {
-                                        self.saveActionSet(actionSet!, chara: chara)
+                                        if actionSet != nil {
+                                            self.saveActionSet(actionSet!, chara: chara)
+                                        }else{
+                                            print ("* 空的actionSet不加")
+                                        }
                                     }
                                     self.saveActionSetGroup.leave()
 //                                    self.tableView.reloadData()
@@ -273,20 +293,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                             ,"home":home])
                         print ("*arrData: \(self.arrData)")
                         
-                        self.totalCount -= 1
-                        print ("*totalCount: \(self.totalCount)")
-                        if self.totalCount==0 {
-//                            self.tableView.reloadData()
-                        }
-                        
+                        self.tableView.reloadData()
                   
                 }
                 self.saveActionSetGroup.leave()
                 
-                self.saveActionSetGroup.notify(queue: DispatchQueue.main){
-                    self.tableView.reloadData()
-      
-                }
+//                self.saveActionSetGroup.notify(queue: DispatchQueue.main){
+//                    self.tableView.reloadData()
+//                }
             }
     }
     
@@ -364,6 +378,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      }
     
     //MARK: - tableview
+//    func tableView(_ tableView:UITableView,titileForHeaderInSection section: Int) -> String?{
+//        return "1"
+//        
+//    }
+//    
+//    func numberOfSections(in tablView:UITableView) -> Int{
+//        return 4
+//    }
+    
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath)
     {
     
@@ -372,8 +395,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            
+            lbNoHad.isHidden = arrData.count != 0
+                
         return arrData.count
     }
+    
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
@@ -383,13 +411,28 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             if let name=arrData[indexPath.row]["name"]{
                 cell.lbSenseName.text = name as! String
             }
+            
+            if let home=arrData[indexPath.row]["home"] as? HMHome{
+                print ("*home: \(home.name)")
+                cell.lbHomeName.text = home.name
+            }
+            
+            if let acc=arrData[indexPath.row]["acc"] as? HMAccessory{
+               
+                if let room = acc.room {
+                    print ("*room name: \(room.name)")
+                    cell.lbRoomName.text = room.name
+                }
+                }
+             
+            
         }else{
             print ("out of array")
         }
         return cell
     }
     
-    
+    //MARK: -
     func updateNameIfNecessary2(_ name: String,indexPath: IndexPath,acc:HMAccessory) {
         saveActionSetGroup.enter()
         print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
@@ -522,6 +565,40 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                          
          }
         }
+    
+    
+    func removeTargetValueForCharacteristic2(_ home: HMHome?,actionSet:HMActionSet?, completion: @escaping () -> Void) {
+        /*
+            We need to create a dispatch group here, because in many cases
+            there will be one characteristic saved in the Action Set, and one
+            in the target value map. We want to run the completion closure only one time,
+            to ensure we've removed both.
+        */
+        let group = DispatchGroup()
+    //    if targetValueMap.object(forKey: characteristic) != nil {
+    //        // Remove the characteristic from the target value map.
+    //        DispatchQueue.main.async(group: group) {
+    //            self.targetValueMap.removeObject(forKey: characteristic)
+    //        }
+    //    }
+        removeActionGroup.enter()
+     
+        print ("home1:\(home)")
+        home!.removeActionSet(actionSet!) { error in
+//            completionHandler(error)
+//            self.updateActionSetSection()
+            if error != nil {
+                print ("home:\(home)")
+//                self.arrData.remove(at: indexPath.row)
+//                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }else{
+                print ("error")
+                print(error?.localizedDescription)
+                print ("home:\(home)")
+            }
+            self.removeActionGroup.leave()
+        }
+    }
     
     func removeTargetValueForCharacteristic(_ home: HMHome?,actionSet:HMActionSet?,indexPath:IndexPath, completion: @escaping () -> Void) {
         /*

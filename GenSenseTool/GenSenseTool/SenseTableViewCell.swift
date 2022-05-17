@@ -13,6 +13,8 @@ class SenseTableViewCell: UITableViewCell {
 
     @IBOutlet weak var imgSense: UIImageView!
     @IBOutlet weak var lbSenseName: UILabel!
+    @IBOutlet weak var lbHomeName: UILabel!
+    @IBOutlet weak var lbRoomName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,9 +22,8 @@ class SenseTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        
-            cellBackgroundView.layer.cornerRadius = 10
-            cellBackgroundView.layer.masksToBounds = true
+        cellBackgroundView.layer.cornerRadius = 10
+        cellBackgroundView.layer.masksToBounds = true
         }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
