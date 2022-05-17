@@ -32,14 +32,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var saveError: Error?
     //--
     var arrActionName = [String]()
-    
-    //--
-    
     var arrData = [Dictionary<String, Any>]()
     var totalCount = 0
+    //--
     var findcharacteristics = [HMCharacteristic?]()
     var findAccessorys = [HMAccessory]()
-//    var findAccessoryNames = [String]()
+    let manufacturerKeyWord = "Fibarogroup"
+    let modelKeyWord = "FibaroScene"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,16 +68,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
         
     func genSense2(for home: HMHome?) {
-    
         //找出所有characteristics
         guard let homeAccessories = home?.accessories else {
           return
         }
-        
         //把情境中所有的actionSet找出來建立一陣列列表
         getActionsArray(home:home!)
-       
-        
         for accessorie in homeAccessories {
             print ("*- accessorie :\(accessorie)")
             print ("*- accessorie name:\(accessorie.name)")
@@ -91,8 +86,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print ("*- accessorie services:\(accessorie.services)")
             print ("*----")
             if accsChara != nil{
-                //找尋特定條件
-                if accessorie.manufacturer == "fibaro" && accessorie.model == "sceneSwitch"
+                //找尋特定關鍵定條件
+                if accessorie.manufacturer == manufacturerKeyWord && accessorie.model == modelKeyWord
                 {
                     if !arrActionName.contains(accessorie.name) {
                         findcharacteristics.append(accsChara)
