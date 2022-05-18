@@ -22,7 +22,7 @@ class SenseTableViewCell: UITableViewCell {
     }
     
     override func layoutSubviews() {
-        cellBackgroundView.layer.cornerRadius = 10
+        cellBackgroundView.layer.cornerRadius = 8
         cellBackgroundView.layer.masksToBounds = true
         }
     

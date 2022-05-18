@@ -54,7 +54,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-5u-xnx">
-                                                            <rect key="frame" x="71" y="8" width="264" height="76"/>
+                                                            <rect key="frame" x="71" y="4" width="264" height="80"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="Cdz-5u-xnx" secondAttribute="trailing" constant="8" id="ACD-6C-Wn8"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="centerX" secondItem="2dd-tc-qPb" secondAttribute="centerX" id="AJL-a8-sAT"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="leading" secondItem="2dd-tc-qPb" secondAttribute="leading" id="E7H-w1-7kS"/>
-                                                        <constraint firstItem="Cdz-5u-xnx" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="8" id="G4z-Ex-oUY"/>
+                                                        <constraint firstItem="Cdz-5u-xnx" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="4" id="G4z-Ex-oUY"/>
                                                         <constraint firstAttribute="bottom" secondItem="Cdz-5u-xnx" secondAttribute="bottom" constant="4" id="MFL-xX-WiP"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="leading" secondItem="v9X-qk-Bj9" secondAttribute="leading" id="MMj-Eg-4fD"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="6" id="RZa-uE-6aY"/>
