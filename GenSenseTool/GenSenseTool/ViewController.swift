@@ -43,6 +43,23 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     let manufacturerKeyWord = "Fibargroup"      //就沒有中間o
     let modelKeyWord = "FibaroScene"
     
+    //--Infomation
+    @IBOutlet var  blurView:UIVisualEffectView!
+    @IBOutlet var popView: PopView!
+    
+    @IBAction func doAction(_ sender: UIButton) {
+        print ("* sender.tag = \(sender.tag)")
+        popView.tvInfo.text = "\(self.arrData[sender.tag]["acc"] as! HMAccessory)"
+        animateScaleIn(desiredView: blurView)
+        animateScaleIn(desiredView: popView)
+     }
+    @IBAction func doneAction(_ sender: UIButton) {
+        animateScaleOut(desiredView: popView)
+        animateScaleOut(desiredView: blurView)
+     }
+    //--
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
@@ -52,7 +69,45 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.tableView.dataSource = self
         lbNoHad.isHidden = true
         self.tableView.separatorStyle = .none
+        //--
+        blurView.bounds = self.view.bounds
+        popView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.9, height:self.view.bounds.height * 0.4)
     }
+    
+    //---
+    /// Animates a view to scale in and display
+    func animateScaleIn(desiredView: UIView) {
+        let backgroundView = self.view!
+        backgroundView.addSubview(desiredView)
+        desiredView.center = backgroundView.center
+        desiredView.isHidden = false
+        
+        desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+        desiredView.alpha = 0
+        
+        UIView.animate(withDuration: 0.3) {
+            desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            desiredView.alpha = 1
+//            desiredView.transform = CGAffineTransform.identity
+        }
+    }
+    
+    /// Animates a view to scale out remove from the display
+    func animateScaleOut(desiredView: UIView) {
+        UIView.animate(withDuration: 0.2, animations: {
+            desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            desiredView.alpha = 0
+        }, completion: { (success: Bool) in
+            desiredView.removeFromSuperview()
+        })
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            
+        }, completion: { _ in
+            
+        })
+    }
+    //---
     
     func addHomes(_ homes: [HMHome]) {
       self.homes.removeAll()
@@ -70,7 +125,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         print ("* arrActionName=\(arrActionName)")
     }
-        
+    
+    //以Accessorie去找
     func genSense2(for home: HMHome?) {
         //找出所有characteristics
         guard let homeAccessories = home?.accessories else {
@@ -133,15 +189,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                             }
                 }
         }
-        
-       
     }
     
+    //以service去找
     func genSense(for home: HMHome?) {
         if let home = home {
             //把情境中所有的actionSet找出來建立一陣列列表
             getActionsArray(home:home)
-            
             //找出需要轉換的總筆數
             if let _ = home.servicesWithTypes([HMServiceTypeSwitch]) {
               for serv in home.servicesWithTypes([HMServiceTypeSwitch])! {
@@ -217,7 +271,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     
                 }
                 print ("===")
-              
             }
             }else{
                   print("=== \(home.name)===\n *** 下沒有switch *** ")
@@ -230,6 +283,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         print (output)
         tfOutput.text += output+"\n"
     }
+    
     /**
         Searches through the target value map and existing `HMCharacteristicWriteActions`
         to find the target value for the characteristic in question.
@@ -254,12 +308,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func saveActionSet2(_ actionSet: HMActionSet, chara: HMCharacteristic,acc:HMAccessory,home:HMHome) {
-//        let actions = actionsFromMapTable(targetValueMap)
         //這邊自己組裝
         let a = HMCharacteristicWriteAction(characteristic: chara, targetValue: 1 as NSCopying)
-//        for action in actions {
+
             saveActionSetGroup.enter()
-        
             addAction(a, toActionSet: actionSet) { error in
                 if let error = error {
                     print("HomeKit: Error adding action: \(error.localizedDescription)")
@@ -400,6 +452,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     cell.lbRoomName.text = room.name
                 }
                 }
+            cell.btnInfo.tag = indexPath.row
+            
         }else{
             print ("out of array")
         }

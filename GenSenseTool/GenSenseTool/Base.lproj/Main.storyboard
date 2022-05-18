@@ -65,9 +65,18 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S79-H8-61s">
+                                                            <rect key="frame" x="291" y="28" width="44" height="31"/>
+                                                            <buttonConfiguration key="configuration" style="plain"/>
+                                                            <connections>
+                                                                <action selector="doAction:" destination="XYg-t6-RYg" eventType="touchUpInside" id="N17-tR-rKE"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="S79-H8-61s" secondAttribute="trailing" constant="8" id="41Y-Yk-q0F"/>
+                                                        <constraint firstItem="S79-H8-61s" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="28" id="7xQ-Xq-8t2"/>
                                                         <constraint firstAttribute="trailing" secondItem="Cdz-5u-xnx" secondAttribute="trailing" constant="8" id="ACD-6C-Wn8"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="centerX" secondItem="2dd-tc-qPb" secondAttribute="centerX" id="AJL-a8-sAT"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="leading" secondItem="2dd-tc-qPb" secondAttribute="leading" id="E7H-w1-7kS"/>
@@ -77,6 +86,7 @@
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="6" id="RZa-uE-6aY"/>
                                                         <constraint firstItem="Cdz-5u-xnx" firstAttribute="leading" secondItem="2dd-tc-qPb" secondAttribute="trailing" constant="8" id="SSW-ra-B1c"/>
                                                         <constraint firstAttribute="bottom" secondItem="2dd-tc-qPb" secondAttribute="bottom" constant="20" id="ZKY-bl-uQQ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="S79-H8-61s" secondAttribute="bottom" constant="29" id="l3t-rC-zfv"/>
                                                         <constraint firstItem="2dd-tc-qPb" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="18" id="zKp-PL-baP"/>
                                                     </constraints>
                                                 </view>
@@ -89,6 +99,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="btnInfo" destination="S79-H8-61s" id="bcB-Zq-k6e"/>
                                             <outlet property="cellBackgroundView" destination="pRR-8h-aCb" id="bea-Lk-PsO"/>
                                             <outlet property="imgSense" destination="2dd-tc-qPb" id="U8P-mK-l7s"/>
                                             <outlet property="lbHomeName" destination="SHw-DC-IiN" id="mhM-QO-JsM"/>
@@ -162,14 +173,58 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="blurView" destination="ziV-aO-Kya" id="FTz-I4-Oac"/>
                         <outlet property="btnOpenHomeApp" destination="Ag3-Y3-qmz" id="fdd-PS-7pc"/>
                         <outlet property="lbNoHad" destination="bqV-Ws-2Ux" id="0ad-PQ-V7k"/>
                         <outlet property="pgProcess" destination="VZ9-Tj-zCz" id="YPe-Hx-Qmu"/>
+                        <outlet property="popView" destination="Irh-HL-PHC" id="3yu-eO-L36"/>
                         <outlet property="tableView" destination="a3F-Sn-wv7" id="tM9-nf-5Hb"/>
                         <outlet property="tfOutput" destination="pHr-mJ-bVb" id="ulc-jL-fNZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uxh-ae-He6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" id="ziV-aO-Kya">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Lvf-h1-oOw">
+                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="regular"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" id="Irh-HL-PHC" customClass="PopView" customModule="GenSenseTool" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="290" height="198"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-Ca-dKZ">
+                            <rect key="frame" x="16" y="157" width="258" height="31"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="OK"/>
+                            <connections>
+                                <action selector="doneAction:" destination="XYg-t6-RYg" eventType="touchUpInside" id="r9k-fE-TCJ"/>
+                            </connections>
+                        </button>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-uo-gEG">
+                            <rect key="frame" x="16" y="20" width="240" height="128"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <color key="textColor" systemColor="labelColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="LvW-A3-Hwp"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="LvW-A3-Hwp" firstAttribute="trailing" secondItem="Kgh-Ca-dKZ" secondAttribute="trailing" constant="16" id="Lst-9g-T22"/>
+                        <constraint firstItem="Kgh-Ca-dKZ" firstAttribute="leading" secondItem="LvW-A3-Hwp" secondAttribute="leading" constant="16" id="bmP-1b-6IJ"/>
+                        <constraint firstItem="LvW-A3-Hwp" firstAttribute="bottom" secondItem="Kgh-Ca-dKZ" secondAttribute="bottom" constant="10" id="nxx-gt-oKu"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="tvInfo" destination="IOz-uo-gEG" id="RoC-HP-jeL"/>
+                    </connections>
+                </view>
             </objects>
             <point key="canvasLocation" x="821.60000000000002" y="13.043478260869566"/>
         </scene>

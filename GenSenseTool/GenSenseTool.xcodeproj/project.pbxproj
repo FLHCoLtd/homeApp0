@@ -18,6 +18,7 @@
 		FAB387A228280726008C6009 /* GenSenseToolUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB387A128280726008C6009 /* GenSenseToolUITestsLaunchTests.swift */; };
 		FAB387B22828073A008C6009 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB387B12828073A008C6009 /* HomeKit.framework */; };
 		FABE9622282CB9F9003F8E21 /* SenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */; };
+		FAD1D74D2834FE6A0097276B /* PopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1D74C2834FE6A0097276B /* PopView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		FAB387AF2828073A008C6009 /* GenSenseTool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenSenseTool.entitlements; sourceTree = "<group>"; };
 		FAB387B12828073A008C6009 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenseTableViewCell.swift; sourceTree = "<group>"; };
+		FAD1D74C2834FE6A0097276B /* PopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				FAB3878028280725008C6009 /* SceneDelegate.swift */,
 				FAB3878228280725008C6009 /* ViewController.swift */,
 				FAB3878428280725008C6009 /* Main.storyboard */,
+				FAD1D74C2834FE6A0097276B /* PopView.swift */,
 				FAB3878728280726008C6009 /* Assets.xcassets */,
 				FAB3878928280726008C6009 /* LaunchScreen.storyboard */,
 				FAB3878C28280726008C6009 /* Info.plist */,
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD1D74D2834FE6A0097276B /* PopView.swift in Sources */,
 				FABE9622282CB9F9003F8E21 /* SenseTableViewCell.swift in Sources */,
 				FAB3878328280725008C6009 /* ViewController.swift in Sources */,
 				FAB3877F28280725008C6009 /* AppDelegate.swift in Sources */,
