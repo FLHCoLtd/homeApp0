@@ -41,7 +41,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var findHomes = [HMHome?]()
     
     
-    let manufacturerKeyWord = "Fibarogroup"
+    let manufacturerKeyWord = "Fibargroup"      //就沒有中間o
     let modelKeyWord = "FibaroScene"
     
     var update = false
@@ -103,11 +103,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
             }
         }
-        
-//        print ("*totalCount=\(totalCount)")
-//        if totalCount == 0 {
-//            lbNoHad.isHidden = false
-//        }
         
         if let home = home {
             //我們要的Switch
