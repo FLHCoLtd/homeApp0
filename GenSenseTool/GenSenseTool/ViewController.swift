@@ -48,8 +48,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet var popView: PopView!
     
     @IBAction func doAction(_ sender: UIButton) {
-        print ("* sender.tag = \(sender.tag)")
-        popView.tvInfo.text = "\(self.arrData[sender.tag]["acc"] as! HMAccessory)"
+        let buttonPosition = sender.convert(CGPoint(), to:tableView)
+        let indexPath = tableView.indexPathForRow(at:buttonPosition)
+        guard let row = indexPath?.row else { return }
+        popView.tvInfo.text = "\(self.arrData[row]["acc"] as! HMAccessory)"
         animateScaleIn(desiredView: blurView)
         animateScaleIn(desiredView: popView)
      }
