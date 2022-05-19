@@ -52,6 +52,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
         guard let row = indexPath?.row else { return }
         
+        let home = arrData[row]["home"] as! HMHome
         
         let actionSetName = (arrData[row]["actionSet"] as! HMActionSet).name
         
@@ -70,6 +71,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         popView.lbTitle.font = UIFont(name: "Cubic 11", size: 30)
         popView.tvInfo.text =
         """
+        Home Name : \(home.name)
+        
         ActionSet Name : \(actionSetName)
 
         Accessory Name : \(acc!.name)
