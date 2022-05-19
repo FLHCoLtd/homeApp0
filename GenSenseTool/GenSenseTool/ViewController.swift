@@ -63,26 +63,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         guard let id = acc?.uniqueIdentifier else {
             return
         }
-        
         guard let roomname = acc?.room?.name else {
             return
         }
-
+        popView.lbTitle.text = "Information"
+        popView.lbTitle.font = UIFont(name: "Cubic 11", size: 30)
         popView.tvInfo.text =
         """
         ActionSet Name : \(actionSetName)
 
         Accessory Name : \(acc!.name)
         
-            Reachable : \(reachable)
+        - Reachable : \(reachable)
         
-            Identifer :
+        - Identifer :
             \(id)
         
-            Room : \(roomname)
+        - Room : \(roomname)
         """
-//        popView.tvInfo.text = "\(arrData[row]["acc"] as! HMAccessory)"
-//        popView.acc = arrData[row]["acc"] as? HMAccessory
         animateScaleIn(desiredView: blurView)
         animateScaleIn(desiredView: popView)
      }

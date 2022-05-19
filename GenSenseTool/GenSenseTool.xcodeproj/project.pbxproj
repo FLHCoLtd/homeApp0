@@ -19,6 +19,7 @@
 		FAB387B22828073A008C6009 /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAB387B12828073A008C6009 /* HomeKit.framework */; };
 		FABE9622282CB9F9003F8E21 /* SenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */; };
 		FAD1D74D2834FE6A0097276B /* PopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD1D74C2834FE6A0097276B /* PopView.swift */; };
+		FAD1D75028363D8D0097276B /* Cubic_11_1.010_R.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAD1D74F28363D8D0097276B /* Cubic_11_1.010_R.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		FAB387B12828073A008C6009 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenseTableViewCell.swift; sourceTree = "<group>"; };
 		FAD1D74C2834FE6A0097276B /* PopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopView.swift; sourceTree = "<group>"; };
+		FAD1D74F28363D8D0097276B /* Cubic_11_1.010_R.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Cubic_11_1.010_R.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		FAB3877D28280725008C6009 /* GenSenseTool */ = {
 			isa = PBXGroup;
 			children = (
+				FAD1D74F28363D8D0097276B /* Cubic_11_1.010_R.ttf */,
 				FAB387AF2828073A008C6009 /* GenSenseTool.entitlements */,
 				FAB387AE2828073A008C6009 /* GenSenseTool.entitlements */,
 				FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */,
@@ -256,6 +259,7 @@
 				FAB3878B28280726008C6009 /* LaunchScreen.storyboard in Resources */,
 				FAB3878828280726008C6009 /* Assets.xcassets in Resources */,
 				FAB3878628280725008C6009 /* Main.storyboard in Resources */,
+				FAD1D75028363D8D0097276B /* Cubic_11_1.010_R.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
