@@ -51,7 +51,38 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
         guard let row = indexPath?.row else { return }
-        popView.tvInfo.text = "\(self.arrData[row]["acc"] as! HMAccessory)"
+        
+        
+        let actionSetName = (arrData[row]["actionSet"] as! HMActionSet).name
+        
+        let acc = arrData[row]["acc"] as? HMAccessory
+
+        guard let reachable = acc?.isReachable else {
+            return
+        }
+        guard let id = acc?.uniqueIdentifier else {
+            return
+        }
+        
+        guard let roomname = acc?.room?.name else {
+            return
+        }
+
+        popView.tvInfo.text =
+        """
+        ActionSet Name : \(actionSetName)
+
+        Accessory Name : \(acc!.name)
+        
+            Reachable : \(reachable)
+        
+            Identifer :
+            \(id)
+        
+            Room : \(roomname)
+        """
+//        popView.tvInfo.text = "\(arrData[row]["acc"] as! HMAccessory)"
+//        popView.acc = arrData[row]["acc"] as? HMAccessory
         animateScaleIn(desiredView: blurView)
         animateScaleIn(desiredView: popView)
      }
@@ -74,6 +105,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //--
         blurView.bounds = self.view.bounds
         popView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.9, height:self.view.bounds.height * 0.4)
+        
+        
+        
     }
     
     //---
@@ -454,7 +488,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     cell.lbRoomName.text = room.name
                 }
                 }
-            cell.btnInfo.tag = indexPath.row
+//            cell.btnInfo.tag = indexPath.row
+            
             
         }else{
             print ("out of array")

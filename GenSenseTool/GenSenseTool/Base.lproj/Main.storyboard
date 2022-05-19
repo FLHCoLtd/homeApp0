@@ -66,7 +66,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S79-H8-61s">
-                                                            <rect key="frame" x="291" y="28" width="44" height="31"/>
+                                                            <rect key="frame" x="299" y="28" width="44" height="31"/>
                                                             <buttonConfiguration key="configuration" style="plain"/>
                                                             <connections>
                                                                 <action selector="doAction:" destination="XYg-t6-RYg" eventType="touchUpInside" id="N17-tR-rKE"/>
@@ -75,7 +75,7 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="S79-H8-61s" secondAttribute="trailing" constant="8" id="41Y-Yk-q0F"/>
+                                                        <constraint firstAttribute="trailing" secondItem="S79-H8-61s" secondAttribute="trailing" id="41Y-Yk-q0F"/>
                                                         <constraint firstItem="S79-H8-61s" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="28" id="7xQ-Xq-8t2"/>
                                                         <constraint firstAttribute="trailing" secondItem="Cdz-5u-xnx" secondAttribute="trailing" constant="8" id="ACD-6C-Wn8"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="centerX" secondItem="2dd-tc-qPb" secondAttribute="centerX" id="AJL-a8-sAT"/>
@@ -193,35 +193,59 @@
                     <blurEffect style="regular"/>
                 </visualEffectView>
                 <view contentMode="scaleToFill" id="Irh-HL-PHC" customClass="PopView" customModule="GenSenseTool" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="290" height="198"/>
+                    <rect key="frame" x="0.0" y="0.0" width="335" height="246"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0yz-KK-53i">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="33"/>
+                            <color key="backgroundColor" red="0.94509804249999996" green="0.93725490570000003" blue="0.93725490570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-Ca-dKZ">
-                            <rect key="frame" x="16" y="157" width="258" height="31"/>
+                            <rect key="frame" x="16" y="205" width="303" height="31"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="filled" title="OK"/>
                             <connections>
                                 <action selector="doneAction:" destination="XYg-t6-RYg" eventType="touchUpInside" id="r9k-fE-TCJ"/>
                             </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-uo-gEG">
-                            <rect key="frame" x="16" y="20" width="240" height="128"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-uo-gEG">
+                            <rect key="frame" x="4" y="35" width="327" height="166"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                             <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="information" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dZC-Zq-emQ">
+                            <rect key="frame" x="22" y="4" width="297" height="29"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="shadowColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                            <size key="shadowOffset" width="2" height="2"/>
+                        </label>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="LvW-A3-Hwp"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="IOz-uo-gEG" firstAttribute="top" secondItem="0yz-KK-53i" secondAttribute="bottom" constant="2" id="0no-lJ-2QE"/>
+                        <constraint firstItem="IOz-uo-gEG" firstAttribute="top" secondItem="dZC-Zq-emQ" secondAttribute="bottom" constant="2" id="146-kC-T5C"/>
+                        <constraint firstItem="0yz-KK-53i" firstAttribute="leading" secondItem="LvW-A3-Hwp" secondAttribute="leading" id="6KE-Xr-F07"/>
+                        <constraint firstItem="IOz-uo-gEG" firstAttribute="centerX" secondItem="Kgh-Ca-dKZ" secondAttribute="centerX" id="9Z3-KA-bf4"/>
+                        <constraint firstItem="LvW-A3-Hwp" firstAttribute="trailing" secondItem="dZC-Zq-emQ" secondAttribute="trailing" constant="16" id="Ifx-ge-kaf"/>
                         <constraint firstItem="LvW-A3-Hwp" firstAttribute="trailing" secondItem="Kgh-Ca-dKZ" secondAttribute="trailing" constant="16" id="Lst-9g-T22"/>
+                        <constraint firstItem="dZC-Zq-emQ" firstAttribute="leading" secondItem="LvW-A3-Hwp" secondAttribute="leading" constant="22" id="NsY-KF-7pp"/>
+                        <constraint firstItem="IOz-uo-gEG" firstAttribute="top" secondItem="LvW-A3-Hwp" secondAttribute="top" constant="35" id="PZz-P2-Oa5"/>
+                        <constraint firstItem="dZC-Zq-emQ" firstAttribute="top" secondItem="LvW-A3-Hwp" secondAttribute="top" constant="4" id="Wbb-z2-9pV"/>
                         <constraint firstItem="Kgh-Ca-dKZ" firstAttribute="leading" secondItem="LvW-A3-Hwp" secondAttribute="leading" constant="16" id="bmP-1b-6IJ"/>
+                        <constraint firstItem="0yz-KK-53i" firstAttribute="top" secondItem="LvW-A3-Hwp" secondAttribute="top" id="l50-G8-ir4"/>
                         <constraint firstItem="LvW-A3-Hwp" firstAttribute="bottom" secondItem="Kgh-Ca-dKZ" secondAttribute="bottom" constant="10" id="nxx-gt-oKu"/>
+                        <constraint firstItem="IOz-uo-gEG" firstAttribute="leading" secondItem="LvW-A3-Hwp" secondAttribute="leading" constant="4" id="o2b-3S-9F5"/>
+                        <constraint firstItem="0yz-KK-53i" firstAttribute="trailing" secondItem="LvW-A3-Hwp" secondAttribute="trailing" id="zcX-Eb-PKx"/>
+                        <constraint firstItem="Kgh-Ca-dKZ" firstAttribute="top" secondItem="IOz-uo-gEG" secondAttribute="bottom" constant="4" id="znA-mX-8hU"/>
                     </constraints>
                     <connections>
+                        <outlet property="lbTitle" destination="dZC-Zq-emQ" id="V0N-oJ-c2O"/>
                         <outlet property="tvInfo" destination="IOz-uo-gEG" id="RoC-HP-jeL"/>
                     </connections>
                 </view>
@@ -244,6 +268,9 @@
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
