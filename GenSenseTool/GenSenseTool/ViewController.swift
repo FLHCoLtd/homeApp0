@@ -56,13 +56,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
         guard let row = indexPath?.row else { return }
-        
         let home = arrData[row]["home"] as! HMHome
-        
         let actionSetName = (arrData[row]["actionSet"] as! HMActionSet).name
-        
         let acc = arrData[row]["acc"] as? HMAccessory
-
         guard let reachable = acc?.isReachable else {
             return
         }
@@ -97,8 +93,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         animateScaleOut(desiredView: blurView)
      }
     //--
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
@@ -114,7 +109,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadEventTableView), for: UIControl.Event.valueChanged)
-        
         
 //        let refreshImage = UIImageView()
 //        refreshImage.image = UIImage(named: "img_redo")
@@ -133,9 +127,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //        refreshImage.layer.add(rotateAnimation, forKey: "rotate")
 //        refreshImage.isHidden = true
         tableView.addSubview(refreshControl)
-        
- 
-    
     }
     
     let badgeSize: CGFloat = 20
@@ -175,21 +166,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print(velocity)
         if(velocity.y < -0.1)
         {
-            badgeNumber = 0
-            showBadge(withCount: badgeNumber)
-            arrData.removeAll()
-              addHomes(homeManager.homes)
-                totalCount = 0
-                for home2 in homeManager.homes {
-                  print ("(22)")
-                  print ("* read home:\(home2)")
-                  genSense2(for: home2)
-                  print ("* findcharacteristics=\(findcharacteristics)")
-                }
-            tableView.reloadData()
-           
-            self.refreshControl.endRefreshing()
-          
         }
     }
      */
@@ -510,10 +486,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         
                         self.totalCount -= 1
                         print ("*totalCount: \(self.totalCount)")
-//                        if self.totalCount==0 {
-//                            self.tableView.reloadData()
-//                        }
- 
                     }
                 }
                 self.saveActionSetGroup.leave()
