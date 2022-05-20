@@ -49,7 +49,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
    
     // 建立一個Refresh Control，下拉更新資料使用
     var refreshControl: UIRefreshControl!
-    
+    var badgeNumber = 0
 
     
     @IBAction func doAction(_ sender: UIButton) {
@@ -124,36 +124,102 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //        refreshImage.frame = refreshControl.bounds.offsetBy(dx: self.view.frame.size.width / 2 - 20, dy: 10)
 //        refreshImage.frame.size.width = 40 // Whatever width you want
 //        refreshImage.frame.size.height = 40 // Whatever height you want
-//                                    
+//
 //        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
 //        rotateAnimation.fromValue = 0.0
 //        rotateAnimation.toValue = CGFloat(.pi * 2.0)
 //        rotateAnimation.duration = 1.0  // Change this to change how many seconds a rotation takes
 //        rotateAnimation.repeatCount = Float.greatestFiniteMagnitude
 //        refreshImage.layer.add(rotateAnimation, forKey: "rotate")
-        
+//        refreshImage.isHidden = true
         tableView.addSubview(refreshControl)
         
+ 
     
     }
     
-    @objc func reloadEventTableView() {
-        // 移除array中的所有資料
-        // Start animation here.
+    let badgeSize: CGFloat = 20
+    let badgeTag = 9830384
+
+    func badgeLabel(withCount count: Int) -> UILabel {
+        let badgeCount = UILabel(frame: CGRect(x: 0, y: 0, width: badgeSize, height: badgeSize))
+        badgeCount.translatesAutoresizingMaskIntoConstraints = false
+        badgeCount.tag = badgeTag
+        badgeCount.layer.cornerRadius = badgeCount.bounds.size.height / 2
+        badgeCount.textAlignment = .center
+        badgeCount.layer.masksToBounds = true
+        badgeCount.textColor = .white
+        badgeCount.font = badgeCount.font.withSize(12)
+        badgeCount.backgroundColor = .systemRed
+        badgeCount.text = String(count)
+        return badgeCount
+    }
+    
+    func showBadge(withCount count: Int) {
+        if count > 0 {
+        let badge = badgeLabel(withCount: count)
+            btnOpenHomeApp.addSubview(badge)
+            NSLayoutConstraint.activate([
+                badge.leftAnchor.constraint(equalTo: btnOpenHomeApp.leftAnchor, constant: 22),
+                badge.topAnchor.constraint(equalTo: btnOpenHomeApp.topAnchor, constant: 18),
+                badge.widthAnchor.constraint(equalToConstant: badgeSize),
+                badge.heightAnchor.constraint(equalToConstant: badgeSize)
+            ])
+            self.view.layoutIfNeeded()
+        }
         
+    }
+    
+    /*
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+            print(velocity)
+        if(velocity.y < -0.1)
+        {
+            badgeNumber = 0
+            showBadge(withCount: badgeNumber)
+            arrData.removeAll()
+              addHomes(homeManager.homes)
+                totalCount = 0
+                for home2 in homeManager.homes {
+                  print ("(22)")
+                  print ("* read home:\(home2)")
+                  genSense2(for: home2)
+                  print ("* findcharacteristics=\(findcharacteristics)")
+                }
+            tableView.reloadData()
+           
+            self.refreshControl.endRefreshing()
+          
+        }
+    }
+     */
+
+    func clearBadge()
+    {
+        badgeNumber = 0
+        if badgeNumber == 0 {
+            if let badge = btnOpenHomeApp.viewWithTag(badgeTag) {
+                   badge.removeFromSuperview()
+               }
+        }else {
+            showBadge(withCount: badgeNumber)
+            
+        }
+    }
+    @objc func reloadEventTableView() {
+
         arrData.removeAll()
           addHomes(homeManager.homes)
             totalCount = 0
             for home2 in homeManager.homes {
+              clearBadge()
               print ("(22)")
               print ("* read home:\(home2)")
               genSense2(for: home2)
               print ("* findcharacteristics=\(findcharacteristics)")
             }
         tableView.reloadData()
-//        self.refreshControl.subviews[1].layer.removeAnimation(forKey: "rotate")
         self.refreshControl.endRefreshing()
-      
 
     }
     
@@ -240,7 +306,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
             }
         }
-        
+       
         if let home = home {
             //我們要的Switch
                 print ("-characteristics = \(findcharacteristics)")
@@ -444,10 +510,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         
                         self.totalCount -= 1
                         print ("*totalCount: \(self.totalCount)")
-                        if self.totalCount==0 {
+//                        if self.totalCount==0 {
 //                            self.tableView.reloadData()
-                        }
-                        
+//                        }
+ 
                     }
                 }
                 self.saveActionSetGroup.leave()
@@ -511,6 +577,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         lbNoHad.isHidden = arrData.count != 0
+        if badgeNumber>0 {
+            lbNoHad.text = ""
+        }else{
+//          lbNoHad.text = "目前無轉換資料"
+        }
         return arrData.count
     }
     
@@ -766,38 +837,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.removeActionGroup.leave()
            
         }
-       
-      
+        
+            badgeNumber+=1
+            showBadge(withCount: badgeNumber)
             self.arrData.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
    
-        
-//        if let actions = actionSet?.actions {
-//            for case let action as HMCharacteristicWriteAction<CellValueType> in actions {
-//                if action.characteristic == characteristic {
-//                    /*
-//                        Also remove the action, and only relinquish the dispatch group
-//                        once the action set has finished.
-//                    */
-//                    group.enter()
-//
-//
-//
-//
-//                    actionSet?.removeAction(action) { error in
-//                        if let error = error {
-//                            print(error.localizedDescription)
-//                        }
-//                        group.leave()
-//                        //
-//                        //
-//
-//                    }
-//                }
-//            }
-//        }
-        // Once we're positive both have finished, run the completion closure on the main queue.
-//        group.notify(queue: DispatchQueue.main, execute: completion)
     }
 
 }
@@ -816,6 +861,7 @@ extension ViewController: HMHomeManagerDelegate {
   func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
     addHomes(manager.homes)
       totalCount = 0
+      badgeNumber = 0
       for home1 in manager.homes {
 //        self.home = home1
         print ("(2)")
@@ -823,6 +869,7 @@ extension ViewController: HMHomeManagerDelegate {
         genSense2(for: home1)
         print ("* findcharacteristics=\(findcharacteristics)")
       }
+      
   }
 }
 
