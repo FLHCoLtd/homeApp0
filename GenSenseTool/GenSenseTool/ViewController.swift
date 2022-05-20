@@ -46,6 +46,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--Infomation
     @IBOutlet var  blurView:UIVisualEffectView!
     @IBOutlet var popView: PopView!
+   
+    // 建立一個Refresh Control，下拉更新資料使用
+    var refreshControl: UIRefreshControl!
+    
+
     
     @IBAction func doAction(_ sender: UIButton) {
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
@@ -107,8 +112,49 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         blurView.bounds = self.view.bounds
         popView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.9, height:self.view.bounds.height * 0.4)
         
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadEventTableView), for: UIControl.Event.valueChanged)
         
         
+//        let refreshImage = UIImageView()
+//        refreshImage.image = UIImage(named: "img_redo")
+//        refreshControl.backgroundColor = UIColor.clear
+//        refreshControl.tintColor = UIColor.clear
+//        refreshControl.addSubview(refreshImage)
+//        refreshImage.frame = refreshControl.bounds.offsetBy(dx: self.view.frame.size.width / 2 - 20, dy: 10)
+//        refreshImage.frame.size.width = 40 // Whatever width you want
+//        refreshImage.frame.size.height = 40 // Whatever height you want
+//                                    
+//        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+//        rotateAnimation.fromValue = 0.0
+//        rotateAnimation.toValue = CGFloat(.pi * 2.0)
+//        rotateAnimation.duration = 1.0  // Change this to change how many seconds a rotation takes
+//        rotateAnimation.repeatCount = Float.greatestFiniteMagnitude
+//        refreshImage.layer.add(rotateAnimation, forKey: "rotate")
+        
+        tableView.addSubview(refreshControl)
+        
+    
+    }
+    
+    @objc func reloadEventTableView() {
+        // 移除array中的所有資料
+        // Start animation here.
+        
+        arrData.removeAll()
+          addHomes(homeManager.homes)
+            totalCount = 0
+            for home2 in homeManager.homes {
+              print ("(22)")
+              print ("* read home:\(home2)")
+              genSense2(for: home2)
+              print ("* findcharacteristics=\(findcharacteristics)")
+            }
+        tableView.reloadData()
+//        self.refreshControl.subviews[1].layer.removeAnimation(forKey: "rotate")
+        self.refreshControl.endRefreshing()
+      
+
     }
     
     //---
@@ -799,4 +845,15 @@ extension HMAccessory {
       .flatMap { $0.characteristics }
       .first { $0.metadata?.format == characteristicType }
   }
+}
+
+extension UIView{
+    func rotate() {
+        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotation.toValue = NSNumber(value: Double.pi * 2)
+        rotation.duration = 1
+        rotation.isCumulative = true
+        rotation.repeatCount = Float.greatestFiniteMagnitude
+        self.layer.add(rotation, forKey: "rotationAnimation")
+    }
 }
