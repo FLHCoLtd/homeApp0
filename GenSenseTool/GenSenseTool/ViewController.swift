@@ -541,11 +541,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //    }
     
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath)
-    {
-    
-        actionSet = arrData[indexPath.row]["actionSet"] as! HMActionSet
-        print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
-    }
+       {
+           actionSet = arrData[indexPath.row]["actionSet"] as! HMActionSet
+               print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
+               print ("* arrData = \(arrData)")
+               let exehome = arrData[indexPath.row]["home"] as! HMHome
+               let chara = arrData[indexPath.row]["chars"] as! HMCharacteristic
+               let acc = arrData[indexPath.row]["acc"] as! HMAccessory
+               executeActionSet(actionSet!,home: exehome)
+               if actionSet!.isExecuting {
+                    print ("* isExecting")
+                   popView.lbTitle.text = actionSet?.name
+                   popView.tvInfo.text = "已情境在執行中...\n不重覆用執行!"
+                   popView.tvInfo.font = UIFont(name: "Cubic 11", size: 32)
+                   animateScaleIn(desiredView: blurView)
+                   animateScaleIn(desiredView: popView)
+               }
+       }
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         lbNoHad.isHidden = arrData.count != 0
@@ -817,6 +830,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
    
     }
 
+    func executeActionSet(_ actionSet: HMActionSet,home:HMHome) {
+        if actionSet.actions.isEmpty {
+            let alertTitle = NSLocalizedString("Empty Scene", comment: "Empty Scene")
+
+            let alertMessage = NSLocalizedString("This scene is empty. To set this scene, first add some actions to it.", comment: "Empty Scene Description")
+            
+          //  displayMessage(alertTitle, message: alertMessage)
+            
+            return
+        }
+        let exehome = home
+        
+        exehome.executeActionSet(actionSet) { error in
+            guard let error = error else { return }
+            print (error)
+           // self.displayError(error)
+        }
+    }
 }
 //end
 
