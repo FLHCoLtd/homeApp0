@@ -9,7 +9,8 @@ import HomeKit
 
 typealias CellValueType = NSCopying
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate  {
+    
     @IBOutlet weak var tfOutput: UITextView!
     @IBOutlet weak var btnOpenHomeApp: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -34,6 +35,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--
     var arrActionName = [String]()
     var arrData = [Dictionary<String, Any>]()
+    
+    var filterDataList = [Dictionary<String, Any>]()
+    var searchedDataSource = [Dictionary<String, Any>]()
+    
+    var searchController: UISearchController!
+    var isShowSearchResult: Bool = false // 是否顯示搜尋的結果
+    
     var totalCount = 0
     //--
     var findcharacteristics = [HMCharacteristic?]()
@@ -53,6 +61,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     
     @IBAction func doAction(_ sender: UIButton) {
+        searchController.searchBar.resignFirstResponder()
+        searchController.isActive = false
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
         guard let row = indexPath?.row else { return }
@@ -91,9 +101,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBAction func doneAction(_ sender: UIButton) {
         animateScaleOut(desiredView: popView)
         animateScaleOut(desiredView: blurView)
+        searchController.isActive = true
      }
     //--
 
+//    override func viewDidDisappear(_ animated: Bool) {
+//                   if searchController.isActive == true {
+//                       searchController.isActive = false
+//                    }
+//             }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
@@ -109,35 +126,24 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadEventTableView), for: UIControl.Event.valueChanged)
-        
-//        let refreshImage = UIImageView()
-//        refreshImage.image = UIImage(named: "img_redo")
-//        refreshControl.backgroundColor = UIColor.clear
-//        refreshControl.tintColor = UIColor.clear
-//        refreshControl.addSubview(refreshImage)
-//        refreshImage.frame = refreshControl.bounds.offsetBy(dx: self.view.frame.size.width / 2 - 20, dy: 10)
-//        refreshImage.frame.size.width = 40 // Whatever width you want
-//        refreshImage.frame.size.height = 40 // Whatever height you want
-//
-//        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-//        rotateAnimation.fromValue = 0.0
-//        rotateAnimation.toValue = CGFloat(.pi * 2.0)
-//        rotateAnimation.duration = 1.0  // Change this to change how many seconds a rotation takes
-//        rotateAnimation.repeatCount = Float.greatestFiniteMagnitude
-//        refreshImage.layer.add(rotateAnimation, forKey: "rotate")
-//        refreshImage.isHidden = true
+
         tableView.addSubview(refreshControl)
         
         
+        // 生成SearchController
+        self.searchController = UISearchController(searchResultsController: nil)
+        self.searchController.searchBar.placeholder = "請輸入情境名稱"
+        self.searchController.searchBar.sizeToFit()
+        self.searchController.searchResultsUpdater = self // 遵守UISearchResultsUpdating協議
+        self.searchController.searchBar.delegate = self // 遵守UISearchBarDelegate協議
+        self.searchController.dimsBackgroundDuringPresentation = false // 預設為true，若是沒改為false，則在搜尋時整個TableView的背景顏色會變成灰底的
         
-        let footerView:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width:self.tableView.frame.width , height: 50))
-        footerView.text = ""
-        footerView.numberOfLines = 0;
-        footerView.sizeToFit()
-        footerView.backgroundColor = UIColor(named: "clr_bg")
-        tableView.tableFooterView = footerView
-        
+        // 將searchBar掛載到tableView上
+        self.tableView.tableHeaderView = self.searchController.searchBar
+        self.tableView.tableHeaderView?.isHidden = true
+
     }
+
     
     let badgeSize: CGFloat = 20
     let badgeTag = 9830384
@@ -168,17 +174,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             ])
             self.view.layoutIfNeeded()
         }
-        
     }
-    
-    /*
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-            print(velocity)
-        if(velocity.y < -0.1)
-        {
-        }
-    }
-     */
 
     func clearBadge()
     {
@@ -192,8 +188,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
         }
     }
+    
     @objc func reloadEventTableView() {
-
         arrData.removeAll()
           addHomes(homeManager.homes)
             totalCount = 0
@@ -206,7 +202,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
         tableView.reloadData()
         self.refreshControl.endRefreshing()
-
     }
     
     //---
@@ -216,10 +211,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         backgroundView.addSubview(desiredView)
         desiredView.center = backgroundView.center
         desiredView.isHidden = false
-        
         desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
         desiredView.alpha = 0
-        
         UIView.animate(withDuration: 0.3) {
             desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             desiredView.alpha = 1
@@ -242,8 +235,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
         })
     }
-    //---
     
+    //---
     func addHomes(_ homes: [HMHome]) {
       self.homes.removeAll()
       for home in homes {
@@ -460,6 +453,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         
                         self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
                                             ,"home":home])
+                    
+                    self.searchedDataSource = self.arrData
                         print ("*arrData: \(self.arrData)")
                         
                         self.tableView.reloadData()
@@ -553,9 +548,25 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath)
        {
-           actionSet = arrData[indexPath.row]["actionSet"] as! HMActionSet
-               print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
-               print ("* arrData = \(arrData)")
+          
+           if isShowSearchResult{
+               actionSet = filterDataList[indexPath.row]["actionSet"] as! HMActionSet
+                   print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
+               let exehome = filterDataList[indexPath.row]["home"] as! HMHome
+               let chara = filterDataList[indexPath.row]["chars"] as! HMCharacteristic
+               let acc = filterDataList[indexPath.row]["acc"] as! HMAccessory
+               executeActionSet(actionSet!,home: exehome)
+               if actionSet!.isExecuting {
+                    print ("* isExecting")
+                   popView.lbTitle.text = actionSet?.name
+                   popView.tvInfo.text = "已情境在執行中...\n不重覆用執行!"
+                   popView.tvInfo.font = UIFont(name: "Cubic 11", size: 32)
+                   animateScaleIn(desiredView: blurView)
+                   animateScaleIn(desiredView: popView)
+               }
+           }else{
+               actionSet = arrData[indexPath.row]["actionSet"] as! HMActionSet
+                   print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
                let exehome = arrData[indexPath.row]["home"] as! HMHome
                let chara = arrData[indexPath.row]["chars"] as! HMCharacteristic
                let acc = arrData[indexPath.row]["acc"] as! HMAccessory
@@ -568,77 +579,130 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                    animateScaleIn(desiredView: blurView)
                    animateScaleIn(desiredView: popView)
                }
+           }
        }
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         lbNoHad.isHidden = arrData.count != 0
+        searchController.searchBar.isHidden = !lbNoHad.isHidden
+        
         if badgeNumber>0 {
             lbNoHad.text = ""
         }
+        
         if arrData.count > 0{
+            tableView.tableHeaderView?.isHidden = false
             tfOutput.isHidden = false
             tfOutput.text = "創建了共\(arrData.count)組情境"
         }else{
             tfOutput.isHidden = true
         }
-        return arrData.count
+        
+        if self.isShowSearchResult {
+            // 若是有查詢結果則顯示查詢結果集合裡的資料
+            return self.filterDataList.count
+        } else {
+            return arrData.count
+        }
+        
+    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
         print ("* indexPath.row:\(indexPath.row)")
-        let isIndexValid = arrData.indices.contains(indexPath.row)
-        if isIndexValid{
-            if let name=arrData[indexPath.row]["name"]{
-                cell.lbSenseName.text = name as! String
-            }
-            
-            if let home=arrData[indexPath.row]["home"] as? HMHome{
-                print ("*home: \(home.name)")
-                cell.lbHomeName.text = home.name
-            }
-            
-            if let acc=arrData[indexPath.row]["acc"] as? HMAccessory{
-               
-                if let room = acc.room {
-                    print ("*room name: \(room.name)")
-                    cell.lbRoomName.text = room.name
+        
+        
+        if self.isShowSearchResult {
+            // 若是有查詢結果則顯示查詢結果集合裡的資料
+            let isIndexValid = filterDataList.indices.contains(indexPath.row)
+            if isIndexValid{
+                if let name=filterDataList[indexPath.row]["name"]{
+                    cell.lbSenseName.text = name as! String
                 }
+                if let home=filterDataList[indexPath.row]["home"] as? HMHome{
+                    print ("*home: \(home.name)")
+                    cell.lbHomeName.text = home.name
                 }
-//            cell.btnInfo.tag = indexPath.row
-            
-            
-        }else{
-            print ("out of array")
+                
+                if let acc=filterDataList[indexPath.row]["acc"] as? HMAccessory{
+                   
+                    if let room = acc.room {
+                        print ("*room name: \(room.name)")
+                        cell.lbRoomName.text = room.name
+                    }
+                    }
+                }else{
+                    print ("out of array")
+                }
+        } else {
+            let isIndexValid = arrData.indices.contains(indexPath.row)
+            if isIndexValid{
+                if let name=arrData[indexPath.row]["name"]{
+                    cell.lbSenseName.text = name as! String
+                }
+                if let home=arrData[indexPath.row]["home"] as? HMHome{
+                    print ("*home: \(home.name)")
+                    cell.lbHomeName.text = home.name
+                }
+                
+                if let acc=arrData[indexPath.row]["acc"] as? HMAccessory{
+                   
+                    if let room = acc.room {
+                        print ("*room name: \(room.name)")
+                        cell.lbRoomName.text = room.name
+                    }
+                    }
+                }else{
+                    print ("out of array")
+                }
         }
+        
+        
+      
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
+        
+       
+        
         // action one
         let editAction = UITableViewRowAction(style: .default, title: "Rename", handler: { (action, indexPath) in
             print("Edit tapped")
             
-            self.actionSet = self.arrData[indexPath.row]["actionSet"] as? HMActionSet
-            print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
-            print ("* arrActionName =\(self.arrActionName)")
+            if self.isShowSearchResult {
+                self.actionSet = self.filterDataList[indexPath.row]["actionSet"] as? HMActionSet
+                print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
+            }else{
+                self.actionSet = self.arrData[indexPath.row]["actionSet"] as? HMActionSet
+                print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
+            }
+
             
-            let alert = UIAlertController(title: "Alert", message: "改名個直接對應的名子將會改變", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: {_ in
-                
+            print ("* arrActionName =\(self.arrActionName)")
                 let alertController = UIAlertController(title: "Scene Name rename to", message: "", preferredStyle: UIAlertController.Style.alert)
                 alertController.addTextField { (textField : UITextField!) -> Void in
                     textField.placeholder = "請入要修改的名稱"
-                    textField.text = self.arrData[indexPath.row]["name"] as? String
+                        if self.isShowSearchResult {
+                            textField.text = self.filterDataList[indexPath.row]["name"] as? String
+                        }else{
+                            textField.text = self.arrData[indexPath.row]["name"] as? String
+                        }
                     }
                 let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
                     if let textField = alertController.textFields?[0] {
                                 if textField.text!.count > 0 {
                                     print("Text :: \(textField.text ?? "")")
                                     if textField.text != nil {
+                                        if self.isShowSearchResult {
+                                            self.updateNameIfNecessary2( textField.text! ,indexPath: indexPath,acc: self.filterDataList[indexPath.row]["acc"] as! HMAccessory)
+                                        }else{
                                         self.updateNameIfNecessary2( textField.text! ,indexPath: indexPath,acc: self.arrData[indexPath.row]["acc"] as! HMAccessory)
+                                        }
                                     }
                                 }
                             }
@@ -650,10 +714,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     alertController.addAction(saveAction)
                     alertController.addAction(cancelAction)
                 
+//                self.present(alertController, animated: true, completion: nil)
+            
+            if self.presentedViewController==nil{
                 self.present(alertController, animated: true, completion: nil)
-                
-            }))
-            self.present(alert, animated: true, completion: nil)
+            }else{
+                self.presentedViewController!.present(alertController, animated: true, completion: nil)
+            }
+            
             
         })
         editAction.backgroundColor = UIColor.blue
@@ -662,9 +730,29 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             print("Delete tapped")
             
-            self.removeTargetValueForCharacteristic(self.arrData[indexPath.row]["home"] as! HMHome ,actionSet: self.arrData[indexPath.row]["actionSet"] as! HMActionSet,indexPath:indexPath, completion: {
-              print ("done")
-            })
+            
+            if self.isShowSearchResult {
+                self.actionSet = self.filterDataList[indexPath.row]["actionSet"] as? HMActionSet
+                print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
+            }else{
+                self.actionSet = self.arrData[indexPath.row]["actionSet"] as? HMActionSet
+                print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
+            }
+
+            
+            if self.isShowSearchResult {
+                // 若是有查詢結果則顯示查詢結果集合裡的資料
+                self.removeTargetValueForCharacteristic(self.filterDataList[indexPath.row]["home"] as! HMHome ,actionSet: self.filterDataList[indexPath.row]["actionSet"] as! HMActionSet,indexPath:indexPath, completion: {
+                  print ("done")
+                })
+            } else {
+                self.removeTargetValueForCharacteristic(self.arrData[indexPath.row]["home"] as! HMHome ,actionSet: self.arrData[indexPath.row]["actionSet"] as! HMActionSet,indexPath:indexPath, completion: {
+                  print ("done")
+                })
+            }
+            
+            
+           
          
                                                 
         })
@@ -686,10 +774,26 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.present(alert, animated: true, completion: nil)
                 self.saveError = error
             }else{
-                self.arrData[indexPath.row]["name"]=name
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                //upload Accessory
-                self.updateName2(name, forAccessory: acc)
+                if self.isShowSearchResult{
+                    
+                    for (i,arrSync) in self.arrData.enumerated(){
+                        if arrSync["name"] as! String == self.filterDataList[indexPath.row]["name"] as! String {
+                            self.arrData[i]["name"] = name
+                        }
+                    }
+                    
+                    self.filterDataList[indexPath.row]["name"]=name
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    //upload Accessory
+                    self.updateName2(name, forAccessory: acc)
+                    
+
+                }else{
+                    self.arrData[indexPath.row]["name"]=name
+                    self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    //upload Accessory
+                    self.updateName2(name, forAccessory: acc)
+                }
             }
             self.saveActionSetGroup.leave()
         }
@@ -840,7 +944,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
             badgeNumber+=1
             showBadge(withCount: badgeNumber)
+        if isShowSearchResult{
+            
+            for (i,arrSync) in self.arrData.enumerated(){
+                if arrSync["name"] as! String == self.filterDataList[indexPath.row]["name"] as! String {
+                    self.arrData.remove(at: i)
+                }
+            }
+            
+            self.filterDataList.remove(at: indexPath.row)
+        }else{
             self.arrData.remove(at: indexPath.row)
+        }
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
    
     }
@@ -863,6 +978,69 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
            // self.displayError(error)
         }
     }
+    
+    // MARK: - Search Bar Delegate
+    // ---------------------------------------------------------------------
+    // 當在searchBar上開始輸入文字時
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        // 法蘭克選擇不需實作，因有遵守UISearchResultsUpdating協議的話，則輸入文字的當下即會觸發updateSearchResults，所以等同於同一件事做了兩次(可依個人需求決定，也不一定要跟法蘭克一樣選擇不實作)
+    }
+    
+    // 點擊searchBar上的取消按鈕
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        // 依個人需求決定如何實作
+        // ...
+
+    }
+    
+    // 點擊searchBar的搜尋按鈕時
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // 法蘭克選擇不需要執行查詢的動作，因在「輸入文字時」即會觸發 updateSearchResults 的 delegate 做查詢的動作(可依個人需求決定如何實作)
+        // 關閉瑩幕小鍵盤
+        self.searchController.searchBar.resignFirstResponder()
+    }
+    
+    // MARK: - Search Controller Delegate
+    // ---------------------------------------------------------------------
+    // 當在searchBar上開始輸入文字時
+    // 當「準備要在searchBar輸入文字時」、「輸入文字時」、「取消時」三個事件都會觸發該delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        // 若是沒有輸入任何文字或輸入空白則直接返回不做搜尋的動作
+        print ("* self.searchController.searchBar.text? =\(String(describing: self.searchController.searchBar.text))")
+        
+        print ("* arrData:\(self.arrData)")
+        
+        if self.searchController.searchBar.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count == 0 {
+            filterDataList.removeAll()
+            isShowSearchResult = false
+            tableView.reloadData()
+            return
+        }
+        tfOutput.text = ""
+        self.filterDataSource()
+    }
+    
+    // 過濾被搜陣列裡的資料
+    func filterDataSource() {
+        // 使用高階函數來過濾掉陣列裡的資料
+        print ("* 3\(arrData) = \(searchedDataSource)")
+        self.filterDataList = arrData.filter({ (item) -> Bool in
+            return (item["name"] as! String).lowercased().range(of: self.searchController.searchBar.text!.lowercased()) != nil
+        })
+        
+        if self.filterDataList.count > 0 {
+            self.isShowSearchResult = true
+            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.init(rawValue: 1)! // 顯示TableView的格線
+                    //tableView.reloadData()
+        } else {
+            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none // 移除TableView的格線
+            // 可加入一個查找不到的資料的label來告知使用者查不到資料...
+            // ...
+        }
+        
+        self.tableView.reloadData()
+    }
+
 }
 //end
 
