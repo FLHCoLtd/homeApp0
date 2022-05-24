@@ -127,6 +127,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //        refreshImage.layer.add(rotateAnimation, forKey: "rotate")
 //        refreshImage.isHidden = true
         tableView.addSubview(refreshControl)
+        
+        
+        
+        let footerView:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width:self.tableView.frame.width , height: 50))
+        footerView.text = ""
+        footerView.numberOfLines = 0;
+        footerView.sizeToFit()
+        footerView.backgroundColor = UIColor(named: "clr_bg")
+        tableView.tableFooterView = footerView
+        
     }
     
     let badgeSize: CGFloat = 20
@@ -530,14 +540,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      }
     
     //MARK: - tableview
-//    func tableView(_ tableView:UITableView,titileForHeaderInSection section: Int) -> String?{
-//        return "1"
-//        
-//    }
-//    
-//    func numberOfSections(in tablView:UITableView) -> Int{
-//        print ("* homes\(homes), \(homes.count)")
-//        return homes.count
+    
+//    // Create a standard footer that includes the returned text.
+//    func tableView(_ tableView: UITableView, titleForFooterInSection
+//                                section: Int) -> String? {
+//        if arrData.count > 0 {
+//            return "已創建 \(arrData.count)筆"
+//        }else{
+//            return ""
+//        }
 //    }
     
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath)
@@ -564,8 +575,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         lbNoHad.isHidden = arrData.count != 0
         if badgeNumber>0 {
             lbNoHad.text = ""
+        }
+        if arrData.count > 0{
+            tfOutput.isHidden = false
+            tfOutput.text = "創建了共\(arrData.count)組情境"
         }else{
-//          lbNoHad.text = "目前無轉換資料"
+            tfOutput.isHidden = true
         }
         return arrData.count
     }
