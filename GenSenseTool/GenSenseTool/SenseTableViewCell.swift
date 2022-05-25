@@ -15,12 +15,13 @@ class SenseTableViewCell: UITableViewCell {
     @IBOutlet weak var lbSenseName: UILabel!
     @IBOutlet weak var lbHomeName: UILabel!
     @IBOutlet weak var lbRoomName: UILabel!
-    
     @IBOutlet weak var btnInfo:UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+   
+        
     }
     
     override func layoutSubviews() {

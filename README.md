@@ -1,4 +1,7 @@
 # homeApp0
+GenSenseTool
+自行開發tool情境建立器
+
 ==Apple==
 https://github.com/ooper-shlab/HMCatalog-Swift3
 ⇒把Apple以下的的官方範例程式整合成一個

@@ -7,57 +7,86 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		081DD6277E345BEEC7E3325B110FFC9C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		2D7E8D38EF3F46A7EF100CA9643518C3 /* Pods-GenSenseTool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B82D0FF5D4B8EB72B0F9A85BDCA453A1 /* Pods-GenSenseTool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3767DA2D9F7FFD2B729C7E91DE1E24D6 /* Pods-GenSenseTool-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B62896366679507739FEE95671DC4E /* Pods-GenSenseTool-dummy.m */; };
-		5827F3D11F1F80A6E5C4997706C5FDFB /* Pods-GenSenseToolTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DE547C85FA97EB0CC1AE4525C190F5D2 /* Pods-GenSenseToolTests-dummy.m */; };
-		72CBA5F2534254A31FC0650D7C6C6CEC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		01F0D6C540D1EC457397ABF02BD10B51 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A02AE6ADEFD0A039A71E8522816043A /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11B16620B061C645064AE86E6175A85B /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C280938B1FBBE8140E45A6C7BF672FA5 /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m */; };
+		3413764F3345A8A87E627B501272197F /* PickerPopupDialog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A882B52F15F722CA0E7F72C524F391 /* PickerPopupDialog-dummy.m */; };
+		3E92FF214D6A6AB0D55C06ED6B20812F /* PickerPopupDialog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B653478F622E6F1ADA535248B482B06 /* PickerPopupDialog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		43E7A6DF05D7F21140784A122F13DA70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		49B5B203C5E681A1E7C6BF7EA614F31F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		5827F3D11F1F80A6E5C4997706C5FDFB /* Pods-GenSenseToolTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DD05CC1A129BF395F8D01409BB4C49EF /* Pods-GenSenseToolTests-dummy.m */; };
+		8D4B2EB617F48CCA19190B77D2A211C1 /* Pods-GenSenseTool-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0278B0721EE3F69FC3140D97D4331235 /* Pods-GenSenseTool-dummy.m */; };
 		955EF6669613BC6784FEBFDED92F8078 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		A81B3C63DF08ABE25EDFFA7FF758C8C5 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 31EE00AA0A9A459BC9DD372CCF0CE7E6 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD0DDC186880827C07337838A99BA33C /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0A48F7DEFA6B0F85E10EB3030522289 /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m */; };
-		F1C823E551C1AB890F465C3BDBCAEECC /* Pods-GenSenseToolTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C43BE1338FB1F396B5AA643EAC430471 /* Pods-GenSenseToolTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C900B899A267FADC00F925382CDB31D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		DB7655EF0A258E6C3495FC9C10C2A5B9 /* Pods-GenSenseTool-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C79799239750D59FE6CC4715C253D8C /* Pods-GenSenseTool-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD48CF257703055E8EF6E14D302F9868 /* PickerPopupDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0145343AE13608804F2344628DD395 /* PickerPopupDialog.swift */; };
+		F1C823E551C1AB890F465C3BDBCAEECC /* Pods-GenSenseToolTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4332F572759E648D31DE46CE5947E700 /* Pods-GenSenseToolTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		597B0C42F75C88E49A38ADAA3C52F9FC /* PBXContainerItemProxy */ = {
+		08BDC41B9E5627E8D8723C53DF6AF5DC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3257BC0C8656E83FE1D84AAC61ED8EFB;
 			remoteInfo = "Pods-GenSenseTool";
 		};
+		3E3D17DA8F0D71EF92269D3661FA3576 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 931E3726C4C32CFB2E56C780EAC7F24C;
+			remoteInfo = PickerPopupDialog;
+		};
+		CCC210BA5DE3C5889F379EDC1DBB03DA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 931E3726C4C32CFB2E56C780EAC7F24C;
+			remoteInfo = PickerPopupDialog;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1F9A51FFED0682D078EC24289689451A /* Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		31EE00AA0A9A459BC9DD372CCF0CE7E6 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSenseTool-GenSenseToolUITests-umbrella.h"; sourceTree = "<group>"; };
-		35134ADC32946C6FBF740EEDA55429DF /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig"; sourceTree = "<group>"; };
-		36B62896366679507739FEE95671DC4E /* Pods-GenSenseTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseTool-dummy.m"; sourceTree = "<group>"; };
-		389AC4690E1C342F756EA9C03FFF6DBD /* Pods-GenSenseTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSenseTool.modulemap"; sourceTree = "<group>"; };
+		0278B0721EE3F69FC3140D97D4331235 /* Pods-GenSenseTool-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseTool-dummy.m"; sourceTree = "<group>"; };
+		04A882B52F15F722CA0E7F72C524F391 /* PickerPopupDialog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PickerPopupDialog-dummy.m"; sourceTree = "<group>"; };
+		0E563E95124689B938787CCEBB6F5110 /* Pods-GenSenseTool-GenSenseToolUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GenSenseTool-GenSenseToolUITests-frameworks.sh"; sourceTree = "<group>"; };
+		28502ABC34F46B1201E1D055C69611DE /* PickerPopupDialog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PickerPopupDialog.debug.xcconfig; sourceTree = "<group>"; };
+		2B653478F622E6F1ADA535248B482B06 /* PickerPopupDialog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PickerPopupDialog-umbrella.h"; sourceTree = "<group>"; };
+		2C7199C157C340E77603FABADAA57701 /* Pods-GenSenseToolTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseToolTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		395ABD278291AFB1F85E58B994AF3C7E /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		3C79799239750D59FE6CC4715C253D8C /* Pods-GenSenseTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSenseTool-umbrella.h"; sourceTree = "<group>"; };
+		4332F572759E648D31DE46CE5947E700 /* Pods-GenSenseToolTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSenseToolTests-umbrella.h"; sourceTree = "<group>"; };
+		4A02AE6ADEFD0A039A71E8522816043A /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSenseTool-GenSenseToolUITests-umbrella.h"; sourceTree = "<group>"; };
 		58C1D132FB578B592419A433F9AFADD7 /* Pods-GenSenseTool-GenSenseToolUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GenSenseTool-GenSenseToolUITests"; path = Pods_GenSenseTool_GenSenseToolUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DBFD1CBF59D785DED23CDA344C62541 /* Pods-GenSenseTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool.debug.xcconfig"; sourceTree = "<group>"; };
-		684FC647AA07EDF5509D727D3A14BEE6 /* Pods-GenSenseToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseToolTests.release.xcconfig"; sourceTree = "<group>"; };
+		590BA0CA8D00F5D0B8847471105982AD /* Pods-GenSenseTool-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-GenSenseTool-frameworks.sh"; sourceTree = "<group>"; };
+		5F9AE44A17E563E46EC764F2380294E4 /* Pods-GenSenseTool-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-acknowledgements.plist"; sourceTree = "<group>"; };
+		654649CF46CB0F4DAB955A14E1F0F07B /* Pods-GenSenseTool-GenSenseToolUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSenseTool-GenSenseToolUITests.modulemap"; sourceTree = "<group>"; };
+		6D5587FEE13A3C70A6D4D292A3723349 /* Pods-GenSenseTool-GenSenseToolUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-GenSenseToolUITests-Info.plist"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		79904A378C3827DB8164175317386DDE /* Pods-GenSenseTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool.release.xcconfig"; sourceTree = "<group>"; };
-		8D92B46FF1A1476C7CED5CDFF0B3C46E /* Pods-GenSenseTool-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9F27D88811E18EC3EAD2B7FF7BA3BEDC /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		76E942FA558012DDA141CD0F1A41EC70 /* PickerPopupDialog-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "PickerPopupDialog-Info.plist"; sourceTree = "<group>"; };
+		776E282042F9C168F4802248E0AAE91F /* Pods-GenSenseToolTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSenseToolTests.modulemap"; sourceTree = "<group>"; };
+		7AB4AC234013E578209418A83CFB198E /* Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* PickerPopupDialog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PickerPopupDialog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E5360D93E51406BA38A228EEFD0DCF6 /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		966A833BA43B53F047C075BAEC15E998 /* Pods-GenSenseTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool.debug.xcconfig"; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A0A8C185F56B26B7D24903EE54D593BE /* Pods-GenSenseToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseToolTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A7793F203AEA42CB5AA02EDEC0C088A4 /* Pods-GenSenseTool.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSenseTool.modulemap"; sourceTree = "<group>"; };
+		A990EB93325C84A6A021836EE30075F4 /* Pods-GenSenseToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseToolTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC5009A72DF0C6549839E498D442CF80 /* Pods-GenSenseToolTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GenSenseToolTests"; path = Pods_GenSenseToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AF8DF5D32CC4E9E2CA0265225CBC6299 /* Pods-GenSenseToolTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GenSenseToolTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		B82D0FF5D4B8EB72B0F9A85BDCA453A1 /* Pods-GenSenseTool-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSenseTool-umbrella.h"; sourceTree = "<group>"; };
-		BB7497E192045C7E1B801D85CEEA12E0 /* Pods-GenSenseToolTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseToolTests-Info.plist"; sourceTree = "<group>"; };
-		BDCBDE617AEE18B64FD07E3C3E0C2439 /* Pods-GenSenseTool-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GenSenseTool-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C43BE1338FB1F396B5AA643EAC430471 /* Pods-GenSenseToolTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSenseToolTests-umbrella.h"; sourceTree = "<group>"; };
-		CAEA021BE3E59FEF7EEF657576C1C542 /* Pods-GenSenseTool-GenSenseToolUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSenseTool-GenSenseToolUITests.modulemap"; sourceTree = "<group>"; };
-		CE36AF98E006B47F58009FE40441E6F1 /* Pods-GenSenseToolTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSenseToolTests.modulemap"; sourceTree = "<group>"; };
-		CF3D26D8B3A3EC312CB87B85FBC5A86A /* Pods-GenSenseToolTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseToolTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		BD89317FEEED69711E4BD83A9D284BDB /* Pods-GenSenseTool-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-Info.plist"; sourceTree = "<group>"; };
+		C280938B1FBBE8140E45A6C7BF672FA5 /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseTool-GenSenseToolUITests-dummy.m"; sourceTree = "<group>"; };
+		C8E48A69F2180F8EDF7EFF7DED97D683 /* PickerPopupDialog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = PickerPopupDialog.modulemap; sourceTree = "<group>"; };
+		CC1049D35F13150920004BA82BCCB471 /* Pods-GenSenseToolTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GenSenseToolTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		CF962B4A90C03EF4109FD0569402242D /* Pods-GenSenseTool */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-GenSenseTool"; path = Pods_GenSenseTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9B848A55D6C1627955F979653582875 /* Pods-GenSenseToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseToolTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DE547C85FA97EB0CC1AE4525C190F5D2 /* Pods-GenSenseToolTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseToolTests-dummy.m"; sourceTree = "<group>"; };
-		E0A48F7DEFA6B0F85E10EB3030522289 /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseTool-GenSenseToolUITests-dummy.m"; sourceTree = "<group>"; };
-		E8C054DFF903141CD0DF0B97858CE911 /* Pods-GenSenseTool-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-Info.plist"; sourceTree = "<group>"; };
-		E8FF18B622A437CA4CC8B8D8FD2BEBF9 /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		F16B0967B83A0EB7BFE0DFEF0FFD5F3F /* Pods-GenSenseTool-GenSenseToolUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-GenSenseToolUITests-Info.plist"; sourceTree = "<group>"; };
+		D246DF26040F726D6D611CB56B6202EA /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DD05CC1A129BF395F8D01409BB4C49EF /* Pods-GenSenseToolTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseToolTests-dummy.m"; sourceTree = "<group>"; };
+		EA40B99CAE8FA9E63F40599295DCCEE5 /* Pods-GenSenseTool-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GenSenseTool-acknowledgements.markdown"; sourceTree = "<group>"; };
+		ED0145343AE13608804F2344628DD395 /* PickerPopupDialog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerPopupDialog.swift; path = PickerPopupDialog/Classes/PickerPopupDialog.swift; sourceTree = "<group>"; };
+		F206C4DEDCE3E1C43885CB2F9B818F57 /* PickerPopupDialog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PickerPopupDialog-prefix.pch"; sourceTree = "<group>"; };
+		F6245F6096E253D426FC8AD41B52A72B /* Pods-GenSenseTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool.release.xcconfig"; sourceTree = "<group>"; };
+		F98711861213EDFC954310A45433F862 /* PickerPopupDialog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PickerPopupDialog.release.xcconfig; sourceTree = "<group>"; };
+		FBE315F07F243067AC20E6A0C93FD6E9 /* Pods-GenSenseToolTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseToolTests-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,71 +98,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1C8F75E7BC3C6F8D4A244915B98AABB8 /* Frameworks */ = {
+		85BA920C54DC618A064BBEB48CF88104 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				081DD6277E345BEEC7E3325B110FFC9C /* Foundation.framework in Frameworks */,
+				43E7A6DF05D7F21140784A122F13DA70 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		94283380B41D1C57D0C2769F7CE3C4EC /* Frameworks */ = {
+		C552CCF74AF557BE5DDF2E506ECD5B51 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72CBA5F2534254A31FC0650D7C6C6CEC /* Foundation.framework in Frameworks */,
+				49B5B203C5E681A1E7C6BF7EA614F31F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E93E7108408C1B6743E566A5187EF8B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C900B899A267FADC00F925382CDB31D6 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		07E67C1463CDC9A33027FE7EFA61D056 /* Pods-GenSenseTool-GenSenseToolUITests */ = {
+		2BC4C0246614F8314F5E842645006EA2 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				CAEA021BE3E59FEF7EEF657576C1C542 /* Pods-GenSenseTool-GenSenseToolUITests.modulemap */,
-				9F27D88811E18EC3EAD2B7FF7BA3BEDC /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.markdown */,
-				E8FF18B622A437CA4CC8B8D8FD2BEBF9 /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.plist */,
-				E0A48F7DEFA6B0F85E10EB3030522289 /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m */,
-				F16B0967B83A0EB7BFE0DFEF0FFD5F3F /* Pods-GenSenseTool-GenSenseToolUITests-Info.plist */,
-				31EE00AA0A9A459BC9DD372CCF0CE7E6 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h */,
-				1F9A51FFED0682D078EC24289689451A /* Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig */,
-				35134ADC32946C6FBF740EEDA55429DF /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */,
+				5961E9CD1FFC3B9BB182AD98CDFAA20B /* Pods-GenSenseTool */,
+				68DAB6353DA7B89F91F9EB4B20CC2782 /* Pods-GenSenseTool-GenSenseToolUITests */,
+				98B417ECA7B56ADF1326E0EA9D20C5AE /* Pods-GenSenseToolTests */,
 			);
-			name = "Pods-GenSenseTool-GenSenseToolUITests";
-			path = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests";
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		323C0852B3B5296792C21738733FAC98 /* Pods-GenSenseTool */ = {
+		55173F41D1F77B45EE2956F4A166ED2B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				389AC4690E1C342F756EA9C03FFF6DBD /* Pods-GenSenseTool.modulemap */,
-				BDCBDE617AEE18B64FD07E3C3E0C2439 /* Pods-GenSenseTool-acknowledgements.markdown */,
-				8D92B46FF1A1476C7CED5CDFF0B3C46E /* Pods-GenSenseTool-acknowledgements.plist */,
-				36B62896366679507739FEE95671DC4E /* Pods-GenSenseTool-dummy.m */,
-				E8C054DFF903141CD0DF0B97858CE911 /* Pods-GenSenseTool-Info.plist */,
-				B82D0FF5D4B8EB72B0F9A85BDCA453A1 /* Pods-GenSenseTool-umbrella.h */,
-				5DBFD1CBF59D785DED23CDA344C62541 /* Pods-GenSenseTool.debug.xcconfig */,
-				79904A378C3827DB8164175317386DDE /* Pods-GenSenseTool.release.xcconfig */,
+				C8E48A69F2180F8EDF7EFF7DED97D683 /* PickerPopupDialog.modulemap */,
+				04A882B52F15F722CA0E7F72C524F391 /* PickerPopupDialog-dummy.m */,
+				76E942FA558012DDA141CD0F1A41EC70 /* PickerPopupDialog-Info.plist */,
+				F206C4DEDCE3E1C43885CB2F9B818F57 /* PickerPopupDialog-prefix.pch */,
+				2B653478F622E6F1ADA535248B482B06 /* PickerPopupDialog-umbrella.h */,
+				28502ABC34F46B1201E1D055C69611DE /* PickerPopupDialog.debug.xcconfig */,
+				F98711861213EDFC954310A45433F862 /* PickerPopupDialog.release.xcconfig */,
 			);
-			name = "Pods-GenSenseTool";
-			path = "Target Support Files/Pods-GenSenseTool";
-			sourceTree = "<group>";
-		};
-		3A285282972CD696A11BD1B39FC00C35 /* Pods-GenSenseToolTests */ = {
-			isa = PBXGroup;
-			children = (
-				CE36AF98E006B47F58009FE40441E6F1 /* Pods-GenSenseToolTests.modulemap */,
-				AF8DF5D32CC4E9E2CA0265225CBC6299 /* Pods-GenSenseToolTests-acknowledgements.markdown */,
-				CF3D26D8B3A3EC312CB87B85FBC5A86A /* Pods-GenSenseToolTests-acknowledgements.plist */,
-				DE547C85FA97EB0CC1AE4525C190F5D2 /* Pods-GenSenseToolTests-dummy.m */,
-				BB7497E192045C7E1B801D85CEEA12E0 /* Pods-GenSenseToolTests-Info.plist */,
-				C43BE1338FB1F396B5AA643EAC430471 /* Pods-GenSenseToolTests-umbrella.h */,
-				D9B848A55D6C1627955F979653582875 /* Pods-GenSenseToolTests.debug.xcconfig */,
-				684FC647AA07EDF5509D727D3A14BEE6 /* Pods-GenSenseToolTests.release.xcconfig */,
-			);
-			name = "Pods-GenSenseToolTests";
-			path = "Target Support Files/Pods-GenSenseToolTests";
+			name = "Support Files";
+			path = "../Target Support Files/PickerPopupDialog";
 			sourceTree = "<group>";
 		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
@@ -144,13 +158,92 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		5961E9CD1FFC3B9BB182AD98CDFAA20B /* Pods-GenSenseTool */ = {
+			isa = PBXGroup;
+			children = (
+				A7793F203AEA42CB5AA02EDEC0C088A4 /* Pods-GenSenseTool.modulemap */,
+				EA40B99CAE8FA9E63F40599295DCCEE5 /* Pods-GenSenseTool-acknowledgements.markdown */,
+				5F9AE44A17E563E46EC764F2380294E4 /* Pods-GenSenseTool-acknowledgements.plist */,
+				0278B0721EE3F69FC3140D97D4331235 /* Pods-GenSenseTool-dummy.m */,
+				590BA0CA8D00F5D0B8847471105982AD /* Pods-GenSenseTool-frameworks.sh */,
+				BD89317FEEED69711E4BD83A9D284BDB /* Pods-GenSenseTool-Info.plist */,
+				3C79799239750D59FE6CC4715C253D8C /* Pods-GenSenseTool-umbrella.h */,
+				966A833BA43B53F047C075BAEC15E998 /* Pods-GenSenseTool.debug.xcconfig */,
+				F6245F6096E253D426FC8AD41B52A72B /* Pods-GenSenseTool.release.xcconfig */,
+			);
+			name = "Pods-GenSenseTool";
+			path = "Target Support Files/Pods-GenSenseTool";
+			sourceTree = "<group>";
+		};
+		68DAB6353DA7B89F91F9EB4B20CC2782 /* Pods-GenSenseTool-GenSenseToolUITests */ = {
+			isa = PBXGroup;
+			children = (
+				654649CF46CB0F4DAB955A14E1F0F07B /* Pods-GenSenseTool-GenSenseToolUITests.modulemap */,
+				8E5360D93E51406BA38A228EEFD0DCF6 /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.markdown */,
+				395ABD278291AFB1F85E58B994AF3C7E /* Pods-GenSenseTool-GenSenseToolUITests-acknowledgements.plist */,
+				C280938B1FBBE8140E45A6C7BF672FA5 /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m */,
+				0E563E95124689B938787CCEBB6F5110 /* Pods-GenSenseTool-GenSenseToolUITests-frameworks.sh */,
+				6D5587FEE13A3C70A6D4D292A3723349 /* Pods-GenSenseTool-GenSenseToolUITests-Info.plist */,
+				4A02AE6ADEFD0A039A71E8522816043A /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h */,
+				7AB4AC234013E578209418A83CFB198E /* Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig */,
+				D246DF26040F726D6D611CB56B6202EA /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */,
+			);
+			name = "Pods-GenSenseTool-GenSenseToolUITests";
+			path = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests";
+			sourceTree = "<group>";
+		};
+		908EDF2CA00A20D38B606B2DB1F61937 /* PickerPopupDialog */ = {
+			isa = PBXGroup;
+			children = (
+				ED0145343AE13608804F2344628DD395 /* PickerPopupDialog.swift */,
+				55173F41D1F77B45EE2956F4A166ED2B /* Support Files */,
+			);
+			path = PickerPopupDialog;
+			sourceTree = "<group>";
+		};
+		98B417ECA7B56ADF1326E0EA9D20C5AE /* Pods-GenSenseToolTests */ = {
+			isa = PBXGroup;
+			children = (
+				776E282042F9C168F4802248E0AAE91F /* Pods-GenSenseToolTests.modulemap */,
+				CC1049D35F13150920004BA82BCCB471 /* Pods-GenSenseToolTests-acknowledgements.markdown */,
+				2C7199C157C340E77603FABADAA57701 /* Pods-GenSenseToolTests-acknowledgements.plist */,
+				DD05CC1A129BF395F8D01409BB4C49EF /* Pods-GenSenseToolTests-dummy.m */,
+				FBE315F07F243067AC20E6A0C93FD6E9 /* Pods-GenSenseToolTests-Info.plist */,
+				4332F572759E648D31DE46CE5947E700 /* Pods-GenSenseToolTests-umbrella.h */,
+				A0A8C185F56B26B7D24903EE54D593BE /* Pods-GenSenseToolTests.debug.xcconfig */,
+				A990EB93325C84A6A021836EE30075F4 /* Pods-GenSenseToolTests.release.xcconfig */,
+			);
+			name = "Pods-GenSenseToolTests";
+			path = "Target Support Files/Pods-GenSenseToolTests";
+			sourceTree = "<group>";
+		};
+		BECA215E843E9FBBF267A10519761CB8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				908EDF2CA00A20D38B606B2DB1F61937 /* PickerPopupDialog */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C163C597C89669F77F7C85A8874AE040 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* PickerPopupDialog.framework */,
+				CF962B4A90C03EF4109FD0569402242D /* Pods-GenSenseTool */,
+				58C1D132FB578B592419A433F9AFADD7 /* Pods-GenSenseTool-GenSenseToolUITests */,
+				AC5009A72DF0C6549839E498D442CF80 /* Pods-GenSenseToolTests */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				EC9C5FC807BF60DB3D05C890F588F0ED /* Products */,
-				D50AE7C0D2AC481BFBEF11646EDAE0C1 /* Targets Support Files */,
+				BECA215E843E9FBBF267A10519761CB8 /* Pods */,
+				C163C597C89669F77F7C85A8874AE040 /* Products */,
+				2BC4C0246614F8314F5E842645006EA2 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -162,34 +255,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D50AE7C0D2AC481BFBEF11646EDAE0C1 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				323C0852B3B5296792C21738733FAC98 /* Pods-GenSenseTool */,
-				07E67C1463CDC9A33027FE7EFA61D056 /* Pods-GenSenseTool-GenSenseToolUITests */,
-				3A285282972CD696A11BD1B39FC00C35 /* Pods-GenSenseToolTests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		EC9C5FC807BF60DB3D05C890F588F0ED /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CF962B4A90C03EF4109FD0569402242D /* Pods-GenSenseTool */,
-				58C1D132FB578B592419A433F9AFADD7 /* Pods-GenSenseTool-GenSenseToolUITests */,
-				AC5009A72DF0C6549839E498D442CF80 /* Pods-GenSenseToolTests */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		94ACFDB69ED52E50363BA342E801DB8E /* Headers */ = {
+		17213DE69FBCCCDE388184E5D6D0E2D3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D7E8D38EF3F46A7EF100CA9643518C3 /* Pods-GenSenseTool-umbrella.h in Headers */,
+				DB7655EF0A258E6C3495FC9C10C2A5B9 /* Pods-GenSenseTool-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3930ECF71E2BE3C19301ACE67F22DD1C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E92FF214D6A6AB0D55C06ED6B20812F /* PickerPopupDialog-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,11 +282,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F8BEE7BC9220A9F9B0CA2B1EA2606215 /* Headers */ = {
+		FE812F6847EDEA6342C21BDA46426361 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A81B3C63DF08ABE25EDFFA7FF758C8C5 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h in Headers */,
+				01F0D6C540D1EC457397ABF02BD10B51 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +305,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				9B4C4C01BFE0CE8092A63F2C783DAD97 /* PBXTargetDependency */,
+				AB8D42AE2F57CB1405DE225D2EFE1F41 /* PBXTargetDependency */,
 			);
 			name = "Pods-GenSenseToolTests";
 			productName = Pods_GenSenseToolTests;
@@ -233,34 +314,54 @@
 		};
 		3257BC0C8656E83FE1D84AAC61ED8EFB /* Pods-GenSenseTool */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 41B4AD6B2BC44066716FED4BC89D4F3D /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool" */;
+			buildConfigurationList = DEDB313EDB98DE000E8B99021EE547D7 /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool" */;
 			buildPhases = (
-				94ACFDB69ED52E50363BA342E801DB8E /* Headers */,
-				E221410E126435FF0DE89027DBD0625C /* Sources */,
-				94283380B41D1C57D0C2769F7CE3C4EC /* Frameworks */,
-				F6A3CCB5B1A574E434CC2888323D50B8 /* Resources */,
+				17213DE69FBCCCDE388184E5D6D0E2D3 /* Headers */,
+				9E8E1DECC33F8300AC09CF123B3D192A /* Sources */,
+				E93E7108408C1B6743E566A5187EF8B3 /* Frameworks */,
+				E52C5313221394AA3C59BF4777101ED0 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				AD8046C79686EF99C87ADC6DE91E7F75 /* PBXTargetDependency */,
 			);
 			name = "Pods-GenSenseTool";
 			productName = Pods_GenSenseTool;
 			productReference = CF962B4A90C03EF4109FD0569402242D /* Pods-GenSenseTool */;
 			productType = "com.apple.product-type.framework";
 		};
-		C7F5370524103036C1BC1E45952E7287 /* Pods-GenSenseTool-GenSenseToolUITests */ = {
+		931E3726C4C32CFB2E56C780EAC7F24C /* PickerPopupDialog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 29E78CD14A7BFF804178C2DB866FD5E8 /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool-GenSenseToolUITests" */;
+			buildConfigurationList = 0A04DBE6BE89DA9A5F96444B0E9388B6 /* Build configuration list for PBXNativeTarget "PickerPopupDialog" */;
 			buildPhases = (
-				F8BEE7BC9220A9F9B0CA2B1EA2606215 /* Headers */,
-				1A919F38502CE787E6AF2A3A1A1EACB3 /* Sources */,
-				1C8F75E7BC3C6F8D4A244915B98AABB8 /* Frameworks */,
-				6973F02E74844DFBBE88EC3DA8FB4EBE /* Resources */,
+				3930ECF71E2BE3C19301ACE67F22DD1C /* Headers */,
+				4317E4173C554FC61291BB8746DF4502 /* Sources */,
+				85BA920C54DC618A064BBEB48CF88104 /* Frameworks */,
+				7518C21B211F7AE1229D0A102A8AA91C /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			name = PickerPopupDialog;
+			productName = PickerPopupDialog;
+			productReference = 7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* PickerPopupDialog.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C7F5370524103036C1BC1E45952E7287 /* Pods-GenSenseTool-GenSenseToolUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6705DDF14AA50E901A8CE47FC4091EA2 /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool-GenSenseToolUITests" */;
+			buildPhases = (
+				FE812F6847EDEA6342C21BDA46426361 /* Headers */,
+				E24348C632B109F17EBA7B1FE59B3BEE /* Sources */,
+				C552CCF74AF557BE5DDF2E506ECD5B51 /* Frameworks */,
+				45573EFC7865D2AEC7BF98F65AAE84C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D422FF2A4468FB765E1CF5106B917B5D /* PBXTargetDependency */,
 			);
 			name = "Pods-GenSenseTool-GenSenseToolUITests";
 			productName = Pods_GenSenseTool_GenSenseToolUITests;
@@ -274,7 +375,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -285,10 +386,11 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = EC9C5FC807BF60DB3D05C890F588F0ED /* Products */;
+			productRefGroup = C163C597C89669F77F7C85A8874AE040 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				931E3726C4C32CFB2E56C780EAC7F24C /* PickerPopupDialog */,
 				3257BC0C8656E83FE1D84AAC61ED8EFB /* Pods-GenSenseTool */,
 				C7F5370524103036C1BC1E45952E7287 /* Pods-GenSenseTool-GenSenseToolUITests */,
 				29F8B32D4AA6CFCBB5F6A3ADC42A97B3 /* Pods-GenSenseToolTests */,
@@ -304,14 +406,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6973F02E74844DFBBE88EC3DA8FB4EBE /* Resources */ = {
+		45573EFC7865D2AEC7BF98F65AAE84C4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F6A3CCB5B1A574E434CC2888323D50B8 /* Resources */ = {
+		7518C21B211F7AE1229D0A102A8AA91C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E52C5313221394AA3C59BF4777101ED0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -321,19 +430,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1A919F38502CE787E6AF2A3A1A1EACB3 /* Sources */ = {
+		4317E4173C554FC61291BB8746DF4502 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD0DDC186880827C07337838A99BA33C /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m in Sources */,
+				DD48CF257703055E8EF6E14D302F9868 /* PickerPopupDialog.swift in Sources */,
+				3413764F3345A8A87E627B501272197F /* PickerPopupDialog-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E221410E126435FF0DE89027DBD0625C /* Sources */ = {
+		9E8E1DECC33F8300AC09CF123B3D192A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3767DA2D9F7FFD2B729C7E91DE1E24D6 /* Pods-GenSenseTool-dummy.m in Sources */,
+				8D4B2EB617F48CCA19190B77D2A211C1 /* Pods-GenSenseTool-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E24348C632B109F17EBA7B1FE59B3BEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11B16620B061C645064AE86E6175A85B /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,56 +466,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9B4C4C01BFE0CE8092A63F2C783DAD97 /* PBXTargetDependency */ = {
+		AB8D42AE2F57CB1405DE225D2EFE1F41 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-GenSenseTool";
 			target = 3257BC0C8656E83FE1D84AAC61ED8EFB /* Pods-GenSenseTool */;
-			targetProxy = 597B0C42F75C88E49A38ADAA3C52F9FC /* PBXContainerItemProxy */;
+			targetProxy = 08BDC41B9E5627E8D8723C53DF6AF5DC /* PBXContainerItemProxy */;
+		};
+		AD8046C79686EF99C87ADC6DE91E7F75 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PickerPopupDialog;
+			target = 931E3726C4C32CFB2E56C780EAC7F24C /* PickerPopupDialog */;
+			targetProxy = CCC210BA5DE3C5889F379EDC1DBB03DA /* PBXContainerItemProxy */;
+		};
+		D422FF2A4468FB765E1CF5106B917B5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PickerPopupDialog;
+			target = 931E3726C4C32CFB2E56C780EAC7F24C /* PickerPopupDialog */;
+			targetProxy = 3E3D17DA8F0D71EF92269D3661FA3576 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		018E9B8B5209D01EE510F3BBEC7E94FC /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 79904A378C3827DB8164175317386DDE /* Pods-GenSenseTool.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-GenSenseTool/Pods-GenSenseTool-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GenSenseTool/Pods-GenSenseTool.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		1C24CB1681146B784060E6B41649FE8D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D9B848A55D6C1627955F979653582875 /* Pods-GenSenseToolTests.debug.xcconfig */;
+			baseConfigurationReference = A0A8C185F56B26B7D24903EE54D593BE /* Pods-GenSenseToolTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -432,9 +524,46 @@
 			};
 			name = Debug;
 		};
-		480066EFE5617350DFBAFECA6033BA83 /* Release */ = {
+		42EFBA356A13B624F656811928C8E35B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35134ADC32946C6FBF740EEDA55429DF /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */;
+			baseConfigurationReference = 7AB4AC234013E578209418A83CFB198E /* Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests/Pods-GenSenseTool-GenSenseToolUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests/Pods-GenSenseTool-GenSenseToolUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		74CDAE28A04AA3B7A68ED3FDD3223A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D246DF26040F726D6D611CB56B6202EA /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -469,43 +598,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		7C9D2EA2E6DCF781168B26C9B3722EAE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F9A51FFED0682D078EC24289689451A /* Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests/Pods-GenSenseTool-GenSenseToolUITests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests/Pods-GenSenseTool-GenSenseToolUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -635,9 +727,118 @@
 			};
 			name = Release;
 		};
-		EBC9217A24588FF0D7A77608DEFD9364 /* Debug */ = {
+		9A77F59261B5F0AB435F2D0960F6F584 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5DBFD1CBF59D785DED23CDA344C62541 /* Pods-GenSenseTool.debug.xcconfig */;
+			baseConfigurationReference = F98711861213EDFC954310A45433F862 /* PickerPopupDialog.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PickerPopupDialog/PickerPopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PickerPopupDialog/PickerPopupDialog-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/PickerPopupDialog/PickerPopupDialog.modulemap";
+				PRODUCT_MODULE_NAME = PickerPopupDialog;
+				PRODUCT_NAME = PickerPopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B08C0615256B0187DBC6C9CEBA49175A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6245F6096E253D426FC8AD41B52A72B /* Pods-GenSenseTool.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-GenSenseTool/Pods-GenSenseTool-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-GenSenseTool/Pods-GenSenseTool.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE14CE34D6312110B8975CF82B4643CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28502ABC34F46B1201E1D055C69611DE /* PickerPopupDialog.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/PickerPopupDialog/PickerPopupDialog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PickerPopupDialog/PickerPopupDialog-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/PickerPopupDialog/PickerPopupDialog.modulemap";
+				PRODUCT_MODULE_NAME = PickerPopupDialog;
+				PRODUCT_NAME = PickerPopupDialog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F5466B887197AD7ED94CE90A79287136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 966A833BA43B53F047C075BAEC15E998 /* Pods-GenSenseTool.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -674,7 +875,7 @@
 		};
 		FF3D4CE989C63305C4054B407CDAF8FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 684FC647AA07EDF5509D727D3A14BEE6 /* Pods-GenSenseToolTests.release.xcconfig */;
+			baseConfigurationReference = A990EB93325C84A6A021836EE30075F4 /* Pods-GenSenseToolTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -713,20 +914,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		29E78CD14A7BFF804178C2DB866FD5E8 /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool-GenSenseToolUITests" */ = {
+		0A04DBE6BE89DA9A5F96444B0E9388B6 /* Build configuration list for PBXNativeTarget "PickerPopupDialog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7C9D2EA2E6DCF781168B26C9B3722EAE /* Debug */,
-				480066EFE5617350DFBAFECA6033BA83 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		41B4AD6B2BC44066716FED4BC89D4F3D /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EBC9217A24588FF0D7A77608DEFD9364 /* Debug */,
-				018E9B8B5209D01EE510F3BBEC7E94FC /* Release */,
+				DE14CE34D6312110B8975CF82B4643CD /* Debug */,
+				9A77F59261B5F0AB435F2D0960F6F584 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -745,6 +937,24 @@
 			buildConfigurations = (
 				90D4D09BCB6A4660E43ACBE9ECB6FE9A /* Debug */,
 				9553C89E183877A5CB2F3C6801BEC129 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6705DDF14AA50E901A8CE47FC4091EA2 /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool-GenSenseToolUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				42EFBA356A13B624F656811928C8E35B /* Debug */,
+				74CDAE28A04AA3B7A68ED3FDD3223A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEDB313EDB98DE000E8B99021EE547D7 /* Build configuration list for PBXNativeTarget "Pods-GenSenseTool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F5466B887197AD7ED94CE90A79287136 /* Debug */,
+				B08C0615256B0187DBC6C9CEBA49175A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

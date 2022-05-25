@@ -6,10 +6,11 @@
 //
 import UIKit
 import HomeKit
+import PickerPopupDialog
 
 typealias CellValueType = NSCopying
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate  {
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate, UIGestureRecognizerDelegate,HMHomeDelegate  {
     
     @IBOutlet weak var tfOutput: UITextView!
     @IBOutlet weak var btnOpenHomeApp: UIButton!
@@ -20,7 +21,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var homes = [HMHome]()
     let homeManager = HMHomeManager()
     //--
-    var home: HMHome? = nil
+    var home: HMHome?
     var accessories = [HMAccessory]()
     //--
     var actionSet: HMActionSet?
@@ -104,12 +105,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         searchController.isActive = true
      }
     //--
-
-//    override func viewDidDisappear(_ animated: Bool) {
-//                   if searchController.isActive == true {
-//                       searchController.isActive = false
-//                    }
-//             }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -255,7 +250,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     //以Accessorie去找
+    let pickerView = PickerPopupDialog()
+    var arrayPickerDataSource = [(Any, String)]()
     func genSense2(for home: HMHome?) {
+        
+        
+       
         //找出所有characteristics
         guard let homeAccessories = home?.accessories else {
           return
@@ -610,9 +610,23 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
         print ("* indexPath.row:\(indexPath.row)")
-        
+     
+        if self.isShowSearchResult {
+            self.home = filterDataList[indexPath.row]["home"] as! HMHome
+        }else{
+            self.home = arrData[indexPath.row]["home"] as! HMHome
+        }
+     
+         let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        tapGesture.view?.largeContentTitle = "val"
+        tapGesture.delegate = self
+        tapGesture.numberOfTapsRequired = 1
+        cell.imgSense.isUserInteractionEnabled = true
+        cell.imgSense.tag = indexPath.row
+        cell.imgSense.addGestureRecognizer(tapGesture)
         
         if self.isShowSearchResult {
             // 若是有查詢結果則顯示查詢結果集合裡的資料
@@ -653,7 +667,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         print ("*room name: \(room.name)")
                         cell.lbRoomName.text = room.name
                     }
-                    }
+                }
                 }else{
                     print ("out of array")
                 }
@@ -760,6 +774,166 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
         return [editAction, deleteAction]
     }
+ 
+    
+    var selectedRoom:HMRoom?
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+    {
+        print("Title tag is:\(tapGestureRecognizer.view?.largeContentTitle)")
+        print("Label tag is:\(tapGestureRecognizer.view!.tag)")
+        let tagNumber = tapGestureRecognizer.view!.tag
+        let tappedImage = tapGestureRecognizer.view as! UIImageView
+        // Your action
+        
+        guard let indexPath = tableView.indexPathForRow(at: tapGestureRecognizer.location(in: self.tableView)) else {
+            print("Error: indexPath)")
+            return
+        }
+
+        print("indexPath.row: \(indexPath.row)")
+        
+        var pickerHome:HMHome
+        
+//        self.home = self.arrData[indexPath.row]["home"] as! HMHome
+        arrayPickerDataSource.removeAll()
+        if self.isShowSearchResult{
+            pickerHome = self.filterDataList[indexPath.row]["home"] as! HMHome
+            print ("pickerHome = \(pickerHome)")
+            for room in pickerHome.rooms{
+                print (room.name)
+                if pickerHome==filterDataList[indexPath.row]["home"] as! HMHome {
+                    arrayPickerDataSource.append((room,room.name))    //Value,Name
+                }
+            }
+        }else{
+//            self.arrayPickerDataSource.removeAll()
+            pickerHome = self.arrData[indexPath.row]["home"] as! HMHome
+            print ("pickerHome = \(pickerHome)")
+            for room in pickerHome.rooms{
+                print (room.name)
+                if pickerHome==arrData[indexPath.row]["home"] as! HMHome {
+                    arrayPickerDataSource.append((room,room.name))    //Value,Name
+                }
+            }
+           
+        }
+        
+//
+        
+        self.pickerView.setDataSource(self.arrayPickerDataSource)
+        self.pickerView.reloadAll()
+        
+        self.pickerView.showDialog("Select Room", doneButtonTitle: "Ok", cancelButtonTitle: "cancel") { (result) -> Void in
+            print (   "Selected value:\n\n Text:\(result.1)\n Value:\(result.0)" )
+          
+            
+            self.selectedRoom = result.0 as? HMRoom  //value
+            var acc=HMAccessory()
+            if self.isShowSearchResult{
+                acc=self.filterDataList[indexPath.row]["acc"] as! HMAccessory
+            }else{
+                acc=self.arrData[indexPath.row]["acc"] as! HMAccessory
+            }
+            
+            
+            
+            
+            self.saveAccessoryGroup.enter()
+            pickerHome.assignAccessory(acc, to: self.selectedRoom!) { error in
+                if let error = error {
+                      print ("error: \(error)")
+    //                self.displayError(error)
+    //                self.didEncounterError = true
+                }
+                self.saveAccessoryGroup.leave()
+            }
+            
+            self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+                if self.isShowSearchResult{
+                    self.filterDataList[indexPath.row]["home"]=pickerHome
+                    self.tableView.reloadData()
+                }else{
+                    self.arrData[indexPath.row]["home"]=pickerHome
+                    print ("* arrData \(self.arrData[indexPath.row])")
+                    self.tableView.reloadData()
+                }
+            }
+    
+            
+            //close window
+            self.dismiss(animated: true, completion: {
+                self.pickerView.reloadAll()
+                self.arrayPickerDataSource.removeAll()
+             
+            })
+        }
+        
+
+        
+    }
+    
+    /**
+        Updates the accessories name. This function will enter and leave the saved dispatch group.
+        If the accessory's name is already equal to the passed-in name, this method does nothing.
+        
+        - parameter name:      The new name for the accessory.
+        - parameter accessory: The accessory to rename.
+    */
+    func updateName(_ name: String, forAccessory accessory: HMAccessory) {
+        if accessory.name == name {
+            return
+        }
+        saveAccessoryGroup.enter()
+        accessory.updateName(name) { error in
+            if let error = error {
+//                self.displayError(error)
+//                self.didEncounterError = true
+            }
+            self.saveAccessoryGroup.leave()
+        }
+    }
+    // MARK: HMHomeDelegate Methods
+    
+    // All home changes reload the view.
+    
+    func home(_ home: HMHome, didUpdateNameFor room: HMRoom) {
+        tableView.reloadData()
+    }
+    
+    func home(_ home: HMHome, didAdd room: HMRoom) {
+        tableView.reloadData()
+    }
+    
+    func home(_ home: HMHome, didRemove room: HMRoom)  {
+//        if selectedRoom == room {
+//            // Reset the selected room if ours was deleted.
+//            selectedRoom = homeStore.home!.roomForEntireHome()
+//        }
+        tableView.reloadData()
+    }
+    
+    func home(_ home: HMHome, didAdd accessory: HMAccessory) {
+        /*
+            Bridged accessories don't call the original completion handler if their
+            bridges are added to the home. We must respond to `HMHomeDelegate`'s
+            `home(_:didAddAccessory:)` and assign bridged accessories properly.
+        */
+//        if selectedRoom != nil {
+//            self.home(home, assignAccessory: accessory, toRoom: selectedRoom)
+//        }
+    }
+    
+    func home(_ home: HMHome, didUnblockAccessory accessory: HMAccessory) {
+        tableView.reloadData()
+    }
+    
+    // MARK: HMAccessoryDelegate Methods
+    
+    /// If the accessory's name changes, we update the name field.
+    func accessoryDidUpdateName(_ accessory: HMAccessory) {
+//        resetNameField()
+    }
+    
     
     //MARK: -
     func updateNameIfNecessary2(_ name: String,indexPath: IndexPath,acc:HMAccessory) {
@@ -979,6 +1153,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    
+    
+    
+    
     // MARK: - Search Bar Delegate
     // ---------------------------------------------------------------------
     // 當在searchBar上開始輸入文字時
@@ -1070,10 +1248,10 @@ extension ViewController: HMHomeManagerDelegate {
 }
 
 //--
-extension ViewController: HMAccessoryDelegate {
-  func accessory(_ accessory: HMAccessory, service: HMService, didUpdateValueFor characteristic: HMCharacteristic) {
-  }
-}
+//extension ViewController: HMAccessoryDelegate {
+//  func accessory(_ accessory: HMAccessory, service: HMService, didUpdateValueFor characteristic: HMCharacteristic) {
+//  }
+//}
 
 extension ViewController: HMAccessoryBrowserDelegate {
   func accessoryBrowser(_ browser: HMAccessoryBrowser, didFindNewAccessory accessory: HMAccessory) {

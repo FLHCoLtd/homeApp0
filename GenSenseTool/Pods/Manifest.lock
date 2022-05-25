@@ -1,3 +1,16 @@
-PODFILE CHECKSUM: 99216caf5173b681ad450db80c41517a616f0d82
+PODS:
+  - PickerPopupDialog (0.1.5)
+
+DEPENDENCIES:
+  - PickerPopupDialog
+
+SPEC REPOS:
+  trunk:
+    - PickerPopupDialog
+
+SPEC CHECKSUMS:
+  PickerPopupDialog: 3a9a3a0545ca3fd9a056db039fda04e63b0fc4cb
+
+PODFILE CHECKSUM: 748c4ae214ec65b60840e404c7d56b7f81a6cbc8
 
 COCOAPODS: 1.11.2
