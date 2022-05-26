@@ -65,7 +65,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //Show Information
     @IBAction func doAction(_ sender: UIButton) {
         self.searchController.searchBar.resignFirstResponder()
-        searchController.searchBar.isHidden = true
+//        searchController.searchBar.isHidden = true
         
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
@@ -96,7 +96,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             return
         }
         popView.lbTitle.text = "Information"
-        popView.lbTitle.font = UIFont(name: "Cubic 11", size: 30)
+        popView.lbTitle.font = UIFont(name: "Cubic 11", size: 24)
         popView.tvInfo.text =
         """
         Home Name : \(home!.name)
@@ -116,10 +116,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         animateScaleIn(desiredView: popView)
      }
     @IBAction func doneAction(_ sender: UIButton) {
-        searchController.searchBar.isHidden = false
+//        searchController.searchBar.isHidden = false
         animateScaleOut(desiredView: popView)
         animateScaleOut(desiredView: blurView)
-        searchController.isActive = true
+//        searchController.isActive = true
      }
     //--
     
@@ -219,6 +219,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //---
     /// Animates a view to scale in and display
     func animateScaleIn(desiredView: UIView) {
+        searchController.searchBar.isHidden = true
         let backgroundView = self.view!
         backgroundView.addSubview(desiredView)
         desiredView.center = backgroundView.center
@@ -234,6 +235,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     /// Animates a view to scale out remove from the display
     func animateScaleOut(desiredView: UIView) {
+        searchController.searchBar.isHidden = false
         UIView.animate(withDuration: 0.2, animations: {
             desiredView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
             desiredView.alpha = 0
@@ -943,12 +945,35 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             alertController.addTextField { (textField : UITextField!) -> Void in
                 textField.placeholder = "請入要建立的房間名"
                 }
-            let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
+        let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { [self] alert -> Void in
                 if let textField = alertController.textFields?[0] {
                             if textField.text!.count > 0 {
                                 print("Text :: \(textField.text ?? "")")
                                 if textField.text != nil {
-                                    self.addRoomWithName(textField.text!)
+                                    var roomNames=[String]()
+                                    for room in self.home!.rooms
+                                    {
+                                        roomNames.append(room.name)
+                                    }
+                                    if roomNames.contains(textField.text!)
+                                    {
+                                        let alert = UIAlertController(title: "命名重覆", message: "\(textField.text!) \n命名已存在!", preferredStyle: .alert)
+                                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                                            switch action.style{
+                                                case .default:
+                                                    print("default")
+                                                case .cancel:
+                                                    print("cancel")
+                                                case .destructive:
+                                                print("destructive")
+                                            @unknown default:
+                                                break
+                                            }
+                                        }))
+                                        self.present(alert, animated: true, completion: nil)
+                                    }else{
+                                        self.addRoomWithName(textField.text!)
+                                    }
                                 }
                             }
                         }
