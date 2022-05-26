@@ -70,8 +70,18 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gOo-bs-hDv">
+                                                            <rect key="frame" x="253" y="26" width="44" height="34"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="44" id="VgW-il-BY2"/>
+                                                            </constraints>
+                                                            <buttonConfiguration key="configuration" style="plain" image="img_addroom"/>
+                                                            <connections>
+                                                                <action selector="doAddRoom:" destination="XYg-t6-RYg" eventType="touchUpInside" id="XRm-Dd-TsA"/>
+                                                            </connections>
+                                                        </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S79-H8-61s">
-                                                            <rect key="frame" x="299" y="28" width="44" height="31"/>
+                                                            <rect key="frame" x="299" y="28" width="44" height="33"/>
                                                             <buttonConfiguration key="configuration" style="plain"/>
                                                             <connections>
                                                                 <action selector="doAction:" destination="XYg-t6-RYg" eventType="touchUpInside" id="N17-tR-rKE"/>
@@ -81,7 +91,7 @@
                                                     <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="S79-H8-61s" secondAttribute="trailing" id="41Y-Yk-q0F"/>
-                                                        <constraint firstItem="S79-H8-61s" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="28" id="7xQ-Xq-8t2"/>
+                                                        <constraint firstItem="gOo-bs-hDv" firstAttribute="top" secondItem="S79-H8-61s" secondAttribute="top" constant="-2" id="7mz-HD-trw"/>
                                                         <constraint firstAttribute="trailing" secondItem="Cdz-5u-xnx" secondAttribute="trailing" constant="8" id="ACD-6C-Wn8"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="centerX" secondItem="2dd-tc-qPb" secondAttribute="centerX" id="AJL-a8-sAT"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="leading" secondItem="2dd-tc-qPb" secondAttribute="leading" id="E7H-w1-7kS"/>
@@ -90,8 +100,11 @@
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="leading" secondItem="v9X-qk-Bj9" secondAttribute="leading" id="MMj-Eg-4fD"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="6" id="RZa-uE-6aY"/>
                                                         <constraint firstItem="Cdz-5u-xnx" firstAttribute="leading" secondItem="2dd-tc-qPb" secondAttribute="trailing" constant="8" id="SSW-ra-B1c"/>
+                                                        <constraint firstItem="gOo-bs-hDv" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="26" id="VcH-dt-uQI"/>
                                                         <constraint firstAttribute="bottom" secondItem="2dd-tc-qPb" secondAttribute="bottom" constant="20" id="ZKY-bl-uQQ"/>
-                                                        <constraint firstAttribute="bottom" secondItem="S79-H8-61s" secondAttribute="bottom" constant="29" id="l3t-rC-zfv"/>
+                                                        <constraint firstAttribute="bottom" secondItem="gOo-bs-hDv" secondAttribute="bottom" constant="28" id="abD-oB-KKa"/>
+                                                        <constraint firstAttribute="bottom" secondItem="S79-H8-61s" secondAttribute="bottom" constant="27" id="l3t-rC-zfv"/>
+                                                        <constraint firstItem="S79-H8-61s" firstAttribute="leading" secondItem="gOo-bs-hDv" secondAttribute="trailing" constant="2" id="yVg-Zi-aVT"/>
                                                         <constraint firstItem="2dd-tc-qPb" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="18" id="zKp-PL-baP"/>
                                                     </constraints>
                                                 </view>
@@ -215,7 +228,7 @@
                                 <action selector="doneAction:" destination="XYg-t6-RYg" eventType="touchUpInside" id="r9k-fE-TCJ"/>
                             </connections>
                         </button>
-                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-uo-gEG">
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IOz-uo-gEG">
                             <rect key="frame" x="4" y="35" width="327" height="166"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -278,6 +291,7 @@
     <resources>
         <image name="background" width="375" height="667"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
+        <image name="img_addroom" width="30" height="30"/>
         <image name="img_homeSenseCheck" width="640" height="512"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

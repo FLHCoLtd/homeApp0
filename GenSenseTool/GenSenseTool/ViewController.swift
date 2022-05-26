@@ -29,6 +29,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--Sense
     let targetValueMap = NSMapTable<HMCharacteristic, CellValueType>.strongToStrongObjects()
     /// A dispatch group to wait for all of the individual components of the saving process.
+
     let saveActionSetGroup = DispatchGroup()
     let saveAccessoryGroup = DispatchGroup()
     let removeActionGroup = DispatchGroup()
@@ -60,16 +61,30 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var refreshControl: UIRefreshControl!
     var badgeNumber = 0
 
-    
+    //Show Information
     @IBAction func doAction(_ sender: UIButton) {
-        searchController.searchBar.resignFirstResponder()
-        searchController.isActive = false
+        self.searchController.searchBar.resignFirstResponder()
+        searchController.searchBar.isHidden = true
+        
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
         guard let row = indexPath?.row else { return }
-        let home = arrData[row]["home"] as! HMHome
-        let actionSetName = (arrData[row]["actionSet"] as! HMActionSet).name
-        let acc = arrData[row]["acc"] as? HMAccessory
+        print ("row=\(row)")
+    
+        var infoHome:HMHome?
+        var actionSetName = ""
+        var acc:HMAccessory?
+        //also
+        if self.isShowSearchResult{
+            infoHome = filterDataList[row]["home"] as! HMHome
+            actionSetName = (filterDataList[row]["actionSet"] as! HMActionSet).name
+            acc = filterDataList[row]["acc"] as? HMAccessory
+        }else{
+            infoHome = arrData[row]["home"] as! HMHome
+            actionSetName = (arrData[row]["actionSet"] as! HMActionSet).name
+            acc = arrData[row]["acc"] as? HMAccessory
+        }
+      
         guard let reachable = acc?.isReachable else {
             return
         }
@@ -83,7 +98,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         popView.lbTitle.font = UIFont(name: "Cubic 11", size: 30)
         popView.tvInfo.text =
         """
-        Home Name : \(home.name)
+        Home Name : \(home!.name)
         
         ActionSet Name : \(actionSetName)
 
@@ -100,6 +115,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         animateScaleIn(desiredView: popView)
      }
     @IBAction func doneAction(_ sender: UIButton) {
+        searchController.searchBar.isHidden = false
         animateScaleOut(desiredView: popView)
         animateScaleOut(desiredView: blurView)
         searchController.isActive = true
@@ -136,7 +152,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         // 將searchBar掛載到tableView上
         self.tableView.tableHeaderView = self.searchController.searchBar
         self.tableView.tableHeaderView?.isHidden = true
-
     }
 
     
@@ -185,8 +200,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     @objc func reloadEventTableView() {
+        
         arrData.removeAll()
-          addHomes(homeManager.homes)
+        addHomes(homeManager.homes)
             totalCount = 0
             for home2 in homeManager.homes {
               clearBadge()
@@ -253,9 +269,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     let pickerView = PickerPopupDialog()
     var arrayPickerDataSource = [(Any, String)]()
     func genSense2(for home: HMHome?) {
-        
-        
-       
+//        self.home = home
         //找出所有characteristics
         guard let homeAccessories = home?.accessories else {
           return
@@ -535,20 +549,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      }
     
     //MARK: - tableview
-    
-//    // Create a standard footer that includes the returned text.
-//    func tableView(_ tableView: UITableView, titleForFooterInSection
-//                                section: Int) -> String? {
-//        if arrData.count > 0 {
-//            return "已創建 \(arrData.count)筆"
-//        }else{
-//            return ""
-//        }
-//    }
-    
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath)
        {
-          
            if isShowSearchResult{
                actionSet = filterDataList[indexPath.row]["actionSet"] as! HMActionSet
                    print ("* self.actionSet = \(self.actionSet) actionSet = \(actionSet)")
@@ -606,7 +608,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             return arrData.count
         }
         
-    
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -672,10 +673,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     print ("out of array")
                 }
         }
-        
-        
-      
-        
         return cell
     }
     
@@ -744,7 +741,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             print("Delete tapped")
             
-            
             if self.isShowSearchResult {
                 self.actionSet = self.filterDataList[indexPath.row]["actionSet"] as? HMActionSet
                 print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
@@ -780,8 +776,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         print("Title tag is:\(tapGestureRecognizer.view?.largeContentTitle)")
-        print("Label tag is:\(tapGestureRecognizer.view!.tag)")
-        let tagNumber = tapGestureRecognizer.view!.tag
+//        print("Label tag is:\(tapGestureRecognizer.view!.tag)")
+//        let tagNumber = tapGestureRecognizer.view!.tag
         let tappedImage = tapGestureRecognizer.view as! UIImageView
         // Your action
         
@@ -793,8 +789,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         print("indexPath.row: \(indexPath.row)")
         
         var pickerHome:HMHome
-        
-//        self.home = self.arrData[indexPath.row]["home"] as! HMHome
         arrayPickerDataSource.removeAll()
         if self.isShowSearchResult{
             pickerHome = self.filterDataList[indexPath.row]["home"] as! HMHome
@@ -1153,13 +1147,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
-    
+
     
     
     
     // MARK: - Search Bar Delegate
     // ---------------------------------------------------------------------
     // 當在searchBar上開始輸入文字時
+
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         // 法蘭克選擇不需實作，因有遵守UISearchResultsUpdating協議的話，則輸入文字的當下即會觸發updateSearchResults，所以等同於同一件事做了兩次(可依個人需求決定，也不一定要跟法蘭克一樣選擇不實作)
     }
@@ -1208,10 +1203,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         if self.filterDataList.count > 0 {
             self.isShowSearchResult = true
-            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.init(rawValue: 1)! // 顯示TableView的格線
+           
                     //tableView.reloadData()
         } else {
-            self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none // 移除TableView的格線
+    
+//            isShowSearchResult = false
             // 可加入一個查找不到的資料的label來告知使用者查不到資料...
             // ...
         }
