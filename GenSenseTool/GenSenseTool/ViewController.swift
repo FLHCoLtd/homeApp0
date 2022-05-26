@@ -29,7 +29,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--Sense
     let targetValueMap = NSMapTable<HMCharacteristic, CellValueType>.strongToStrongObjects()
     /// A dispatch group to wait for all of the individual components of the saving process.
-
+    
+    let newRoomSetGroup = DispatchGroup()
     let saveActionSetGroup = DispatchGroup()
     let saveAccessoryGroup = DispatchGroup()
     let removeActionGroup = DispatchGroup()
@@ -928,6 +929,60 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //        resetNameField()
     }
     
+    @IBAction func doAddRoom(_ sender: UIButton) {
+            let buttonPosition = sender.convert(CGPoint(), to:tableView)
+            let indexPath = tableView.indexPathForRow(at:buttonPosition)
+            guard let row = indexPath?.row else { return }
+            //also
+            if isShowSearchResult{
+                self.home = filterDataList[row]["home"] as! HMHome
+            }else{
+                self.home = arrData[row]["home"] as! HMHome
+            }
+            let alertController = UIAlertController(title: "Create room in \(home!.name)", message: "room name:", preferredStyle: UIAlertController.Style.alert)
+            alertController.addTextField { (textField : UITextField!) -> Void in
+                textField.placeholder = "請入要建立的房間名"
+                }
+            let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
+                if let textField = alertController.textFields?[0] {
+                            if textField.text!.count > 0 {
+                                print("Text :: \(textField.text ?? "")")
+                                if textField.text != nil {
+                                    self.addRoomWithName(textField.text!)
+                                }
+                            }
+                        }
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
+                    (action : UIAlertAction!) -> Void in })
+            
+                alertController.addAction(saveAction)
+                alertController.addAction(cancelAction)
+        
+            if self.presentedViewController==nil{
+                self.present(alertController, animated: true, completion: nil)
+            }else{
+                self.presentedViewController!.present(alertController, animated: true, completion: nil)
+            }
+        }
+    
+    /**
+            Adds a room to the current home.
+            
+            - parameter name: The name of the new room.
+        */
+         func addRoomWithName(_ name: String) {
+             newRoomSetGroup.enter()
+             home?.addRoom(withName: name) { [self] newRoom, error in
+                if let error = error {
+                    print("error:\(error)")
+                    return
+                }
+                newRoomSetGroup.leave()
+                print ("*done")
+            }
+        }
     
     //MARK: -
     func updateNameIfNecessary2(_ name: String,indexPath: IndexPath,acc:HMAccessory) {
