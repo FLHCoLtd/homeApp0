@@ -7,7 +7,6 @@
 import UIKit
 import HomeKit
 import PickerPopupDialog
-
 typealias CellValueType = NSCopying
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate, UIGestureRecognizerDelegate,HMHomeDelegate  {
@@ -62,11 +61,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var refreshControl: UIRefreshControl!
     var badgeNumber = 0
 
+    // 房間PickerView
+    let pickerView = PickerPopupDialog()
+    var arrayPickerDataSource = [(Any, String)]()
+    
+
     //Show Information
     @IBAction func doAction(_ sender: UIButton) {
         self.searchController.searchBar.resignFirstResponder()
-//        searchController.searchBar.isHidden = true
-        
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
         guard let row = indexPath?.row else { return }
@@ -77,11 +79,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         var acc:HMAccessory?
         //also
         if self.isShowSearchResult{
-            infoHome = filterDataList[row]["home"] as! HMHome
+            infoHome = filterDataList[row]["home"] as? HMHome
             actionSetName = (filterDataList[row]["actionSet"] as! HMActionSet).name
             acc = filterDataList[row]["acc"] as? HMAccessory
         }else{
-            infoHome = arrData[row]["home"] as! HMHome
+            infoHome = arrData[row]["home"] as? HMHome
             actionSetName = (arrData[row]["actionSet"] as! HMActionSet).name
             acc = arrData[row]["acc"] as? HMAccessory
         }
@@ -96,7 +98,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             return
         }
         popView.lbTitle.text = "Information"
-        popView.lbTitle.font = UIFont(name: "Cubic 11", size: 24)
+        popView.lbTitle.font = UIFont(name: "Cubic 11", size: 20)
+        popView.tvInfo.font = UIFont(name: "System", size: 16)
         popView.tvInfo.text =
         """
         Home Name : \(home!.name)
@@ -116,10 +119,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         animateScaleIn(desiredView: popView)
      }
     @IBAction func doneAction(_ sender: UIButton) {
-//        searchController.searchBar.isHidden = false
         animateScaleOut(desiredView: popView)
         animateScaleOut(desiredView: blurView)
-//        searchController.isActive = true
      }
     //--
     
@@ -132,15 +133,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.tableView.dataSource = self
         lbNoHad.isHidden = true
         self.tableView.separatorStyle = .none
-        //--
+        
+        //popView
         blurView.bounds = self.view.bounds
         popView.bounds = CGRect(x: 0, y: 0, width: self.view.bounds.width * 0.9, height:self.view.bounds.height * 0.4)
-        
+       
+        //產生RefreshControl
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadEventTableView), for: UIControl.Event.valueChanged)
-
         tableView.addSubview(refreshControl)
-        
         
         // 生成SearchController
         self.searchController = UISearchController(searchResultsController: nil)
@@ -149,16 +150,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.searchController.searchResultsUpdater = self // 遵守UISearchResultsUpdating協議
         self.searchController.searchBar.delegate = self // 遵守UISearchBarDelegate協議
         self.searchController.dimsBackgroundDuringPresentation = false // 預設為true，若是沒改為false，則在搜尋時整個TableView的背景顏色會變成灰底的
-        
         // 將searchBar掛載到tableView上
         self.tableView.tableHeaderView = self.searchController.searchBar
         self.tableView.tableHeaderView?.isHidden = true
+        
     }
 
-    
     let badgeSize: CGFloat = 20
     let badgeTag = 9830384
-
     func badgeLabel(withCount count: Int) -> UILabel {
         let badgeCount = UILabel(frame: CGRect(x: 0, y: 0, width: badgeSize, height: badgeSize))
         badgeCount.translatesAutoresizingMaskIntoConstraints = false
@@ -196,12 +195,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                }
         }else {
             showBadge(withCount: badgeNumber)
-            
         }
     }
     
     @objc func reloadEventTableView() {
-        
         arrData.removeAll()
         addHomes(homeManager.homes)
             totalCount = 0
@@ -242,15 +239,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }, completion: { (success: Bool) in
             desiredView.removeFromSuperview()
         })
-        
         UIView.animate(withDuration: 0.2, animations: {
-            
         }, completion: { _ in
-            
         })
     }
     
-    //---
+    //MARK -  Home
     func addHomes(_ homes: [HMHome]) {
       self.homes.removeAll()
       for home in homes {
@@ -269,8 +263,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     //以Accessorie去找
-    let pickerView = PickerPopupDialog()
-    var arrayPickerDataSource = [(Any, String)]()
     func genSense2(for home: HMHome?) {
 //        self.home = home
         //找出所有characteristics
