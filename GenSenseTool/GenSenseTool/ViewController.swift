@@ -254,6 +254,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func getActionsArray(home:HMHome)
     {
+        //                                   var roomNames=[String]()
+        //                                   for room in home.rooms
+        //                                   {
+        //                                       roomNames.append(room.name)
+        //                                   }
         arrActionName = [String]()
         for findAction in home.actionSets
         {
@@ -300,11 +305,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 print ("-characteristics = \(findcharacteristics)")
                 for  (i,chara) in findcharacteristics.enumerated() {
                     print ("**4 findAccessorys count:\(findAccessorys.count)")
-                            let name = findAccessorys[i].name
-                            print ("findAccessorys[\(i)]:\(name)")
-                            let createSenseName = name
-                            print ("createSenseName name:\(createSenseName)")
-                            
+                    let accessoryName = findAccessorys[i].name
+                    var createSenseName = accessoryName
+
                             //建立判別情境是否有的旗標
                             if arrActionName.contains(createSenseName) {
                                 print("*** Sense: \(createSenseName) had. ***")
@@ -312,6 +315,50 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                 print("*** \(createSenseName) had not. ***")
                                 saveActionSetGroup.enter()
                                 if findHomes[i] == home {
+                                    
+                                   var roomNames=[String]()
+                                   for room in home.rooms
+                                   {
+                                       roomNames.append(room.name)
+                                   }
+                                   
+                                   var foundRoom = false
+                                   var retrimString = ""
+                                   for selectroom in home.rooms
+                                   {
+                                       retrimString=selectroom.name
+                                       print ("* c:\(accessoryName),s:\(selectroom.name)")
+                                       
+                                       //Match  XXXROOM Pattern ,
+                                       if accessoryName.contains(selectroom.name)
+                                       {
+                                           print ("* c設定房間")
+                                           // Accessory裝置設定到指定房間中
+                                           self.saveAccessoryGroup.enter()
+                                           findHomes[i]!.assignAccessory(findAccessorys[i], to: selectroom) { error in
+                                               if let error = error {
+                                                     print ("error: \(error)")
+                                   //                self.displayError(error)
+                                   //                self.didEncounterError = true
+                                               }
+                                               self.saveAccessoryGroup.leave()
+                                           }
+                                           self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+                                            //
+                                           }
+                                         foundRoom=true
+                                         break
+                                       }
+                                       
+                                   }
+                                    
+                                    // Accessory裝置改名
+                                    if foundRoom {
+                                        createSenseName = accessoryName.replacingOccurrences(of:retrimString+" ", with: "")
+                                        self.updateName2(createSenseName, forAccessory: self.findAccessorys[i])
+                                    }
+
+                                    // 建立相對應情境
                                     home.addActionSet(withName: createSenseName) { [self] actionSet, error in
                                         if let error = error {
                                             print("HomeKit: Error creating action set: \(error.localizedDescription)")
@@ -673,9 +720,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        
-       
-        
         // action one
         let editAction = UITableViewRowAction(style: .default, title: "Rename", handler: { (action, indexPath) in
             print("Edit tapped")
@@ -826,7 +870,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
             
             
-            
+            // Accessory裝置設定到指定房間中
             self.saveAccessoryGroup.enter()
             pickerHome.assignAccessory(acc, to: self.selectedRoom!) { error in
                 if let error = error {
@@ -836,7 +880,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
                 self.saveAccessoryGroup.leave()
             }
-            
             self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
                 if self.isShowSearchResult{
                     self.filterDataList[indexPath.row]["home"]=pickerHome
@@ -1015,7 +1058,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.saveError = error
             }else{
                 if self.isShowSearchResult{
-                    
+
                     for (i,arrSync) in self.arrData.enumerated(){
                         if arrSync["name"] as! String == self.filterDataList[indexPath.row]["name"] as! String {
                             self.arrData[i]["name"] = name
@@ -1024,14 +1067,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     
                     self.filterDataList[indexPath.row]["name"]=name
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    //upload Accessory
+                    //update Accessory name
                     self.updateName2(name, forAccessory: acc)
                     
 
                 }else{
                     self.arrData[indexPath.row]["name"]=name
                     self.tableView.reloadRows(at: [indexPath], with: .automatic)
-                    //upload Accessory
+                    //update Accessory name
                     self.updateName2(name, forAccessory: acc)
                 }
             }
@@ -1334,15 +1377,4 @@ extension HMAccessory {
       .flatMap { $0.characteristics }
       .first { $0.metadata?.format == characteristicType }
   }
-}
-
-extension UIView{
-    func rotate() {
-        let rotation : CABasicAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotation.toValue = NSNumber(value: Double.pi * 2)
-        rotation.duration = 1
-        rotation.isCumulative = true
-        rotation.repeatCount = Float.greatestFiniteMagnitude
-        self.layer.add(rotation, forKey: "rotationAnimation")
-    }
 }
