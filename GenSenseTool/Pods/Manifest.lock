@@ -1,16 +1,20 @@
 PODS:
+  - MarqueeLabel (4.3.0)
   - PickerPopupDialog (0.1.5)
 
 DEPENDENCIES:
+  - MarqueeLabel
   - PickerPopupDialog
 
 SPEC REPOS:
   trunk:
+    - MarqueeLabel
     - PickerPopupDialog
 
 SPEC CHECKSUMS:
+  MarqueeLabel: 02f5ac8fd6877c94564556cb93fa86c70c08baeb
   PickerPopupDialog: 3a9a3a0545ca3fd9a056db039fda04e63b0fc4cb
 
-PODFILE CHECKSUM: 748c4ae214ec65b60840e404c7d56b7f81a6cbc8
+PODFILE CHECKSUM: e1a034bc6da1fd55d9b77eb7a82fa3388e34b23e
 
 COCOAPODS: 1.11.2

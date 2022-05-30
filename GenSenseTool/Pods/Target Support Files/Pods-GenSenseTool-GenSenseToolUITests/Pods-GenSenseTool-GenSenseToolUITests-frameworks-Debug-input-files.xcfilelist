@@ -1,2 +1,3 @@
 ${PODS_ROOT}/Target Support Files/Pods-GenSenseTool-GenSenseToolUITests/Pods-GenSenseTool-GenSenseToolUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
 ${BUILT_PRODUCTS_DIR}/PickerPopupDialog/PickerPopupDialog.framework

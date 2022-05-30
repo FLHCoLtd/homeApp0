@@ -58,8 +58,8 @@
                                                                 <constraint firstAttribute="height" constant="44" id="cDL-vM-pUC"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEFGH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-5u-xnx">
-                                                            <rect key="frame" x="71" y="4" width="264" height="80"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ABCDEFGH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdz-5u-xnx" customClass="MarqueeLabel" customModule="MarqueeLabel">
+                                                            <rect key="frame" x="71" y="4" width="184" height="80"/>
                                                             <fontDescription key="fontDescription" name="Cubic_11" family="Cubic 11" pointSize="24"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -81,7 +81,11 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S79-H8-61s">
-                                                            <rect key="frame" x="299" y="28" width="44" height="33"/>
+                                                            <rect key="frame" x="290" y="31" width="44" height="31"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="31" id="0vu-EV-q7i"/>
+                                                                <constraint firstAttribute="width" constant="44" id="GAR-Ih-Jkc"/>
+                                                            </constraints>
                                                             <buttonConfiguration key="configuration" style="plain"/>
                                                             <connections>
                                                                 <action selector="doAction:" destination="XYg-t6-RYg" eventType="touchUpInside" id="N17-tR-rKE"/>
@@ -90,10 +94,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="S79-H8-61s" secondAttribute="trailing" id="41Y-Yk-q0F"/>
-                                                        <constraint firstItem="gOo-bs-hDv" firstAttribute="top" secondItem="S79-H8-61s" secondAttribute="top" constant="-2" id="7mz-HD-trw"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Cdz-5u-xnx" secondAttribute="trailing" constant="8" id="ACD-6C-Wn8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="S79-H8-61s" secondAttribute="trailing" constant="9" id="41Y-Yk-q0F"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Cdz-5u-xnx" secondAttribute="trailing" constant="88" id="ACD-6C-Wn8"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="centerX" secondItem="2dd-tc-qPb" secondAttribute="centerX" id="AJL-a8-sAT"/>
+                                                        <constraint firstItem="S79-H8-61s" firstAttribute="centerY" secondItem="gOo-bs-hDv" secondAttribute="centerY" constant="3.5" id="Bed-nt-aPm"/>
                                                         <constraint firstItem="SHw-DC-IiN" firstAttribute="leading" secondItem="2dd-tc-qPb" secondAttribute="leading" id="E7H-w1-7kS"/>
                                                         <constraint firstItem="Cdz-5u-xnx" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="4" id="G4z-Ex-oUY"/>
                                                         <constraint firstAttribute="bottom" secondItem="Cdz-5u-xnx" secondAttribute="bottom" constant="4" id="MFL-xX-WiP"/>
@@ -103,8 +107,7 @@
                                                         <constraint firstItem="gOo-bs-hDv" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="26" id="VcH-dt-uQI"/>
                                                         <constraint firstAttribute="bottom" secondItem="2dd-tc-qPb" secondAttribute="bottom" constant="20" id="ZKY-bl-uQQ"/>
                                                         <constraint firstAttribute="bottom" secondItem="gOo-bs-hDv" secondAttribute="bottom" constant="28" id="abD-oB-KKa"/>
-                                                        <constraint firstAttribute="bottom" secondItem="S79-H8-61s" secondAttribute="bottom" constant="27" id="l3t-rC-zfv"/>
-                                                        <constraint firstItem="S79-H8-61s" firstAttribute="leading" secondItem="gOo-bs-hDv" secondAttribute="trailing" constant="2" id="yVg-Zi-aVT"/>
+                                                        <constraint firstItem="S79-H8-61s" firstAttribute="leading" secondItem="gOo-bs-hDv" secondAttribute="trailing" constant="-7" id="yVg-Zi-aVT"/>
                                                         <constraint firstItem="2dd-tc-qPb" firstAttribute="top" secondItem="pRR-8h-aCb" secondAttribute="top" constant="18" id="zKp-PL-baP"/>
                                                     </constraints>
                                                 </view>

@@ -7,6 +7,7 @@
 import UIKit
 import HomeKit
 import PickerPopupDialog
+import MarqueeLabel
 typealias CellValueType = NSCopying
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate, UIGestureRecognizerDelegate,HMHomeDelegate  {
@@ -72,7 +73,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let buttonPosition = sender.convert(CGPoint(), to:tableView)
         let indexPath = tableView.indexPathForRow(at:buttonPosition)
         guard let row = indexPath?.row else { return }
-        print ("row=\(row)")
     
         var infoHome:HMHome?
         var actionSetName = ""
@@ -123,6 +123,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         animateScaleOut(desiredView: blurView)
      }
     //--
+    
+    override  func viewDidAppear(_ animated: Bool) {
+           super.viewDidAppear(animated)
+           MarqueeLabel.controllerViewDidAppear(self)
+       }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,7 +212,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
               print ("(22)")
               print ("* read home:\(home2)")
               genSense2(for: home2)
-              print ("* findcharacteristics=\(findcharacteristics)")
             }
         tableView.reloadData()
         self.refreshControl.endRefreshing()
@@ -304,7 +308,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             //我們要的Switch
                 print ("-characteristics = \(findcharacteristics)")
                 for  (i,chara) in findcharacteristics.enumerated() {
-                    print ("**4 findAccessorys count:\(findAccessorys.count)")
                     let accessoryName = findAccessorys[i].name
                     var createSenseName = accessoryName
 
@@ -313,22 +316,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                 print("*** Sense: \(createSenseName) had. ***")
                             }else{
                                 print("*** \(createSenseName) had not. ***")
+                                
                                 saveActionSetGroup.enter()
                                 if findHomes[i] == home {
-                                    
-//                                   var roomNames=[String]()
-//                                   for room in home.rooms
-//                                   {
-//                                       roomNames.append(room.name)
-//                                   }
-                                   
                                    var foundRoomPattern = false
                                    var retrimString = ""
                                    for selectroom in home.rooms
                                    {
                                        retrimString=selectroom.name
-                                       print ("* c:\(accessoryName),s:\(selectroom.name)")
-                                       
                                        //Match  XXXROOM Pattern 找有同房間的關鍵字
                                        if accessoryName.contains(selectroom.name+" ")   
                                        {
@@ -651,10 +646,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
+    
+    private func tableView(_ tableView: UITableView,willDisplay cell: UITableViewCell,forRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
+        //重新
+        cell.lbSenseName.restartLabel()
+        return cell
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
-        print ("* indexPath.row:\(indexPath.row)")
      
         if self.isShowSearchResult {
             self.home = filterDataList[indexPath.row]["home"] as! HMHome
@@ -678,16 +681,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     cell.lbSenseName.text = name as! String
                 }
                 if let home=filterDataList[indexPath.row]["home"] as? HMHome{
-                    print ("*home: \(home.name)")
                     cell.lbHomeName.text = home.name
                 }
-                
                 if let acc=filterDataList[indexPath.row]["acc"] as? HMAccessory{
-                   
-                    if let room = acc.room {
-                        print ("*room name: \(room.name)")
-                        cell.lbRoomName.text = room.name
-                    }
+                        if let room = acc.room {
+                            cell.lbRoomName.text = room.name
+                        }
                     }
                 }else{
                     print ("out of array")
@@ -714,24 +713,32 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     print ("out of array")
                 }
         }
+        
+        //介面上的情境Label字太長時捲動
+        cell.lbSenseName.type = .continuous
+        cell.lbSenseName.speed = .duration(8)
+        cell.lbSenseName.animationCurve = .easeInOut
+        cell.lbSenseName.fadeLength = 4.0
+        cell.lbSenseName.leadingBuffer = 4.0
+        cell.lbSenseName.trailingBuffer = 40.0
+        cell.lbSenseName.restartLabel()
+        //
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        // action one
-        let editAction = UITableViewRowAction(style: .default, title: "Rename", handler: { (action, indexPath) in
-            print("Edit tapped")
+        //Rename
+        let renameAction = UITableViewRowAction(style: .default, title: "Rename", handler: { (action, indexPath) in
+            print("Rename tapped")
             
             if self.isShowSearchResult {
                 self.actionSet = self.filterDataList[indexPath.row]["actionSet"] as? HMActionSet
-                print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
             }else{
                 self.actionSet = self.arrData[indexPath.row]["actionSet"] as? HMActionSet
-                print ("* self.actionSet = \(String(describing: self.actionSet)) actionSet = \(self.actionSet)")
             }
 
-            
             print ("* arrActionName =\(self.arrActionName)")
                 let alertController = UIAlertController(title: "Scene Name rename to", message: "", preferredStyle: UIAlertController.Style.alert)
                 alertController.addTextField { (textField : UITextField!) -> Void in
@@ -762,9 +769,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 
                     alertController.addAction(saveAction)
                     alertController.addAction(cancelAction)
-                
-//                self.present(alertController, animated: true, completion: nil)
-            
+                            
             if self.presentedViewController==nil{
                 self.present(alertController, animated: true, completion: nil)
             }else{
@@ -773,9 +778,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
             
         })
-        editAction.backgroundColor = UIColor.blue
+        renameAction.backgroundColor = UIColor.blue
 
-        // action two
+        // action Delete
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
             print("Delete tapped")
             
@@ -798,26 +803,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                   print ("done")
                 })
             }
-            
-            
-           
-         
-                                                
         })
         deleteAction.backgroundColor = UIColor.red
 
-        return [editAction, deleteAction]
+        return [renameAction, deleteAction]
     }
  
-    
     var selectedRoom:HMRoom?
     @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
     {
         print("Title tag is:\(tapGestureRecognizer.view?.largeContentTitle)")
-//        print("Label tag is:\(tapGestureRecognizer.view!.tag)")
-//        let tagNumber = tapGestureRecognizer.view!.tag
+
         let tappedImage = tapGestureRecognizer.view as! UIImageView
-        // Your action
         
         guard let indexPath = tableView.indexPathForRow(at: tapGestureRecognizer.location(in: self.tableView)) else {
             print("Error: indexPath)")
@@ -850,15 +847,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
            
         }
         
-//
-        
         self.pickerView.setDataSource(self.arrayPickerDataSource)
         self.pickerView.reloadAll()
         
         self.pickerView.showDialog("Select Room", doneButtonTitle: "Ok", cancelButtonTitle: "cancel") { (result) -> Void in
             print (   "Selected value:\n\n Text:\(result.1)\n Value:\(result.0)" )
-          
-            
             self.selectedRoom = result.0 as? HMRoom  //value
             var acc=HMAccessory()
             if self.isShowSearchResult{
@@ -866,8 +859,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }else{
                 acc=self.arrData[indexPath.row]["acc"] as! HMAccessory
             }
-            
-            
             
             // Accessory裝置設定到指定房間中
             self.saveAccessoryGroup.enter()
@@ -890,17 +881,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
             }
     
-            
-            //close window
+            //close picker window
             self.dismiss(animated: true, completion: {
                 self.pickerView.reloadAll()
                 self.arrayPickerDataSource.removeAll()
              
             })
         }
-        
 
-        
     }
     
     /**

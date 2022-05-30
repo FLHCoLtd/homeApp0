@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import MarqueeLabel
 
 class SenseTableViewCell: UITableViewCell {
 
     @IBOutlet weak var cellBackgroundView: UIView!
 
     @IBOutlet weak var imgSense: UIImageView!
-    @IBOutlet weak var lbSenseName: UILabel!
+    @IBOutlet weak var lbSenseName: MarqueeLabel!
     @IBOutlet weak var lbHomeName: UILabel!
     @IBOutlet weak var lbRoomName: UILabel!
     @IBOutlet weak var btnInfo:UIButton!
@@ -20,8 +21,6 @@ class SenseTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-   
-        
     }
     
     override func layoutSubviews() {
