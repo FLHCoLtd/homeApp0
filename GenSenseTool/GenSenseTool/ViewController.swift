@@ -316,23 +316,22 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                 saveActionSetGroup.enter()
                                 if findHomes[i] == home {
                                     
-                                   var roomNames=[String]()
-                                   for room in home.rooms
-                                   {
-                                       roomNames.append(room.name)
-                                   }
+//                                   var roomNames=[String]()
+//                                   for room in home.rooms
+//                                   {
+//                                       roomNames.append(room.name)
+//                                   }
                                    
-                                   var foundRoom = false
+                                   var foundRoomPattern = false
                                    var retrimString = ""
                                    for selectroom in home.rooms
                                    {
                                        retrimString=selectroom.name
                                        print ("* c:\(accessoryName),s:\(selectroom.name)")
                                        
-                                       //Match  XXXROOM Pattern ,
-                                       if accessoryName.contains(selectroom.name)
+                                       //Match  XXXROOM Pattern 找有同房間的關鍵字
+                                       if accessoryName.contains(selectroom.name+" ")   
                                        {
-                                           print ("* c設定房間")
                                            // Accessory裝置設定到指定房間中
                                            self.saveAccessoryGroup.enter()
                                            findHomes[i]!.assignAccessory(findAccessorys[i], to: selectroom) { error in
@@ -346,14 +345,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                            self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
                                             //
                                            }
-                                         foundRoom=true
+                                           foundRoomPattern=true
                                          break
                                        }
                                        
                                    }
                                     
                                     // Accessory裝置改名
-                                    if foundRoom {
+                                    if foundRoomPattern {
                                         createSenseName = accessoryName.replacingOccurrences(of:retrimString+" ", with: "")
                                         self.updateName2(createSenseName, forAccessory: self.findAccessorys[i])
                                     }
