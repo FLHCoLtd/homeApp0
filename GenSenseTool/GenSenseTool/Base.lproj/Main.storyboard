@@ -125,7 +125,7 @@
                                             <outlet property="imgSense" destination="2dd-tc-qPb" id="U8P-mK-l7s"/>
                                             <outlet property="lbHomeName" destination="SHw-DC-IiN" id="mhM-QO-JsM"/>
                                             <outlet property="lbRoomName" destination="v9X-qk-Bj9" id="0a5-Ti-qpK"/>
-                                            <outlet property="lbSenseName" destination="Cdz-5u-xnx" id="Zmd-w4-lDA"/>
+                                            <outlet property="lbSenseName" destination="Cdz-5u-xnx" id="Uyj-el-ij9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -169,11 +169,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JIM-74-Tg1">
+                                <rect key="frame" x="20" y="9.5" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="4uz-fe-BJj"/>
+                                    <constraint firstAttribute="height" constant="44" id="BtH-s3-3pt"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain" image="barcode.viewfinder" catalog="system"/>
+                                <connections>
+                                    <action selector="tapAdd" destination="XYg-t6-RYg" eventType="touchUpInside" id="pg7-wW-IMA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dSQ-aS-Pqz"/>
                         <color key="backgroundColor" red="0.76862752440000004" green="0.80000001190000003" blue="0.88235294819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="pHr-mJ-bVb" secondAttribute="bottom" constant="20" symbolic="YES" id="4lO-sZ-dDO"/>
+                            <constraint firstItem="JIM-74-Tg1" firstAttribute="centerY" secondItem="Zvq-05-r5l" secondAttribute="centerY" id="8J7-Ot-aub"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="pHr-mJ-bVb" secondAttribute="trailing" constant="16" id="A66-bG-Iqv"/>
                             <constraint firstItem="a3F-Sn-wv7" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" id="ACO-gB-fbZ"/>
                             <constraint firstAttribute="bottom" secondItem="h0s-cI-tnd" secondAttribute="bottom" id="BJE-t2-SxO"/>
@@ -189,6 +201,7 @@
                             <constraint firstItem="Zvq-05-r5l" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="20" id="cTT-KW-Yax"/>
                             <constraint firstItem="Ag3-Y3-qmz" firstAttribute="centerY" secondItem="Zvq-05-r5l" secondAttribute="centerY" id="grz-is-kwJ"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="top" secondItem="a3F-Sn-wv7" secondAttribute="bottom" constant="-2" id="kRh-Sb-MJJ"/>
+                            <constraint firstItem="JIM-74-Tg1" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="oQo-rf-EfG"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="pHr-mJ-bVb" secondAttribute="trailing" constant="16" id="pYI-zB-27h"/>
                             <constraint firstItem="h0s-cI-tnd" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" id="rVd-hN-sq3"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Zvq-05-r5l" secondAttribute="trailing" constant="20" id="uIE-gJ-fNv"/>
@@ -275,24 +288,10 @@
             </objects>
             <point key="canvasLocation" x="821.60000000000002" y="13.043478260869566"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="VqO-gR-jdo">
-            <objects>
-                <viewController id="VtU-yO-B4v" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5Hz-5f-V8s">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="PaT-Km-VgK"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7Ih-Jo-nRz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1910" y="13"/>
-        </scene>
     </scenes>
     <resources>
         <image name="background" width="375" height="667"/>
+        <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="img_addroom" width="30" height="30"/>
         <image name="img_homeSenseCheck" width="640" height="512"/>

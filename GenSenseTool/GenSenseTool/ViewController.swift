@@ -65,7 +65,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     // 房間PickerView
     let pickerView = PickerPopupDialog()
     var arrayPickerDataSource = [(Any, String)]()
-    
+    var arrHomePickerDataSource = [(Any, String)]()
 
     //Show Information
     @IBAction func doAction(_ sender: UIButton) {
@@ -678,7 +678,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let isIndexValid = filterDataList.indices.contains(indexPath.row)
             if isIndexValid{
                 if let name=filterDataList[indexPath.row]["name"]{
-                    cell.lbSenseName.text = name as! String
+                    cell.lbSenseName.text = name as? String
+                    //介面上的情境Label字太長時捲動
+                    cell.lbSenseName.type = .continuous
+                    cell.lbSenseName.speed = .duration(8)
+                    cell.lbSenseName.animationCurve = .easeInOut
+                    cell.lbSenseName.fadeLength = 4.0
+                    cell.lbSenseName.leadingBuffer = 4.0
+                    cell.lbSenseName.trailingBuffer = 40.0
+                    cell.lbSenseName.restartLabel()
+                    //
                 }
                 if let home=filterDataList[indexPath.row]["home"] as? HMHome{
                     cell.lbHomeName.text = home.name
@@ -695,7 +704,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let isIndexValid = arrData.indices.contains(indexPath.row)
             if isIndexValid{
                 if let name=arrData[indexPath.row]["name"]{
-                    cell.lbSenseName.text = name as! String
+                    cell.lbSenseName.text = name as? String
+                    //介面上的情境Label字太長時捲動
+                    cell.lbSenseName.type = .continuous
+                    cell.lbSenseName.speed = .duration(8)
+                    cell.lbSenseName.animationCurve = .easeInOut
+                    cell.lbSenseName.fadeLength = 4.0
+                    cell.lbSenseName.leadingBuffer = 4.0
+                    cell.lbSenseName.trailingBuffer = 40.0
+                    cell.lbSenseName.restartLabel()
+                    //
                 }
                 if let home=arrData[indexPath.row]["home"] as? HMHome{
                     print ("*home: \(home.name)")
@@ -712,17 +730,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }else{
                     print ("out of array")
                 }
+            
         }
         
-        //介面上的情境Label字太長時捲動
-        cell.lbSenseName.type = .continuous
-        cell.lbSenseName.speed = .duration(8)
-        cell.lbSenseName.animationCurve = .easeInOut
-        cell.lbSenseName.fadeLength = 4.0
-        cell.lbSenseName.leadingBuffer = 4.0
-        cell.lbSenseName.trailingBuffer = 40.0
-        cell.lbSenseName.restartLabel()
-        //
+        
+        
         
         return cell
     }
@@ -880,12 +892,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     self.tableView.reloadData()
                 }
             }
-    
             //close picker window
             self.dismiss(animated: true, completion: {
                 self.pickerView.reloadAll()
                 self.arrayPickerDataSource.removeAll()
-             
             })
         }
 
@@ -1249,7 +1259,34 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
-
+     /// Starts the add accessory flow.
+        @IBAction func tapAdd() {
+            
+            for home3 in homeManager.homes {
+                arrHomePickerDataSource.append((home3,home3.name))
+            }
+            
+            self.pickerView.setDataSource(self.arrHomePickerDataSource)
+            self.pickerView.reloadAll()
+            self.pickerView.showDialog("Select Home", doneButtonTitle: "Ok", cancelButtonTitle: "cancel") { (result) -> Void in
+                print (   "Selected value:\n\n Text:\(result.1)\n Value:\(result.0)" )
+                let selectedHome = result.0 as? HMHome  //value
+                selectedHome?.addAndSetupAccessories(completionHandler: { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        // Make no assumption about changes; just reload everything.
+    //                    self.reloadData()
+                    }
+                })
+            }
+        
+                //close picker window
+                self.dismiss(animated: true, completion: {
+                    self.arrHomePickerDataSource.removeAll()
+                })
+            
+        }
     
     
     
@@ -1335,7 +1372,7 @@ extension ViewController: HMHomeManagerDelegate {
       totalCount = 0
       badgeNumber = 0
       for home1 in manager.homes {
-//        self.home = home1
+        self.home = home1
         print ("(2)")
         print ("* read home:\(home1)")
         genSense2(for: home1)
