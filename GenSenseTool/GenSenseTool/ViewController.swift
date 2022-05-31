@@ -741,6 +741,92 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
+        //PutRoom
+        let fitAction = UITableViewRowAction(style: .default, title: "Fit", handler: { (action, indexPath) in
+            print("PutRoom tapped")
+            
+            var acc:HMAccessory?
+            var home:HMHome?
+            
+            if self.isShowSearchResult {
+                acc=self.filterDataList[indexPath.row]["acc"] as? HMAccessory
+                home=self.filterDataList[indexPath.row]["home"] as? HMHome
+
+                self.actionSet = self.filterDataList[indexPath.row]["actionSet"] as? HMActionSet
+            }else{
+                acc=self.arrData[indexPath.row]["acc"] as? HMAccessory
+                home=self.arrData[indexPath.row]["home"] as? HMHome
+
+                self.actionSet = self.arrData[indexPath.row]["actionSet"] as? HMActionSet
+            }
+            
+            //--用開頭的ＸＸＸ(空格）建立新的房間
+            var spliteArrAccName = acc?.name.split(separator: " ")
+            let createNewRoomName = String(spliteArrAccName![0])
+                var retrimString = String(spliteArrAccName![0])
+
+                if spliteArrAccName!.count>=2 {
+                    
+                    self.newRoomSetGroup.enter()
+                    home?.addRoom(withName: createNewRoomName) { [self] newRoom, error in
+                       if let error = error {
+                           print("error:\(error)")
+                           return
+                       }
+                        
+                       newRoomSetGroup.leave()
+                       print ("*create new room done")
+                        var foundRoomPattern = false
+                        
+                        for selectroom in home!.rooms {
+                            print ("* selectroom.name=\(selectroom.name),\(createNewRoomName)")
+                            if selectroom.name.contains(createNewRoomName) {
+                                                 // Accessory裝置設定到指定房間中
+                                                    self.saveAccessoryGroup.enter()
+                                                    home?.assignAccessory(acc!, to: selectroom) { error in
+                                                                if let error = error {
+                                                                      print ("error: \(error)")
+
+                                                                }
+                                                                self.saveAccessoryGroup.leave()
+                                                                foundRoomPattern = true
+                                                            }
+                                                            
+                                                            self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+                                                                
+                                                            }
+                                    
+                                                        
+                               
+                                var createSenseName = acc?.name.replacingOccurrences(of:String((spliteArrAccName?[0])!)+" ", with: "")
+//                                self.updateName2(createSenseName!, forAccessory: acc!)
+                                                
+                                                        
+                
+                                                        // 建立相對應情境
+                                                            if self.isShowSearchResult {
+                                                                self.updateNameIfNecessary2( createSenseName! ,indexPath: indexPath,acc: self.filterDataList[indexPath.row]["acc"] as! HMAccessory)
+                                                            }else{
+                                                            self.updateNameIfNecessary2( createSenseName! ,indexPath: indexPath,acc: self.arrData[indexPath.row]["acc"] as! HMAccessory)
+                                                            }
+                                                      
+                                                      break
+                                                  }
+                                
+                                        }
+                   
+                      
+                    
+                    
+
+                    }
+                }
+            })
+                
+               
+      
+        
+        
         //Rename
         let renameAction = UITableViewRowAction(style: .default, title: "Rename", handler: { (action, indexPath) in
             print("Rename tapped")
@@ -818,7 +904,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         })
         deleteAction.backgroundColor = UIColor.red
 
-        return [renameAction, deleteAction]
+        return [renameAction, deleteAction ,fitAction]
     }
  
     var selectedRoom:HMRoom?
