@@ -1,7 +1,7 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MarqueeLabel" "${PODS_CONFIGURATION_BUILD_DIR}/PickerPopupDialog"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MarqueeLabel-framework" "${PODS_CONFIGURATION_BUILD_DIR}/PickerPopupDialog-framework"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MarqueeLabel/MarqueeLabel.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PickerPopupDialog/PickerPopupDialog.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MarqueeLabel-framework/MarqueeLabel.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PickerPopupDialog-framework/PickerPopupDialog.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "MarqueeLabel" -framework "PickerPopupDialog" -framework "QuartzCore" -framework "UIKit"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

@@ -176,12 +176,12 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PickerPopupDialog/PickerPopupDialog.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MarqueeLabel-framework/MarqueeLabel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PickerPopupDialog-framework/PickerPopupDialog.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/PickerPopupDialog/PickerPopupDialog.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/MarqueeLabel-framework/MarqueeLabel.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PickerPopupDialog-framework/PickerPopupDialog.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

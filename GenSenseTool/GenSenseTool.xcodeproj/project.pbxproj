@@ -9,7 +9,18 @@
 /* Begin PBXBuildFile section */
 		05BB2C28BEEDE445F3B5A0E1 /* Pods_GenSenseTool_GenSenseToolUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95C9629E5FAA6A752F22C93E /* Pods_GenSenseTool_GenSenseToolUITests.framework */; };
 		3305141BEB38541291DDE4F5 /* Pods_GenSenseTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E70214360794807D423C36 /* Pods_GenSenseTool.framework */; };
+		54F3A2E7D97C7552C6EFE976 /* libPods-GenScnseClip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73E46BF5FFE96D94AE5C0FB5 /* libPods-GenScnseClip.a */; };
 		700887D11B0608247F81B69F /* Pods_GenSenseToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E748BA735FBA802E67CE0437 /* Pods_GenSenseToolTests.framework */; };
+		FA7A86522847097C002C020D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A86512847097C002C020D /* AppDelegate.swift */; };
+		FA7A86542847097C002C020D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A86532847097C002C020D /* SceneDelegate.swift */; };
+		FA7A86562847097C002C020D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A86552847097C002C020D /* ViewController.swift */; };
+		FA7A86592847097C002C020D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7A86572847097C002C020D /* Main.storyboard */; };
+		FA7A865B2847097D002C020D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA7A865A2847097D002C020D /* Assets.xcassets */; };
+		FA7A865E2847097D002C020D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA7A865C2847097D002C020D /* LaunchScreen.storyboard */; };
+		FA7A866A2847097D002C020D /* GenScnseClipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A86692847097D002C020D /* GenScnseClipTests.swift */; };
+		FA7A86742847097D002C020D /* GenScnseClipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A86732847097D002C020D /* GenScnseClipUITests.swift */; };
+		FA7A86762847097D002C020D /* GenScnseClipUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A86752847097D002C020D /* GenScnseClipUITestsLaunchTests.swift */; };
+		FA7A86792847097D002C020D /* GenScnseClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = FA7A864F2847097C002C020D /* GenScnseClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FAB3877F28280725008C6009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3877E28280725008C6009 /* AppDelegate.swift */; };
 		FAB3878128280725008C6009 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3878028280725008C6009 /* SceneDelegate.swift */; };
 		FAB3878328280725008C6009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3878228280725008C6009 /* ViewController.swift */; };
@@ -26,6 +37,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FA7A86662847097D002C020D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB3877328280725008C6009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA7A864E2847097C002C020D;
+			remoteInfo = GenScnseClip;
+		};
+		FA7A86702847097D002C020D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB3877328280725008C6009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA7A864E2847097C002C020D;
+			remoteInfo = GenScnseClip;
+		};
+		FA7A86772847097D002C020D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAB3877328280725008C6009 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA7A864E2847097C002C020D;
+			remoteInfo = GenScnseClip;
+		};
 		FAB3879228280726008C6009 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FAB3877328280725008C6009 /* Project object */;
@@ -42,16 +74,47 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FA7A867A2847097D002C020D /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				FA7A86792847097D002C020D /* GenScnseClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		227558170D1B78BCC90305EB /* Pods-GenSenseTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSenseTool.debug.xcconfig"; path = "Target Support Files/Pods-GenSenseTool/Pods-GenSenseTool.debug.xcconfig"; sourceTree = "<group>"; };
 		29730A2BAF0129966908EBDC /* Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig"; path = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests/Pods-GenSenseTool-GenSenseToolUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		67A0C3DA699202FC6DCA8163 /* Pods-GenSenseTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSenseTool.release.xcconfig"; path = "Target Support Files/Pods-GenSenseTool/Pods-GenSenseTool.release.xcconfig"; sourceTree = "<group>"; };
 		69B1A6F92F0BEDD7F56B94E0 /* Pods-GenSenseToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSenseToolTests.debug.xcconfig"; path = "Target Support Files/Pods-GenSenseToolTests/Pods-GenSenseToolTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6BDF8A280C8F142F9F9FB189 /* Pods-GenSenseToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSenseToolTests.release.xcconfig"; path = "Target Support Files/Pods-GenSenseToolTests/Pods-GenSenseToolTests.release.xcconfig"; sourceTree = "<group>"; };
+		6EB0F96D8EA724D352FFE8C3 /* Pods-GenScnseClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenScnseClip.release.xcconfig"; path = "Target Support Files/Pods-GenScnseClip/Pods-GenScnseClip.release.xcconfig"; sourceTree = "<group>"; };
+		73E46BF5FFE96D94AE5C0FB5 /* libPods-GenScnseClip.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GenScnseClip.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C9629E5FAA6A752F22C93E /* Pods_GenSenseTool_GenSenseToolUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GenSenseTool_GenSenseToolUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A32A817F734723F8E4D2B7F5 /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig"; path = "Target Support Files/Pods-GenSenseTool-GenSenseToolUITests/Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C57853B30E370E2C6FE2D354 /* Pods-GenScnseClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenScnseClip.debug.xcconfig"; path = "Target Support Files/Pods-GenScnseClip/Pods-GenScnseClip.debug.xcconfig"; sourceTree = "<group>"; };
 		C7E70214360794807D423C36 /* Pods_GenSenseTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GenSenseTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E748BA735FBA802E67CE0437 /* Pods_GenSenseToolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GenSenseToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7A864F2847097C002C020D /* GenScnseClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenScnseClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7A86512847097C002C020D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FA7A86532847097C002C020D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		FA7A86552847097C002C020D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FA7A86582847097C002C020D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FA7A865A2847097D002C020D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FA7A865D2847097D002C020D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FA7A865F2847097D002C020D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA7A86602847097D002C020D /* GenScnseClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenScnseClip.entitlements; sourceTree = "<group>"; };
+		FA7A86652847097D002C020D /* GenScnseClipTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenScnseClipTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7A86692847097D002C020D /* GenScnseClipTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenScnseClipTests.swift; sourceTree = "<group>"; };
+		FA7A866F2847097D002C020D /* GenScnseClipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GenScnseClipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7A86732847097D002C020D /* GenScnseClipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenScnseClipUITests.swift; sourceTree = "<group>"; };
+		FA7A86752847097D002C020D /* GenScnseClipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenScnseClipUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FAB3877B28280725008C6009 /* GenSenseTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenSenseTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB3877E28280725008C6009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB3878028280725008C6009 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +137,28 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA7A864C2847097C002C020D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				54F3A2E7D97C7552C6EFE976 /* libPods-GenScnseClip.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A86622847097D002C020D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A866C2847097D002C020D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB3877828280725008C6009 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -111,9 +196,42 @@
 				A32A817F734723F8E4D2B7F5 /* Pods-GenSenseTool-GenSenseToolUITests.release.xcconfig */,
 				69B1A6F92F0BEDD7F56B94E0 /* Pods-GenSenseToolTests.debug.xcconfig */,
 				6BDF8A280C8F142F9F9FB189 /* Pods-GenSenseToolTests.release.xcconfig */,
+				C57853B30E370E2C6FE2D354 /* Pods-GenScnseClip.debug.xcconfig */,
+				6EB0F96D8EA724D352FFE8C3 /* Pods-GenScnseClip.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FA7A86502847097C002C020D /* GenScnseClip */ = {
+			isa = PBXGroup;
+			children = (
+				FA7A86512847097C002C020D /* AppDelegate.swift */,
+				FA7A86532847097C002C020D /* SceneDelegate.swift */,
+				FA7A86552847097C002C020D /* ViewController.swift */,
+				FA7A86572847097C002C020D /* Main.storyboard */,
+				FA7A865A2847097D002C020D /* Assets.xcassets */,
+				FA7A865C2847097D002C020D /* LaunchScreen.storyboard */,
+				FA7A865F2847097D002C020D /* Info.plist */,
+				FA7A86602847097D002C020D /* GenScnseClip.entitlements */,
+			);
+			path = GenScnseClip;
+			sourceTree = "<group>";
+		};
+		FA7A86682847097D002C020D /* GenScnseClipTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA7A86692847097D002C020D /* GenScnseClipTests.swift */,
+			);
+			path = GenScnseClipTests;
+			sourceTree = "<group>";
+		};
+		FA7A86722847097D002C020D /* GenScnseClipUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FA7A86732847097D002C020D /* GenScnseClipUITests.swift */,
+				FA7A86752847097D002C020D /* GenScnseClipUITestsLaunchTests.swift */,
+			);
+			path = GenScnseClipUITests;
 			sourceTree = "<group>";
 		};
 		FAB3877228280725008C6009 = {
@@ -122,6 +240,9 @@
 				FAB3877D28280725008C6009 /* GenSenseTool */,
 				FAB3879428280726008C6009 /* GenSenseToolTests */,
 				FAB3879E28280726008C6009 /* GenSenseToolUITests */,
+				FA7A86502847097C002C020D /* GenScnseClip */,
+				FA7A86682847097D002C020D /* GenScnseClipTests */,
+				FA7A86722847097D002C020D /* GenScnseClipUITests */,
 				FAB3877C28280725008C6009 /* Products */,
 				FAB387B02828073A008C6009 /* Frameworks */,
 				BFB29FC874383877FD4739D1 /* Pods */,
@@ -134,6 +255,9 @@
 				FAB3877B28280725008C6009 /* GenSenseTool.app */,
 				FAB3879128280726008C6009 /* GenSenseToolTests.xctest */,
 				FAB3879B28280726008C6009 /* GenSenseToolUITests.xctest */,
+				FA7A864F2847097C002C020D /* GenScnseClip.app */,
+				FA7A86652847097D002C020D /* GenScnseClipTests.xctest */,
+				FA7A866F2847097D002C020D /* GenScnseClipUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +305,7 @@
 				C7E70214360794807D423C36 /* Pods_GenSenseTool.framework */,
 				95C9629E5FAA6A752F22C93E /* Pods_GenSenseTool_GenSenseToolUITests.framework */,
 				E748BA735FBA802E67CE0437 /* Pods_GenSenseToolTests.framework */,
+				73E46BF5FFE96D94AE5C0FB5 /* libPods-GenScnseClip.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,6 +313,60 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		FA7A864E2847097C002C020D /* GenScnseClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7A86812847097D002C020D /* Build configuration list for PBXNativeTarget "GenScnseClip" */;
+			buildPhases = (
+				47781C42ED3D92207605CB96 /* [CP] Check Pods Manifest.lock */,
+				FA7A864B2847097C002C020D /* Sources */,
+				FA7A864C2847097C002C020D /* Frameworks */,
+				FA7A864D2847097C002C020D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GenScnseClip;
+			productName = GenScnseClip;
+			productReference = FA7A864F2847097C002C020D /* GenScnseClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
+		};
+		FA7A86642847097D002C020D /* GenScnseClipTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7A86822847097D002C020D /* Build configuration list for PBXNativeTarget "GenScnseClipTests" */;
+			buildPhases = (
+				FA7A86612847097D002C020D /* Sources */,
+				FA7A86622847097D002C020D /* Frameworks */,
+				FA7A86632847097D002C020D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA7A86672847097D002C020D /* PBXTargetDependency */,
+			);
+			name = GenScnseClipTests;
+			productName = GenScnseClipTests;
+			productReference = FA7A86652847097D002C020D /* GenScnseClipTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FA7A866E2847097D002C020D /* GenScnseClipUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7A86832847097D002C020D /* Build configuration list for PBXNativeTarget "GenScnseClipUITests" */;
+			buildPhases = (
+				FA7A866B2847097D002C020D /* Sources */,
+				FA7A866C2847097D002C020D /* Frameworks */,
+				FA7A866D2847097D002C020D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA7A86712847097D002C020D /* PBXTargetDependency */,
+			);
+			name = GenScnseClipUITests;
+			productName = GenScnseClipUITests;
+			productReference = FA7A866F2847097D002C020D /* GenScnseClipUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		FAB3877A28280725008C6009 /* GenSenseTool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAB387A528280726008C6009 /* Build configuration list for PBXNativeTarget "GenSenseTool" */;
@@ -197,10 +376,12 @@
 				FAB3877828280725008C6009 /* Frameworks */,
 				FAB3877928280725008C6009 /* Resources */,
 				205E450321AE6AD465D220D4 /* [CP] Embed Pods Frameworks */,
+				FA7A867A2847097D002C020D /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA7A86782847097D002C020D /* PBXTargetDependency */,
 			);
 			name = GenSenseTool;
 			productName = GenSenseTool;
@@ -256,6 +437,17 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
+					FA7A864E2847097C002C020D = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					FA7A86642847097D002C020D = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = FA7A864E2847097C002C020D;
+					};
+					FA7A866E2847097D002C020D = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = FA7A864E2847097C002C020D;
+					};
 					FAB3877A28280725008C6009 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -285,11 +477,38 @@
 				FAB3877A28280725008C6009 /* GenSenseTool */,
 				FAB3879028280726008C6009 /* GenSenseToolTests */,
 				FAB3879A28280726008C6009 /* GenSenseToolUITests */,
+				FA7A864E2847097C002C020D /* GenScnseClip */,
+				FA7A86642847097D002C020D /* GenScnseClipTests */,
+				FA7A866E2847097D002C020D /* GenScnseClipUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA7A864D2847097C002C020D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A865E2847097D002C020D /* LaunchScreen.storyboard in Resources */,
+				FA7A865B2847097D002C020D /* Assets.xcassets in Resources */,
+				FA7A86592847097C002C020D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A86632847097D002C020D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A866D2847097D002C020D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB3877928280725008C6009 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -333,6 +552,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GenSenseTool/Pods-GenSenseTool-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47781C42ED3D92207605CB96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GenScnseClip-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BEA3B627FD2449DCBD08F361 /* [CP] Check Pods Manifest.lock */ = {
@@ -421,6 +662,33 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA7A864B2847097C002C020D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A86562847097C002C020D /* ViewController.swift in Sources */,
+				FA7A86522847097C002C020D /* AppDelegate.swift in Sources */,
+				FA7A86542847097C002C020D /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A86612847097D002C020D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A866A2847097D002C020D /* GenScnseClipTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A866B2847097D002C020D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A86762847097D002C020D /* GenScnseClipUITestsLaunchTests.swift in Sources */,
+				FA7A86742847097D002C020D /* GenScnseClipUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAB3877728280725008C6009 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,6 +721,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FA7A86672847097D002C020D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA7A864E2847097C002C020D /* GenScnseClip */;
+			targetProxy = FA7A86662847097D002C020D /* PBXContainerItemProxy */;
+		};
+		FA7A86712847097D002C020D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA7A864E2847097C002C020D /* GenScnseClip */;
+			targetProxy = FA7A86702847097D002C020D /* PBXContainerItemProxy */;
+		};
+		FA7A86782847097D002C020D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA7A864E2847097C002C020D /* GenScnseClip */;
+			targetProxy = FA7A86772847097D002C020D /* PBXContainerItemProxy */;
+		};
 		FAB3879328280726008C6009 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FAB3877A28280725008C6009 /* GenSenseTool */;
@@ -466,6 +749,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		FA7A86572847097C002C020D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA7A86582847097C002C020D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FA7A865C2847097D002C020D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FA7A865D2847097D002C020D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 		FAB3878428280725008C6009 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -485,6 +784,164 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FA7A867B2847097D002C020D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C57853B30E370E2C6FE2D354 /* Pods-GenScnseClip.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GenScnseClip/GenScnseClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GenScnseClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GenSenseTool;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.GenSenseTool.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FA7A867C2847097D002C020D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB0F96D8EA724D352FFE8C3 /* Pods-GenScnseClip.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = GenScnseClip/GenScnseClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GenScnseClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GenSenseTool;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.GenSenseTool.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FA7A867D2847097D002C020D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseTool.GenScnseClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GenScnseClip.app/GenScnseClip";
+			};
+			name = Debug;
+		};
+		FA7A867E2847097D002C020D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseTool.GenScnseClipTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GenScnseClip.app/GenScnseClip";
+			};
+			name = Release;
+		};
+		FA7A867F2847097D002C020D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseTool.GenScnseClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GenScnseClip;
+			};
+			name = Debug;
+		};
+		FA7A86802847097D002C020D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BMAENCBPZB;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tw.human.connect.GenSenseTool.GenScnseClipUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = GenScnseClip;
+			};
+			name = Release;
+		};
 		FAB387A328280726008C6009 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -605,6 +1062,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 227558170D1B78BCC90305EB /* Pods-GenSenseTool.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GenSenseTool/GenSenseTool.entitlements;
@@ -637,6 +1095,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 67A0C3DA699202FC6DCA8163 /* Pods-GenSenseTool.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GenSenseTool/GenSenseTool.entitlements;
@@ -768,6 +1227,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA7A86812847097D002C020D /* Build configuration list for PBXNativeTarget "GenScnseClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7A867B2847097D002C020D /* Debug */,
+				FA7A867C2847097D002C020D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA7A86822847097D002C020D /* Build configuration list for PBXNativeTarget "GenScnseClipTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7A867D2847097D002C020D /* Debug */,
+				FA7A867E2847097D002C020D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA7A86832847097D002C020D /* Build configuration list for PBXNativeTarget "GenScnseClipUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7A867F2847097D002C020D /* Debug */,
+				FA7A86802847097D002C020D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAB3877628280725008C6009 /* Build configuration list for PBXProject "GenSenseTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
