@@ -3,7 +3,7 @@
 
 target 'GenSenseTool' do
   # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
+#  use_frameworks!
   pod "PickerPopupDialog"
   pod 'MarqueeLabel'
 
@@ -21,7 +21,7 @@ target 'GenSenseTool' do
 end
 
 
-target 'GenScnseClip' do
+target 'GenSClip' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_modular_headers!
   pod "PickerPopupDialog"

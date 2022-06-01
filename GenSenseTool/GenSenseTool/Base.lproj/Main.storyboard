@@ -286,9 +286,14 @@
                     </connections>
                 </view>
             </objects>
-            <point key="canvasLocation" x="821.60000000000002" y="13.043478260869566"/>
+            <point key="canvasLocation" x="198" y="54"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="Cdz-5u-xnx">
+            <size key="intrinsicContentSize" width="118" height="28"/>
+        </designable>
+    </designables>
     <resources>
         <image name="background" width="375" height="667"/>
         <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>

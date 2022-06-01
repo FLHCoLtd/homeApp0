@@ -1,4 +1,4 @@
-framework module Pods_GenSenseTool_GenSenseToolUITests {
+module Pods_GenSenseTool_GenSenseToolUITests {
   umbrella header "Pods-GenSenseTool-GenSenseToolUITests-umbrella.h"
 
   export *

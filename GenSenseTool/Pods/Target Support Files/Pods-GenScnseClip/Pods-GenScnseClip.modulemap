@@ -1,6 +1,0 @@
-module Pods_GenScnseClip {
-  umbrella header "Pods-GenScnseClip-umbrella.h"
-
-  export *
-  module * { export * }
-}

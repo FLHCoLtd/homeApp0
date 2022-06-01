@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  GenSenseTool
+//  GenSClip
 //
-//  Created by alex on 2022/5/8.
+//  Created by alex on 2022/6/1.
 //
 
 import UIKit
@@ -10,13 +10,24 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    func application(_ application: UIApplication,
+     
+
+     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-        print ("* url")
+                              restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+         
+        guard let url = userActivity.webpageURL else { return false }
+
+           presentExperience(for: url)
+        
         return true
     }
-
+    
+    func presentExperience(for url: URL) {
+        // Route user to the appropriate place in your App Clip.
+        print (url.absoluteString)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

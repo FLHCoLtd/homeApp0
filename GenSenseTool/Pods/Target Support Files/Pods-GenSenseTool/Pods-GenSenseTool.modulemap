@@ -1,4 +1,4 @@
-framework module Pods_GenSenseTool {
+module Pods_GenSenseTool {
   umbrella header "Pods-GenSenseTool-umbrella.h"
 
   export *
