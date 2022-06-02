@@ -94,7 +94,7 @@
 		6F4427198DFBA1304053B9661DC05C6B /* Pods-GenSClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSClip.release.xcconfig"; sourceTree = "<group>"; };
 		74662C94D60FB34F9E49838E2B4EA328 /* Pods-GenSClip-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-GenSClip-acknowledgements.markdown"; sourceTree = "<group>"; };
 		7A4A076B870A31AC180688229BDB241B /* Pods-GenSenseTool-GenSenseToolUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSenseTool-GenSenseToolUITests.modulemap"; sourceTree = "<group>"; };
-		7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* PickerPopupDialog */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = PickerPopupDialog; path = libPickerPopupDialog.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* libPickerPopupDialog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPickerPopupDialog.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DD3C29BAEEB72A7807DD0B8009E0F48 /* MarqueeLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "MarqueeLabel-dummy.m"; sourceTree = "<group>"; };
 		7F2AF1506255090F29E75053210F3BEA /* PickerPopupDialog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PickerPopupDialog.debug.xcconfig; sourceTree = "<group>"; };
 		84739682BF66E878DDEB8F4E1225C32C /* Pods-GenSenseToolTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseToolTests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		8A6390DF912FA71568ABA87E97592164 /* Pods-GenSenseTool-GenSenseToolUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseTool-GenSenseToolUITests-dummy.m"; sourceTree = "<group>"; };
 		971BD474D7CDFE12C69651164404E5AA /* Pods-GenSClip.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-GenSClip.modulemap"; sourceTree = "<group>"; };
 		9806F804C12C34F32FA20C9E67F2B247 /* MarqueeLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MarqueeLabel.swift; path = Sources/MarqueeLabel.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A29A03764815E289F3419D4BF050E276 /* Pods-GenSenseToolTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-GenSenseToolTests-dummy.m"; sourceTree = "<group>"; };
 		A6BCC205AB404A7337AC5EC402C85B66 /* Pods-GenSenseTool-GenSenseToolUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSenseTool-GenSenseToolUITests-umbrella.h"; sourceTree = "<group>"; };
 		A76C9189C69929531FC707CACED5C815 /* MarqueeLabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MarqueeLabel-umbrella.h"; sourceTree = "<group>"; };
@@ -116,7 +116,7 @@
 		C842773DB98FBD0B459009A26F79A418 /* MarqueeLabel-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MarqueeLabel-prefix.pch"; sourceTree = "<group>"; };
 		C935DE9EEAEC15F153471B3E99017D9C /* Pods-GenSClip-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-GenSClip-umbrella.h"; sourceTree = "<group>"; };
 		CDAD94F5918BF42F2B244E8044C4A0B4 /* Pods-GenSenseTool-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-GenSenseTool-acknowledgements.plist"; sourceTree = "<group>"; };
-		CF0AA9FBFBDB70858C030769541505ED /* MarqueeLabel */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = MarqueeLabel; path = libMarqueeLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CF0AA9FBFBDB70858C030769541505ED /* libMarqueeLabel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMarqueeLabel.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF962B4A90C03EF4109FD0569402242D /* Pods-GenSenseTool */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-GenSenseTool"; path = "libPods-GenSenseTool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8999DE2F50CB0C447544DF6C7E4E210 /* Pods-GenSenseToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseToolTests.release.xcconfig"; sourceTree = "<group>"; };
 		EA4BC2EA95F311CC0B7E0AF52C39EE59 /* Pods-GenSenseTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-GenSenseTool.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,7 +246,6 @@
 				F9CED1506352C2E75B0477EDBB7C6F12 /* PickerPopupDialog.swift */,
 				C854DB76F18135240652549F11FD12F8 /* Support Files */,
 			);
-			name = PickerPopupDialog;
 			path = PickerPopupDialog;
 			sourceTree = "<group>";
 		};
@@ -269,7 +268,6 @@
 				9806F804C12C34F32FA20C9E67F2B247 /* MarqueeLabel.swift */,
 				21E375FEB4E2805C6C56EBB4EE97A20B /* Support Files */,
 			);
-			name = MarqueeLabel;
 			path = MarqueeLabel;
 			sourceTree = "<group>";
 		};
@@ -317,8 +315,8 @@
 		F89EEF560D8B8F61544ED90E2B7E90FA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CF0AA9FBFBDB70858C030769541505ED /* MarqueeLabel */,
-				7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* PickerPopupDialog */,
+				CF0AA9FBFBDB70858C030769541505ED /* libMarqueeLabel.a */,
+				7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* libPickerPopupDialog.a */,
 				65A5537782A400AAF1D386F90539E5F7 /* Pods-GenSClip */,
 				CF962B4A90C03EF4109FD0569402242D /* Pods-GenSenseTool */,
 				58C1D132FB578B592419A433F9AFADD7 /* Pods-GenSenseTool-GenSenseToolUITests */,
@@ -451,7 +449,7 @@
 			);
 			name = PickerPopupDialog;
 			productName = PickerPopupDialog;
-			productReference = 7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* PickerPopupDialog */;
+			productReference = 7CDBA0AAB4DAAE8ACF9AE6F22BE3EE16 /* libPickerPopupDialog.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		C23DB88E45B0ED14F0C8827BE9C46C95 /* MarqueeLabel */ = {
@@ -469,7 +467,7 @@
 			);
 			name = MarqueeLabel;
 			productName = MarqueeLabel;
-			productReference = CF0AA9FBFBDB70858C030769541505ED /* MarqueeLabel */;
+			productReference = CF0AA9FBFBDB70858C030769541505ED /* libMarqueeLabel.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		C7F5370524103036C1BC1E45952E7287 /* Pods-GenSenseTool-GenSenseToolUITests */ = {
@@ -498,7 +496,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1310;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -703,7 +701,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MarqueeLabel/MarqueeLabel-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MODULEMAP_FILE = Headers/Public/MarqueeLabel/MarqueeLabel.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -774,7 +772,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/PickerPopupDialog/PickerPopupDialog-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MODULEMAP_FILE = Headers/Public/PickerPopupDialog/PickerPopupDialog.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -992,7 +990,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/PickerPopupDialog/PickerPopupDialog-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MODULEMAP_FILE = Headers/Public/PickerPopupDialog/PickerPopupDialog.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1017,7 +1015,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				GCC_PREFIX_HEADER = "Target Support Files/MarqueeLabel/MarqueeLabel-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MODULEMAP_FILE = Headers/Public/MarqueeLabel/MarqueeLabel.modulemap;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
