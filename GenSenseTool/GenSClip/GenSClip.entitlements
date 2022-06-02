@@ -5,7 +5,8 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>appclips:example.com</string>
-		<string>webcredentials:example.com</string>
+		<string>appclips:genscliphost.web.app</string>
+		<string>appclips:genscliphost.firebaseapp.com</string>
 	</array>
 	<key>com.apple.developer.parent-application-identifiers</key>
 	<array>
