@@ -54,7 +54,7 @@
          <EnvironmentVariable
             key = "_XCAppClipURL"
             value = "https://example.com/test"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
    </LaunchAction>

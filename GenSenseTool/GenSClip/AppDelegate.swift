@@ -10,7 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-     
+     var theURLString = ""
 
      func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func presentExperience(for url: URL) {
         // Route user to the appropriate place in your App Clip.
-        print (url.absoluteString)
+        print ("AppDelegate Clip: ",url.absoluteString)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

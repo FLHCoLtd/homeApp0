@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import GenSenseTool
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+ 
+    
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else { return }
         guard let url = userActivity.webpageURL else { return }
@@ -20,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func presentExperience(for url: URL) {
         // Route user to the appropriate place in your App Clip.
-        print ("presentExperience:" + url.absoluteString)
+        print ("Clip presentExperience:" + url.absoluteString)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.theURLString = url.absoluteString
     }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

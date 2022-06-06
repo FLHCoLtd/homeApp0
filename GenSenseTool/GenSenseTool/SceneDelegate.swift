@@ -11,7 +11,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else { return }
+        guard let url = userActivity.webpageURL else { return }
 
+        presentExperience(for: url)
+    }
+    
+    func presentExperience(for url: URL) {
+        // Route user to the appropriate place in your App Clip.
+        print ("Main Clip presentExperience:" + url.absoluteString)
+    }
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.

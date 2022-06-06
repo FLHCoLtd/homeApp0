@@ -27,9 +27,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gen Scnese Clip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD7-LW-5II">
-                                <rect key="frame" x="114.5" y="432" width="185" height="32"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gen Scnese Clip." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD7-LW-5II">
+                                <rect key="frame" x="111.5" y="432" width="191" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQM-IM-B9J">
+                                <rect key="frame" x="84" y="608" width="246" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="246" id="nc6-Ar-61j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -41,12 +50,15 @@
                             <constraint firstItem="sD7-LW-5II" firstAttribute="centerX" secondItem="lHk-Nt-FsN" secondAttribute="centerX" id="N9s-xh-sRm"/>
                             <constraint firstItem="LPc-7f-90N" firstAttribute="trailing" secondItem="B1L-xv-kOJ" secondAttribute="trailing" constant="16" id="W6d-PB-aiy"/>
                             <constraint firstAttribute="bottom" secondItem="B1L-xv-kOJ" secondAttribute="bottom" constant="20" symbolic="YES" id="XXR-2y-2oO"/>
+                            <constraint firstItem="LQM-IM-B9J" firstAttribute="top" secondItem="sD7-LW-5II" secondAttribute="bottom" constant="144" id="ckj-V7-sz6"/>
                             <constraint firstItem="sD7-LW-5II" firstAttribute="centerY" secondItem="lHk-Nt-FsN" secondAttribute="centerY" id="fYf-FG-kpT"/>
                             <constraint firstItem="B1L-xv-kOJ" firstAttribute="leading" secondItem="LPc-7f-90N" secondAttribute="leading" constant="16" id="jpO-n6-aQo"/>
                             <constraint firstItem="LPc-7f-90N" firstAttribute="trailing" secondItem="B1L-xv-kOJ" secondAttribute="trailing" constant="16" id="sir-ti-r9Y"/>
+                            <constraint firstItem="LQM-IM-B9J" firstAttribute="centerX" secondItem="lHk-Nt-FsN" secondAttribute="centerX" id="tck-wg-LDI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lbTheURL" destination="LQM-IM-B9J" id="oZl-6j-N1m"/>
                         <outlet property="tfOutput" destination="B1L-xv-kOJ" id="bP1-TG-wFl"/>
                     </connections>
                 </viewController>

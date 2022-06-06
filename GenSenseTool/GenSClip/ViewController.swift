@@ -8,9 +8,12 @@ import UIKit
 import HomeKit
 import PickerPopupDialog
 import MarqueeLabel
+import GenSenseTool
 typealias CellValueType = NSCopying
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate, UIGestureRecognizerDelegate,HMHomeDelegate  {
+    
+    @IBOutlet weak var lbTheURL: UILabel!
     
     @IBOutlet weak var tfOutput: UITextView!
     @IBOutlet weak var btnOpenHomeApp: UIButton!
@@ -124,17 +127,42 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      }
     //--
     
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+            print ("* viewwillApper:\(appDelegate.theURLString)")
+          
+
+        DispatchQueue.global(qos: .background).async {
+                   for i in 1...10 {
+                       DispatchQueue.main.async {
+                           self.lbTheURL.text =  self.appDelegate.theURLString
+                           print ("* viewwillApper2:\(self.appDelegate.theURLString)")
+                       }
+                       sleep(1)
+                   }
+               }
+        }
+            
     override  func viewDidAppear(_ animated: Bool) {
            super.viewDidAppear(animated)
+           lbTheURL.text =  appDelegate.theURLString
            MarqueeLabel.controllerViewDidAppear(self)
        }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
         tfOutput.text = ""
         tfOutput.isEditable = false
-      
+     
+        DispatchQueue.main.async {
+            self.lbTheURL.text =  self.appDelegate.theURLString
+            print ("* viewDidLoad:\(self.appDelegate.theURLString)")
+        }
         
     }
 
