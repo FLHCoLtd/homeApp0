@@ -10,6 +10,8 @@ import PickerPopupDialog
 import MarqueeLabel
  
 import StoreKit
+import AppClip
+import CoreLocation
 
 typealias CellValueType = NSCopying
 
@@ -134,8 +136,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func displayOverlay() {
         guard let scene = view.window?.windowScene else { return }
-
-        let config = SKOverlay.AppConfiguration(appIdentifier: "1594133959", position: .bottom)
+                                                              
+        let config = SKOverlay.AppConfiguration(appIdentifier: "443904275", position: .bottom)
         let overlay = SKOverlay(configuration: config)
         overlay.present(in: scene)
     }
@@ -143,36 +145,58 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewWillAppear(_ animated: Bool) {
             print ("* viewwillApper:\(appDelegate.theURLString)")
         
-        
-        DispatchQueue.global(qos: .background).async {
-                   for i in 1...10 {
-                       DispatchQueue.main.async {
-                           self.lbTheURL.text =  self.appDelegate.theURLString
-                           print ("* viewwillApper2:\(self.appDelegate.theURLString)")
-                       }
-                       sleep(1)
-                   }
-               }
+        DispatchQueue.main.async {
+            self.lbTheURL.text =  self.appDelegate.theURLString
+            self.lbTheURL.text! += " " + self.appDelegate.locationString
+            print ("* viewDidLoad:\(self.appDelegate.theURLString)")
         }
+        
+//        DispatchQueue.global(qos: .background).async {
+//                   for i in 1...10 {
+//                       DispatchQueue.main.async {
+//                           self.lbTheURL.text =  self.appDelegate.theURLString
+//                           print ("* viewwillApper2:\(self.appDelegate.theURLString)")
+//                       }
+//                       sleep(1)
+//                   }
+//               }
+     }
             
     override  func viewDidAppear(_ animated: Bool) {
            super.viewDidAppear(animated)
-        displayOverlay()
-           lbTheURL.text =  appDelegate.theURLString
+//        verifyUserLocation(userActivity)
+        
+        print ("* lstring:\(appDelegate.locationString)")
+        if appDelegate.locationString.contains("非")
+        { displayOverlay() }
+        
+        DispatchQueue.main.async {
+            self.lbTheURL.text =  self.appDelegate.theURLString
+            self.lbTheURL.text! += " " + self.appDelegate.locationString
+            print ("* viewDidLoad:\(self.appDelegate.theURLString)")
+        }
            MarqueeLabel.controllerViewDidAppear(self)
        }
    
+    
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         homeManager.delegate = self
         tfOutput.text = ""
         tfOutput.isEditable = false
-        displayOverlay()
+        print ("* lstring:\(appDelegate.locationString)")
+        if appDelegate.locationString.contains("非")
+        { displayOverlay() }
+       
         DispatchQueue.main.async {
             self.lbTheURL.text =  self.appDelegate.theURLString
+            self.lbTheURL.text! += " " + self.appDelegate.locationString
             print ("* viewDidLoad:\(self.appDelegate.theURLString)")
         }
         
+       
         
     }
 
