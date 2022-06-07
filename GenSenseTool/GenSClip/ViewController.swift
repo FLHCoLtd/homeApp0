@@ -8,7 +8,9 @@ import UIKit
 import HomeKit
 import PickerPopupDialog
 import MarqueeLabel
-import GenSenseTool
+ 
+import StoreKit
+
 typealias CellValueType = NSCopying
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate, UIGestureRecognizerDelegate,HMHomeDelegate  {
@@ -130,12 +132,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    
+    func displayOverlay() {
+        guard let scene = view.window?.windowScene else { return }
+
+        let config = SKOverlay.AppConfiguration(appIdentifier: "1594133959", position: .bottom)
+        let overlay = SKOverlay(configuration: config)
+        overlay.present(in: scene)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
             print ("* viewwillApper:\(appDelegate.theURLString)")
-          
-
+        
+        
         DispatchQueue.global(qos: .background).async {
                    for i in 1...10 {
                        DispatchQueue.main.async {
@@ -149,6 +157,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
     override  func viewDidAppear(_ animated: Bool) {
            super.viewDidAppear(animated)
+        displayOverlay()
            lbTheURL.text =  appDelegate.theURLString
            MarqueeLabel.controllerViewDidAppear(self)
        }
@@ -158,11 +167,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         homeManager.delegate = self
         tfOutput.text = ""
         tfOutput.isEditable = false
-     
+        displayOverlay()
         DispatchQueue.main.async {
             self.lbTheURL.text =  self.appDelegate.theURLString
             print ("* viewDidLoad:\(self.appDelegate.theURLString)")
         }
+        
         
     }
 

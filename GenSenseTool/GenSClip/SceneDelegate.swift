@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import GenSenseTool
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
  
-    
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
         guard userActivity.activityType == NSUserActivityTypeBrowsingWeb else { return }
         guard let url = userActivity.webpageURL else { return }
