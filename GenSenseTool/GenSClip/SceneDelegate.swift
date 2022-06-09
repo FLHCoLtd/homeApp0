@@ -24,9 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     // Call the verifyUserLocation(_:) function in all applicable lifecycle callbacks.
-
        func verifyUserLocation(_ activity: NSUserActivity?) {
-           
            // Guard against faulty data.
            guard activity != nil else { return }
            guard activity!.activityType == NSUserActivityTypeBrowsingWeb else { return }
