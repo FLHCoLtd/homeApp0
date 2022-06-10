@@ -144,12 +144,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     override func viewWillAppear(_ animated: Bool) {
-            print ("* viewwillApper:\(appDelegate.theURLString)")
+      
         
         DispatchQueue.main.async {
             self.lbTheURL.text =  self.appDelegate.theURLString
             self.lbTheURL.text! += " " + self.appDelegate.locationString
-            print ("* viewDidLoad:\(self.appDelegate.theURLString)")
+            print ("* viewWillAppear:\(self.appDelegate.theURLString)")
         }
         
 //        DispatchQueue.global(qos: .background).async {
@@ -167,14 +167,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
            super.viewDidAppear(animated)
 //        verifyUserLocation(userActivity)
         
-        print ("* lstring:\(appDelegate.locationString)")
-        if appDelegate.locationString.contains("非")
-        { displayOverlay() }
+//        print ("* lstring:\(appDelegate.locationString)")
+//        if appDelegate.locationString.contains("非")
+//        { displayOverlay() }
         
         DispatchQueue.main.async {
             self.lbTheURL.text =  self.appDelegate.theURLString
             self.lbTheURL.text! += " " + self.appDelegate.locationString
-            print ("* viewDidLoad:\(self.appDelegate.theURLString)")
+            print ("* viewDidAppear:\(self.appDelegate.theURLString)")
         }
            MarqueeLabel.controllerViewDidAppear(self)
        }
@@ -196,8 +196,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         homeManager.delegate = self
         tfOutput.text = ""
