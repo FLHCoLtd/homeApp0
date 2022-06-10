@@ -8,9 +8,10 @@
 import UIKit
 import AppClip
 import CoreLocation
+import UserNotifications
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate{
 
      var theURLString = ""
      var locationString = "xxx"
@@ -80,8 +81,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                    identifier: "Home")
        }
     
+    
+    //前景推播(1)
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                   willPresent notification: UNNotification,
+                                   withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound])
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        //前景推播(2)
+        UNUserNotificationCenter.current().delegate = self
+        
+        //推播授權
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (graanted, error) in
+            if graanted{
+                print ("Allowed")
+            }else{
+                print("Not Allowed")
+            }
+        }
         return true
     }
 

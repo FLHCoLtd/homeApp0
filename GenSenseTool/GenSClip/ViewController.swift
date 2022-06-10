@@ -12,6 +12,7 @@ import MarqueeLabel
 import StoreKit
 import AppClip
 import CoreLocation
+import UserNotifications
 
 typealias CellValueType = NSCopying
 
@@ -181,14 +182,31 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
    
     
+    func createNotification(){
+        let content = UNMutableNotificationContent()
+              content.title = "注意"
+              content.subtitle = "門要帶上"
+              content.body = "測試"
+              content.badge = 1
+              content.sound = UNNotificationSound.defaultCritical
+              let trigger = UNTimeIntervalNotificationTrigger(timeInterval:10 , repeats: false)
+              let request = UNNotificationRequest(identifier: "notification1", content: content, trigger: trigger)
+              UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         homeManager.delegate = self
         tfOutput.text = ""
         tfOutput.isEditable = false
-        print ("* lstring:\(appDelegate.locationString)")
-        if appDelegate.locationString.contains("非")
-        { displayOverlay() }
+    //        print ("* lstring:\(appDelegate.locationString)")
+    //        if appDelegate.locationString.contains("非")
+    //        { displayOverlay() }
+        
+        createNotification()
        
         DispatchQueue.main.async {
             self.lbTheURL.text =  self.appDelegate.theURLString
