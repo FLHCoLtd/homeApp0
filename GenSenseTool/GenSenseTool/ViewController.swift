@@ -51,8 +51,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var findAccessorys = [HMAccessory]()
     var findHomes = [HMHome?]()
     
-    let manufacturerKeyWord = "Fibargroup"      //就沒有中間o
-    let modelKeyWord = "FibaroScene"
+    let manufacturerKeyWord = "Fibaro Scene"
+    let modelKeyWord = "Fibaro Scene"
     
     //--Infomation
     @IBOutlet var  blurView:UIVisualEffectView!
@@ -289,6 +289,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let accsChara = accessorie.find(serviceType: HMServiceTypeSwitch , characteristicType: HMCharacteristicMetadataFormatBool)
             print ("*- accs:\(accsChara)")
             print ("*- accessorie services:\(accessorie.services)")
+            print ("*-   accessorie.model:\(accessorie.model)")
+          
             print ("*----")
             if accsChara != nil{
                 //找尋特定關鍵定條件
