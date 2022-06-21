@@ -37,6 +37,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var saveError: Error?
     //--
     var arrActionName = [String]()
+    var arrActionSet = [HMActionSet]()
+    
     var arrData = [Dictionary<String, Any>]()
     
     var filterDataList = [Dictionary<String, Any>]()
@@ -145,7 +147,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
        
         //產生RefreshControl
         refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(reloadEventTableView), for: UIControl.Event.valueChanged)
+//        refreshControl.addTarget(self, action: #selector(reloadEventTableView), for: UIControl.Event.valueChanged)
+        refreshControl.addTarget(self, action: #selector(deletereloadEventTableView), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
         
         // 生成SearchController
@@ -203,6 +206,27 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    //刪除來的原來的已有的重覆情境後，等在重新建立產生
+    @objc func deletereloadEventTableView() {
+        print("* deletereloadEventTableView")
+        arrData.removeAll()
+        addHomes(homeManager.homes)
+            totalCount = 0
+            //delete
+            for homeDel in homeManager.homes {
+              delSense(for: homeDel)
+            }
+            //than
+            for homeReload in homeManager.homes {
+                clearBadge()
+                genSense2(for: homeReload)
+            }
+      
+        tableView.reloadData()
+        self.refreshControl.endRefreshing()
+    }
+    
+    //只reload不刪除來的重覆的情境
     @objc func reloadEventTableView() {
         arrData.removeAll()
         addHomes(homeManager.homes)
@@ -264,16 +288,186 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //                                       roomNames.append(room.name)
         //                                   }
         arrActionName = [String]()
+        arrActionSet = [HMActionSet]()
         for findAction in home.actionSets
         {
             arrActionName.append(findAction.name)
+            arrActionSet.append(findAction)
         }
         print ("* arrActionName=\(arrActionName)")
     }
     
+    
+    
+    //以Accessorie去找
+    func delSense(for home: HMHome?) {
+//        self.home = home
+        //找出所有characteristics
+        guard let homeAccessories = home?.accessories else {
+          return
+        }
+        //把情境中所有的actionSet找出來建立一陣列列表
+        getActionsArray(home:home!)
+        for accessorie in homeAccessories {
+            print ("*- accessorie :\(accessorie)")
+            print ("*- accessorie name:\(accessorie.name)")
+            print ("*- accessorie manufacturer:\(accessorie.manufacturer ?? "")")
+            print ("*- accessorie model:\(accessorie.model ?? "")")
+            //以Switch條件
+            let accsChara = accessorie.find(serviceType: HMServiceTypeSwitch , characteristicType: HMCharacteristicMetadataFormatBool)
+            print ("*- accs:\(accsChara)")
+            print ("*- accessorie services:\(accessorie.services)")
+            print ("*-   accessorie.model:\(accessorie.model)")
+          
+            print ("*----")
+            if accsChara != nil{
+                //找尋特定關鍵定條件
+                if accessorie.manufacturer == manufacturerKeyWord && accessorie.model == modelKeyWord
+                {
+//                    if !arrActionName.contains(accessorie.name) {
+                        findcharacteristics.append(accsChara)
+                        findAccessorys.append(accessorie)
+                        findHomes.append(home)
+                        totalCount+=1
+//                    }
+                }
+            }
+        }
+       
+        totalCount = findAccessorys.count
+
+        if let home = home {
+            //我們要的Switch
+                print ("-characteristics = \(findcharacteristics)")
+                for  (i,chara) in findcharacteristics.enumerated() {
+                    let accessoryName = findAccessorys[i].name
+                    var createSenseName = accessoryName
+
+                            //建立判別情境是否有的旗標
+                            if arrActionName.contains(createSenseName) {
+                                print("*** Sense: \(createSenseName) had. ***")
+                                print("*** arrActionSet: \(arrActionSet) had. ***")
+                                for actionset in arrActionSet {
+                                    if actionset.name == createSenseName
+                                    {
+                                        //delete
+                                        self.removeTargetValueForCharacteristicOnly(home ,actionSet: actionset, completion: {
+                                      
+                                            //than
+                                            self.saveActionSetGroup.enter()
+                                            if self.findHomes[i] == home {
+                                               var foundRoomPattern = false
+                                               var retrimString = ""
+                                               for selectroom in home.rooms
+                                               {
+                                                   retrimString=selectroom.name
+                                                   //Match  XXXROOM Pattern 找有同房間的關鍵字
+                                                   if accessoryName.contains(selectroom.name+" ")
+                                                   {
+                                                       // Accessory裝置設定到指定房間中
+                                                       self.saveAccessoryGroup.enter()
+                                                       self.findHomes[i]!.assignAccessory(self.findAccessorys[i], to: selectroom) { error in
+                                                           if let error = error {
+                                                                 print ("error: \(error)")
+                                               //                self.displayError(error)
+                                               //                self.didEncounterError = true
+                                                           }
+                                                           self.saveAccessoryGroup.leave()
+                                                       }
+                                                       self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+                                                        //
+                                                       }
+                                                       foundRoomPattern=true
+                                                     break
+                                                   }
+                                                   
+                                               }
+                                                
+                                                // Accessory裝置改名
+                                                if foundRoomPattern {
+                                                    createSenseName = accessoryName.replacingOccurrences(of:retrimString+" ", with: "")
+                                                    self.updateName2(createSenseName, forAccessory: self.findAccessorys[i])
+                                                }
+
+                                                // 建立相對應情境
+                                                home.addActionSet(withName: createSenseName) { [self] actionSet, error in
+                                                    if let error = error {
+                                                        print("HomeKit: Error creating action set: \(error.localizedDescription)")
+                                                    }
+                                                    else {
+                                                        self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
+                                                    }
+                                                    self.saveActionSetGroup.leave()
+                                                    self.tableView.reloadData()
+                                                }
+                                            }
+                                            
+                                            print ("actionset:\(actionset) delete done")
+                                        })
+                                        
+                                    }
+                                }
+
+                            }else{
+                                print("*** \(createSenseName) had not. ***")
+                                
+                                saveActionSetGroup.enter()
+                                if findHomes[i] == home {
+                                   var foundRoomPattern = false
+                                   var retrimString = ""
+                                   for selectroom in home.rooms
+                                   {
+                                       retrimString=selectroom.name
+                                       //Match  XXXROOM Pattern 找有同房間的關鍵字
+                                       if accessoryName.contains(selectroom.name+" ")
+                                       {
+                                           // Accessory裝置設定到指定房間中
+                                           self.saveAccessoryGroup.enter()
+                                           findHomes[i]!.assignAccessory(findAccessorys[i], to: selectroom) { error in
+                                               if let error = error {
+                                                     print ("error: \(error)")
+                                   //                self.displayError(error)
+                                   //                self.didEncounterError = true
+                                               }
+                                               self.saveAccessoryGroup.leave()
+                                           }
+                                           self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+                                            //
+                                           }
+                                           foundRoomPattern=true
+                                         break
+                                       }
+                                       
+                                   }
+                                    
+                                    // Accessory裝置改名
+                                    if foundRoomPattern {
+                                        createSenseName = accessoryName.replacingOccurrences(of:retrimString+" ", with: "")
+                                        self.updateName2(createSenseName, forAccessory: self.findAccessorys[i])
+                                    }
+
+                                    // 建立相對應情境
+                                    home.addActionSet(withName: createSenseName) { [self] actionSet, error in
+                                        if let error = error {
+                                            print("HomeKit: Error creating action set: \(error.localizedDescription)")
+                                        }
+                                        else {
+                                            self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
+                                        }
+                                        self.saveActionSetGroup.leave()
+                                        self.tableView.reloadData()
+                                    }
+                                }
+                            }
+                }
+        }
+    }
+    
+    
     //以Accessorie去找
     func genSense2(for home: HMHome?) {
 //        self.home = home
+
         //找出所有characteristics
         guard let homeAccessories = home?.accessories else {
           return
@@ -300,12 +494,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         findcharacteristics.append(accsChara)
                         findAccessorys.append(accessorie)
                         findHomes.append(home)
-                        totalCount+=1
+//                        totalCount+=1
                     }
                 }
             }
         }
-       
+        
+        totalCount = findAccessorys.count
+        
         if let home = home {
             //我們要的Switch
                 print ("-characteristics = \(findcharacteristics)")
@@ -541,8 +737,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet])
                         print ("*arrData: \(self.arrData)")
                         
-                        self.totalCount -= 1
-                        print ("*totalCount: \(self.totalCount)")
+//                        self.totalCount -= 1
+//                        print ("*totalCount: \(self.totalCount)")
                     }
                 }
                 self.saveActionSetGroup.leave()
@@ -1244,6 +1440,38 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
          }
         }
     */
+    
+    func removeTargetValueForCharacteristicOnly(_ home: HMHome?,actionSet:HMActionSet?, completion: @escaping () -> Void) {
+        /*
+            We need to create a dispatch group here, because in many cases
+            there will be one characteristic saved in the Action Set, and one
+            in the target value map. We want to run the completion closure only one time,
+            to ensure we've removed both.
+        */
+        let group = DispatchGroup()
+    //    if targetValueMap.object(forKey: characteristic) != nil {
+    //        // Remove the characteristic from the target value map.
+    //        DispatchQueue.main.async(group: group) {
+    //            self.targetValueMap.removeObject(forKey: characteristic)
+    //        }
+    //    }
+        removeActionGroup.enter()
+     
+        print ("home1\(home)")
+        home!.removeActionSet(actionSet!) { error in
+//            completionHandler(error)
+//            self.updateActionSetSection()
+            if error != nil {
+                print ("home:\(home)")
+            }else{
+                print ("error")
+                print(error?.localizedDescription)
+                print ("home:\(home)")
+            }
+            self.removeActionGroup.leave()
+        }
+        group.notify(queue: DispatchQueue.main, execute: completion)
+    }
     
     func removeTargetValueForCharacteristic2(_ home: HMHome?,actionSet:HMActionSet?, completion: @escaping () -> Void) {
         /*
