@@ -193,7 +193,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.view.layoutIfNeeded()
         }
     }
-
+    
+    //清除泡泡數字
     func clearBadge()
     {
         badgeNumber = 0
@@ -206,22 +207,28 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    //清除變數
+    func clearVar(){
+        homes.removeAll()
+        arrData.removeAll()
+        filterDataList.removeAll()
+        arrActionSet.removeAll()
+        findcharacteristics.removeAll()     //must
+        findAccessorys.removeAll()
+        findHomes.removeAll()
+        totalCount = 0
+    }
+    
     //刪除來的原來的已有的重覆情境後，等在重新建立產生
     @objc func deletereloadEventTableView() {
         print("* deletereloadEventTableView")
-        arrData.removeAll()
+        clearVar()
         addHomes(homeManager.homes)
-            totalCount = 0
-            //delete
-            for homeDel in homeManager.homes {
-              delSense(for: homeDel)
+            for homeUpdate in homeManager.homes {
+              clearBadge()
+              print ("* homeUpdate read home:\(homeUpdate)")
+              updateSense(for: homeUpdate)
             }
-            //than
-            for homeReload in homeManager.homes {
-                clearBadge()
-                genSense2(for: homeReload)
-            }
-      
         tableView.reloadData()
         self.refreshControl.endRefreshing()
     }
@@ -299,8 +306,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     
-    //以Accessorie去找
-    func delSense(for home: HMHome?) {
+    //以Accessorie去找 update
+    func updateSense(for home: HMHome?) {
 //        self.home = home
         //找出所有characteristics
         guard let homeAccessories = home?.accessories else {
@@ -348,63 +355,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                 print("*** Sense: \(createSenseName) had. ***")
                                 print("*** arrActionSet: \(arrActionSet) had. ***")
                                 for actionset in arrActionSet {
+                                    print ("*** \(actionset.name) == \(createSenseName)")
                                     if actionset.name == createSenseName
                                     {
-                                        //delete
-                                        self.removeTargetValueForCharacteristicOnly(home ,actionSet: actionset, completion: {
-                                      
-                                            //than
-                                            self.saveActionSetGroup.enter()
-                                            if self.findHomes[i] == home {
-                                               var foundRoomPattern = false
-                                               var retrimString = ""
-                                               for selectroom in home.rooms
-                                               {
-                                                   retrimString=selectroom.name
-                                                   //Match  XXXROOM Pattern 找有同房間的關鍵字
-                                                   if accessoryName.contains(selectroom.name+" ")
-                                                   {
-                                                       // Accessory裝置設定到指定房間中
-                                                       self.saveAccessoryGroup.enter()
-                                                       self.findHomes[i]!.assignAccessory(self.findAccessorys[i], to: selectroom) { error in
-                                                           if let error = error {
-                                                                 print ("error: \(error)")
-                                               //                self.displayError(error)
-                                               //                self.didEncounterError = true
-                                                           }
-                                                           self.saveAccessoryGroup.leave()
-                                                       }
-                                                       self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
-                                                        //
-                                                       }
-                                                       foundRoomPattern=true
-                                                     break
-                                                   }
-                                                   
-                                               }
-                                                
-                                                // Accessory裝置改名
-                                                if foundRoomPattern {
-                                                    createSenseName = accessoryName.replacingOccurrences(of:retrimString+" ", with: "")
-                                                    self.updateName2(createSenseName, forAccessory: self.findAccessorys[i])
-                                                }
-
-                                                // 建立相對應情境
-                                                home.addActionSet(withName: createSenseName) { [self] actionSet, error in
-                                                    if let error = error {
-                                                        print("HomeKit: Error creating action set: \(error.localizedDescription)")
-                                                    }
-                                                    else {
-                                                        self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
-                                                    }
-                                                    self.saveActionSetGroup.leave()
-                                                    self.tableView.reloadData()
-                                                }
-                                            }
-                                            
-                                            print ("actionset:\(actionset) delete done")
-                                        })
-                                        
+                                        //update
+                                        self.saveActionSetUpdate(actionset, chara: chara!,acc: self.findAccessorys[i],home:home)
+                                        print("*** arrActionSet: \(arrActionSet) update. ***")
                                     }
                                 }
 
@@ -683,6 +639,51 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         return nil
     }
     
+    //更新Action
+    func saveActionSetUpdate(_ actionSet: HMActionSet, chara: HMCharacteristic,acc:HMAccessory,home:HMHome) {
+        //這邊自己組裝
+        let a = HMCharacteristicWriteAction(characteristic: chara, targetValue: 1 as NSCopying)
+
+            saveActionSetGroup.enter()
+            addAction(a, toActionSet: actionSet) { error in
+                if let error = error {
+                    let createName = acc.name.replacingOccurrences(of: "00", with: "")
+                        let ouputText = "Sense: \(createName) create ok. "
+                        print (ouputText)
+                        self.tfOutput.text += ouputText+"\n"
+                        
+                        self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
+                                            ,"home":home])
+                    
+                    self.searchedDataSource = self.arrData
+                        print ("*arrData: \(self.arrData)")
+                        
+                        self.tableView.reloadData()
+                    
+    
+                    print("HomeKit: Update adding action: \(error.localizedDescription)")
+                    self.saveError = error
+                }else{
+                   
+//                    let createName = acc.name.replacingOccurrences(of: "00", with: "")
+//                        let ouputText = "Sense: \(createName) create ok. "
+//                        print (ouputText)
+//                        self.tfOutput.text += ouputText+"\n"
+//
+//                        self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
+//                                            ,"home":home])
+//
+//                    self.searchedDataSource = self.arrData
+//                        print ("*arrData: \(self.arrData)")
+//
+//                        self.tableView.reloadData()
+                  
+                }
+                self.saveActionSetGroup.leave()
+            }
+    }
+    
+    
     func saveActionSet2(_ actionSet: HMActionSet, chara: HMCharacteristic,acc:HMAccessory,home:HMHome) {
         //這邊自己組裝
         let a = HMCharacteristicWriteAction(characteristic: chara, targetValue: 1 as NSCopying)
@@ -690,6 +691,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             saveActionSetGroup.enter()
             addAction(a, toActionSet: actionSet) { error in
                 if let error = error {
+                    
+                    
+                    
                     print("HomeKit: Error adding action: \(error.localizedDescription)")
                     self.saveError = error
                 }else{
