@@ -12,6 +12,7 @@ typealias CellValueType = NSCopying
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate, UIGestureRecognizerDelegate,HMHomeDelegate  {
     
+    @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var tfOutput: UITextView!
     @IBOutlet weak var btnOpenHomeApp: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -53,6 +54,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var findAccessorys = [HMAccessory]()
     var findHomes = [HMHome?]()
     
+    //Keyword
     let manufacturerKeyWord = "Fibaro Scene"
     let modelKeyWord = "Fibaro Scene"
     
@@ -147,7 +149,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
        
         //產生RefreshControl
         refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action: #selector(reloadEventTableView), for: UIControl.Event.valueChanged)
         refreshControl.addTarget(self, action: #selector(deletereloadEventTableView), for: UIControl.Event.valueChanged)
         tableView.addSubview(refreshControl)
         
@@ -161,6 +162,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         // 將searchBar掛載到tableView上
         self.tableView.tableHeaderView = self.searchController.searchBar
         self.tableView.tableHeaderView?.isHidden = true
+        
+        //
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapChangeHome))
+        lbTitle.isUserInteractionEnabled = true
+        lbTitle.addGestureRecognizer(tap)
         
     }
 
@@ -224,26 +230,47 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         print("* deletereloadEventTableView")
         clearVar()
         addHomes(homeManager.homes)
+        let cast = ["(All)", "Generate Scene Tool"]         //check status unset String
+        let checkTitlehadAll = cast.contains(lbTitle.text!)
+        if (selectedHome == nil) && checkTitlehadAll {
+            print ("* 未選指定特定家:\(selectedHome)")
             for homeUpdate in homeManager.homes {
               clearBadge()
               print ("* homeUpdate read home:\(homeUpdate)")
               updateSense(for: homeUpdate)
             }
+        }else{
+            print ("* 有選指定特定家:\(selectedHome!.name)")
+            clearBadge()
+            print ("* homeUpdate read home:\(selectedHome)")
+            updateSense(for: selectedHome)
+        }
+        
         tableView.reloadData()
         self.refreshControl.endRefreshing()
     }
     
     //只reload不刪除來的重覆的情境
     @objc func reloadEventTableView() {
-        arrData.removeAll()
+        print ("** reloadEventTableView")
+        clearVar()
         addHomes(homeManager.homes)
-            totalCount = 0
-            for home2 in homeManager.homes {
+        let cast = ["(All)", "Generate Scene Tool"]         //check status unset String
+        let checkTitlehadAll = cast.contains(lbTitle.text!)
+        if (selectedHome == nil) && checkTitlehadAll {
+            print ("* 未選指定特定家:\(selectedHome)")
+            for homeUpdate in homeManager.homes {
               clearBadge()
-              print ("(22)")
-              print ("* read home:\(home2)")
-              genSense2(for: home2)
+              print ("* homeUpdate read home:\(homeUpdate)")
+                genSense2(for: homeUpdate)
             }
+        }else{
+            print ("* 有選指定特定家:\(selectedHome!.name)")
+            clearBadge()
+            print ("* homeUpdate read home:\(selectedHome)")
+            genSense2(for: selectedHome)
+        }
+        
         tableView.reloadData()
         self.refreshControl.endRefreshing()
     }
@@ -301,7 +328,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             arrActionName.append(findAction.name)
             arrActionSet.append(findAction)
         }
-        print ("* arrActionName=\(arrActionName)")
+        print ("* home=\(home.name) ,arrActionName=\(arrActionName)")
     }
     
     
@@ -918,14 +945,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     //
                 }
                 if let home=arrData[indexPath.row]["home"] as? HMHome{
-                    print ("*home: \(home.name)")
                     cell.lbHomeName.text = home.name
                 }
                 
                 if let acc=arrData[indexPath.row]["acc"] as? HMAccessory{
                    
                     if let room = acc.room {
-                        print ("*room name: \(room.name)")
                         cell.lbRoomName.text = room.name
                     }
                 }
@@ -1039,7 +1064,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.actionSet = self.arrData[indexPath.row]["actionSet"] as? HMActionSet
             }
 
-            print ("* arrActionName =\(self.arrActionName)")
+    
                 let alertController = UIAlertController(title: "Scene Name rename to", message: "", preferredStyle: UIAlertController.Style.alert)
                 alertController.addTextField { (textField : UITextField!) -> Void in
                     textField.placeholder = "請入要修改的名稱"
@@ -1579,13 +1604,51 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
+    
+    var selectedHome:HMHome?
+@objc func tapChangeHome() {
+         
+           for home in homeManager.homes {
+               arrHomePickerDataSource.append((home,home.name))
+           }
+           arrHomePickerDataSource.append((Optional<HMHome>.none,"(All)"))  // nil , "家"
+    
+           self.pickerView.setDataSource(self.arrHomePickerDataSource)
+           self.pickerView.reloadAll()
+
+           self.pickerView.showDialog("指定Home", doneButtonTitle: "Ok", cancelButtonTitle: "Cancel") { (result) -> Void in
+               print (   "Selected value:\n\n Text:\(result.1)\n Value:\(result.0)" )
+
+               if ((result.0 as? HMHome) != nil ) {
+                   self.selectedHome = result.0 as? HMHome
+                   self.lbTitle.text = self.selectedHome?.name
+               }else{
+                   if result.1 == "(All)"                            // nil , but had select(All)
+                   {
+                       self.selectedHome = nil
+                       self.lbTitle.text = "(All)"
+                   }else{                                           //cencels
+                       self.lbTitle.text = self.selectedHome?.name  //restore old
+                   }
+               }
+               self.reloadEventTableView()                          //normal refresh
+               
+           }
+       
+               //close picker window
+               self.dismiss(animated: true, completion: {
+                   self.arrHomePickerDataSource.removeAll()
+               })
+           
+       }
+    
      /// Starts the add accessory flow.
         @IBAction func tapAdd() {
             
             for home3 in homeManager.homes {
                 arrHomePickerDataSource.append((home3,home3.name))
             }
-            
+           
             self.pickerView.setDataSource(self.arrHomePickerDataSource)
             self.pickerView.reloadAll()
             self.pickerView.showDialog("Select Home", doneButtonTitle: "Ok", cancelButtonTitle: "cancel") { (result) -> Void in
