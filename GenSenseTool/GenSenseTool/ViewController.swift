@@ -1645,6 +1645,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      /// Starts the add accessory flow.
         @IBAction func tapAdd() {
             
+            if selectedHome == nil {
             for home3 in homeManager.homes {
                 arrHomePickerDataSource.append((home3,home3.name))
             }
@@ -1668,7 +1669,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 self.dismiss(animated: true, completion: {
                     self.arrHomePickerDataSource.removeAll()
                 })
-            
+            }else{
+                self.selectedHome?.addAndSetupAccessories(completionHandler: { error in
+                    if let error = error {
+                        print(error)
+                    } else {
+
+                    }
+                })
+            }
         }
     
     
