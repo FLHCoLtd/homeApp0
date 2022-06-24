@@ -41,7 +41,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var arrActionSet = [HMActionSet]()
     
     var arrData = [Dictionary<String, Any>]()
-    
     var filterDataList = [Dictionary<String, Any>]()
     var searchedDataSource = [Dictionary<String, Any>]()
     
@@ -674,13 +673,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             saveActionSetGroup.enter()
             addAction(a, toActionSet: actionSet) { error in
                 if let error = error {
-                    let createName = acc.name.replacingOccurrences(of: "00", with: "")
+                    let createName = acc.name
                         let ouputText = "Sense: \(createName) create ok. "
                         print (ouputText)
                         self.tfOutput.text += ouputText+"\n"
                         
                         self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
-                                            ,"home":home])
+                                             ,"home":home,"update":1])
                     
                     self.searchedDataSource = self.arrData
                         print ("*arrData: \(self.arrData)")
@@ -731,7 +730,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         self.tfOutput.text += ouputText+"\n"
                         
                         self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
-                                            ,"home":home])
+                                             ,"home":home ,"update":0])
                     
                     self.searchedDataSource = self.arrData
                         print ("*arrData: \(self.arrData)")
@@ -898,6 +897,27 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tapGesture.view?.largeContentTitle = "val"
         tapGesture.delegate = self
         tapGesture.numberOfTapsRequired = 1
+        
+        var updateCode = -1
+        if self.isShowSearchResult {
+            if let update = filterDataList[indexPath.row]["update"] {
+                updateCode = update as! Int
+            }
+        }else{
+            if let update = arrData[indexPath.row]["update"] {
+                updateCode = update as! Int
+            }
+        }
+        if updateCode == 0 {
+            cell.imgSense.image = UIImage(named: "img_homeSense_check")       //new , had check sign
+        }else if updateCode == 1{
+            cell.imgSense.image = UIImage(named: "img_homeSense")             //old process
+        }else{
+            cell.imgSense.image = UIImage(named: "img_homeSense")      //other 
+        }
+       
+    
+        
         cell.imgSense.isUserInteractionEnabled = true
         cell.imgSense.tag = indexPath.row
         cell.imgSense.addGestureRecognizer(tapGesture)

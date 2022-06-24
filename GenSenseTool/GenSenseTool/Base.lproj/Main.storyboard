@@ -51,7 +51,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_homeSenseCheck" translatesAutoresizingMaskIntoConstraints="NO" id="2dd-tc-qPb">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_homeSense_check" translatesAutoresizingMaskIntoConstraints="NO" id="2dd-tc-qPb">
                                                             <rect key="frame" x="13" y="18" width="50" height="50"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="50" id="3zb-hZ-Mjq"/>
@@ -180,6 +180,17 @@
                                     <action selector="tapAdd" destination="XYg-t6-RYg" eventType="touchUpInside" id="pg7-wW-IMA"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VGS-y6-9mG">
+                                <rect key="frame" x="64" y="9" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bWX-mY-cVX"/>
+                                    <constraint firstAttribute="width" constant="44" id="dfk-TC-X4k"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain" image="filemenu.and.cursorarrow.rtl" catalog="system"/>
+                                <connections>
+                                    <action selector="tapAdd" destination="XYg-t6-RYg" eventType="touchUpInside" id="jzB-Yg-0DL"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dSQ-aS-Pqz"/>
                         <color key="backgroundColor" red="0.76862752440000004" green="0.80000001190000003" blue="0.88235294819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -192,6 +203,7 @@
                             <constraint firstItem="bqV-Ws-2Ux" firstAttribute="centerY" secondItem="xux-Qx-s62" secondAttribute="centerY" id="Cmv-jC-g4d"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Ag3-Y3-qmz" secondAttribute="trailing" constant="20" id="Hhv-s5-IhO"/>
                             <constraint firstItem="a3F-Sn-wv7" firstAttribute="top" secondItem="Zvq-05-r5l" secondAttribute="bottom" constant="8" symbolic="YES" id="NUw-Fp-4Rw"/>
+                            <constraint firstItem="VGS-y6-9mG" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="9" id="Rdg-sX-sWB"/>
                             <constraint firstItem="bqV-Ws-2Ux" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="TcJ-Oq-YMX"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="a3F-Sn-wv7" secondAttribute="trailing" id="Tjy-qs-uU0"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="Uwh-a4-Frv"/>
@@ -199,6 +211,7 @@
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="h0s-cI-tnd" secondAttribute="trailing" id="YCb-6c-zb0"/>
                             <constraint firstItem="h0s-cI-tnd" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" id="YIC-aA-zo6"/>
                             <constraint firstItem="Zvq-05-r5l" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="20" id="cTT-KW-Yax"/>
+                            <constraint firstItem="VGS-y6-9mG" firstAttribute="leading" secondItem="JIM-74-Tg1" secondAttribute="trailing" id="dJj-4R-jJh"/>
                             <constraint firstItem="Ag3-Y3-qmz" firstAttribute="centerY" secondItem="Zvq-05-r5l" secondAttribute="centerY" id="grz-is-kwJ"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="top" secondItem="a3F-Sn-wv7" secondAttribute="bottom" constant="-2" id="kRh-Sb-MJJ"/>
                             <constraint firstItem="JIM-74-Tg1" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="oQo-rf-EfG"/>
@@ -304,9 +317,10 @@
     <resources>
         <image name="background" width="375" height="667"/>
         <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
+        <image name="filemenu.and.cursorarrow.rtl" catalog="system" width="128" height="88"/>
         <image name="homekit" catalog="system" width="128" height="106"/>
         <image name="img_addroom" width="30" height="30"/>
-        <image name="img_homeSenseCheck" width="640" height="512"/>
+        <image name="img_homeSense_check" width="288" height="256"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
