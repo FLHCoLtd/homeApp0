@@ -909,11 +909,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             }
         }
         if updateCode == 0 {
-            cell.imgSense.image = UIImage(named: "img_homeSense_check")       //new , had check sign
+            cell.imgSense.image = UIImage(named: "img_homeSense_new")       //new , had check sign
         }else if updateCode == 1{
             cell.imgSense.image = UIImage(named: "img_homeSense")             //old process
         }else{
-            cell.imgSense.image = UIImage(named: "img_homeSense")      //other 
+            cell.imgSense.image = UIImage(named: "img_homeSense")      //other
         }
        
     
@@ -1777,7 +1777,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //MARK: -
   
 
-//更新完抓到所有的home
+//更新完抓到所有的home ,first 
 extension ViewController: HMHomeManagerDelegate {
   func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
     addHomes(manager.homes)
