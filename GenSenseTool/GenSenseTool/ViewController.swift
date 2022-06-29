@@ -846,6 +846,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                    animateScaleIn(desiredView: popView)
                }
            }
+           //閃動
+           tableView.cellForRow(at: indexPath)?.blink()
        }
 
     

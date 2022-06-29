@@ -10,6 +10,7 @@
 		1454154039CEB89FDF4E0307 /* libPods-GenSenseTool-GenSenseToolUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 743716AFDAFE27A83BE550C6 /* libPods-GenSenseTool-GenSenseToolUITests.a */; };
 		ED0F0372A124D662AA22AF05 /* libPods-GenSenseToolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85235B3F9A2083C0B2B125B2 /* libPods-GenSenseToolTests.a */; };
 		F328B73F9FA4D5105259D753 /* libPods-GenSenseTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA856FD46018851A4217F88 /* libPods-GenSenseTool.a */; };
+		FAAB4D6D286BF4980026A056 /* UIView+blink.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB4D6C286BF4980026A056 /* UIView+blink.swift */; };
 		FAB3877F28280725008C6009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3877E28280725008C6009 /* AppDelegate.swift */; };
 		FAB3878128280725008C6009 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3878028280725008C6009 /* SceneDelegate.swift */; };
 		FAB3878328280725008C6009 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB3878228280725008C6009 /* ViewController.swift */; };
@@ -77,6 +78,7 @@
 		FA7A869628473FB2002C020D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA7A869828473FB2002C020D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA7A869928473FB2002C020D /* GenSClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GenSClip.entitlements; sourceTree = "<group>"; };
+		FAAB4D6C286BF4980026A056 /* UIView+blink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+blink.swift"; sourceTree = "<group>"; };
 		FAB3877B28280725008C6009 /* GenSenseTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GenSenseTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAB3877E28280725008C6009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAB3878028280725008C6009 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		FAB3877D28280725008C6009 /* GenSenseTool */ = {
 			isa = PBXGroup;
 			children = (
+				FAAB4D6C286BF4980026A056 /* UIView+blink.swift */,
 				FAD1D74F28363D8D0097276B /* Cubic_11_1.010_R.ttf */,
 				FAB387AE2828073A008C6009 /* GenSenseTool.entitlements */,
 				FABE9621282CB9F9003F8E21 /* SenseTableViewCell.swift */,
@@ -435,6 +438,7 @@
 				FAD1D74D2834FE6A0097276B /* PopView.swift in Sources */,
 				FABE9622282CB9F9003F8E21 /* SenseTableViewCell.swift in Sources */,
 				FAB3878328280725008C6009 /* ViewController.swift in Sources */,
+				FAAB4D6D286BF4980026A056 /* UIView+blink.swift in Sources */,
 				FAB3877F28280725008C6009 /* AppDelegate.swift in Sources */,
 				FAB3878128280725008C6009 /* SceneDelegate.swift in Sources */,
 			);
