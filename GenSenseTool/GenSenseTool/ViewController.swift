@@ -832,7 +832,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        lbNoHad.isHidden = arrData.count != 0
+        lbNoHad.isHidden = (arrData.count > 0)
+        
         searchController.searchBar.isHidden = !lbNoHad.isHidden
         
         if badgeNumber>0 {
@@ -847,6 +848,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             tfOutput.isHidden = true
         }
         
+        
+        
         if self.isShowSearchResult {
             // 若是有查詢結果則顯示查詢結果集合裡的資料
             return self.filterDataList.count
@@ -859,9 +862,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //加入動畫
     func tableView(_ tableView: UITableView,willDisplay cell: UITableViewCell,forRowAt indexPath: IndexPath)
     {
-            let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: cell.frame.height, duration: 0.3, delayFactor: 0.05)
-            let animator = Animator(animation: animation)
-            animator.animate(cell: cell, at: indexPath, in: tableView)
+        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: cell.frame.height, duration: 0.1, delayFactor: 0.03)
+        let animator = Animator(animation: animation)
+        animator.animate(cell: cell, at: indexPath, in: tableView)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -960,7 +963,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 }
             
         }
-        
         
         
         
