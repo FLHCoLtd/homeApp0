@@ -30,13 +30,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     //--Sense
     let targetValueMap = NSMapTable<HMCharacteristic, CellValueType>.strongToStrongObjects()
     /// A dispatch group to wait for all of the individual components of the saving process.
-    
     let newRoomSetGroup = DispatchGroup()
     let saveActionSetGroup = DispatchGroup()
     let saveAccessoryGroup = DispatchGroup()
     let removeActionGroup = DispatchGroup()
     var saveError: Error?
-    //--
+    ///--
     var arrActionName = [String]()
     var arrActionSet = [HMActionSet]()
     
@@ -245,7 +244,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             updateSense(for: selectedHome)
         }
         
-        tableView.reloadData()
+//        tableView.reloadData()    //not need
         self.refreshControl.endRefreshing()
     }
     
@@ -270,7 +269,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             genSense2(for: selectedHome)
         }
         
-        tableView.reloadData()
+//      tableView.reloadData()   //not need
         self.refreshControl.endRefreshing()
     }
     
@@ -332,7 +331,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     
-    //以Accessorie去找 update
+    //以Accessorie去找: Update
     func updateSense(for home: HMHome?) {
 //        self.home = home
         //找出所有characteristics
@@ -541,7 +540,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                             self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
                                         }
                                         self.saveActionSetGroup.leave()
-                                        self.tableView.reloadData()
+//                                        self.tableView.reloadData()
                                     }
                                 }
                             }
@@ -549,7 +548,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
     }
     
-    //以service去找
+    //以Service去找
     func genSense(for home: HMHome?) {
         if let home = home {
             //把情境中所有的actionSet找出來建立一陣列列表
@@ -676,7 +675,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     let createName = acc.name
                         let ouputText = "Sense: \(createName) create ok. "
                         print (ouputText)
-                        self.tfOutput.text += ouputText+"\n"
                         
                         self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
                                              ,"home":home,"update":1])
@@ -686,24 +684,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                         
                         self.tableView.reloadData()
                     
-    
                     print("HomeKit: Update adding action: \(error.localizedDescription)")
                     self.saveError = error
                 }else{
-                   
-//                    let createName = acc.name.replacingOccurrences(of: "00", with: "")
-//                        let ouputText = "Sense: \(createName) create ok. "
-//                        print (ouputText)
-//                        self.tfOutput.text += ouputText+"\n"
-//
-//                        self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
-//                                            ,"home":home])
-//
-//                    self.searchedDataSource = self.arrData
-//                        print ("*arrData: \(self.arrData)")
-//
-//                        self.tableView.reloadData()
-                  
+                    print("* nothing")
                 }
                 self.saveActionSetGroup.leave()
             }
@@ -724,10 +708,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     self.saveError = error
                 }else{
                    
-                    let createName = acc.name.replacingOccurrences(of: "00", with: "")
+                    let createName = acc.name
                         let ouputText = "Sense: \(createName) create ok. "
                         print (ouputText)
-                        self.tfOutput.text += ouputText+"\n"
                         
                         self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet,"acc":acc
                                              ,"home":home ,"update":0])
@@ -759,16 +742,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     self.saveError = error
                 }else{
                     if let name=chara.service?.name {
-                        let createName = name.replacingOccurrences(of: "00", with: "")
+                        let createName = name
                         let ouputText = "Sense: \(createName) create ok. "
                         print (ouputText)
-                        self.tfOutput.text += ouputText+"\n"
                         
                         self.arrData.append(["name":createName,"chars":chara,"actionSet":actionSet])
                         print ("*arrData: \(self.arrData)")
-                        
-//                        self.totalCount -= 1
-//                        print ("*totalCount: \(self.totalCount)")
+
                     }
                 }
                 self.saveActionSetGroup.leave()
@@ -876,13 +856,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
-    
-    private func tableView(_ tableView: UITableView,willDisplay cell: UITableViewCell,forRowAt indexPath: IndexPath) -> UITableViewCell
+    //加入動畫
+    func tableView(_ tableView: UITableView,willDisplay cell: UITableViewCell,forRowAt indexPath: IndexPath)
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
-        //重新
-        cell.lbSenseName.restartLabel()
-        return cell
+            let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: cell.frame.height, duration: 0.3, delayFactor: 0.05)
+            let animator = Animator(animation: animation)
+            animator.animate(cell: cell, at: indexPath, in: tableView)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -900,7 +879,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         tapGesture.delegate = self
         tapGesture.numberOfTapsRequired = 1
         
-        var updateCode = -1
+        var updateCode = -1         //default
         if self.isShowSearchResult {
             if let update = filterDataList[indexPath.row]["update"] {
                 updateCode = update as! Int
@@ -913,7 +892,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if updateCode == 0 {
             cell.imgSense.image = UIImage(named: "img_homeSense_new")       //new , had check sign
         }else if updateCode == 1{
-            cell.imgSense.image = UIImage(named: "img_homeSense")             //old process
+            cell.imgSense.image = UIImage(named: "img_homeSense")           //old process
         }else{
             cell.imgSense.image = UIImage(named: "img_homeSense")      //other
         }
