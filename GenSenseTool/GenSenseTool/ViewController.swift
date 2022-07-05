@@ -144,7 +144,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         print ("* reloadScan:\(appDelegate.mySaveType)")
         if let typeString = appDelegate.mySaveType {
             print ("* typeString=\(typeString)")
-            if typeString == "SCAN" {
+            if typeString == ShortcutIdentifier.Scan.type {
                perform(#selector(tapAdd), with: nil, afterDelay:1)
             }
         }
@@ -166,7 +166,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(reloadScan), name: .init(rawValue: "SCAN"), object: nil)
-        if ((appDelegate.mySaveType?.contains("SCAN")) != nil){
+    
+        if ( appDelegate.mySaveType == ShortcutIdentifier.Scan.type){
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(recheckAction), userInfo: nil, repeats: true)
         }else{
             print ("* appDelegate.mySaveType=\(appDelegate.mySaveType)")

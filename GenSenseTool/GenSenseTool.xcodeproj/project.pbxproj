@@ -10,6 +10,7 @@
 		1454154039CEB89FDF4E0307 /* libPods-GenSenseTool-GenSenseToolUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 743716AFDAFE27A83BE550C6 /* libPods-GenSenseTool-GenSenseToolUITests.a */; };
 		ED0F0372A124D662AA22AF05 /* libPods-GenSenseToolTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 85235B3F9A2083C0B2B125B2 /* libPods-GenSenseToolTests.a */; };
 		F328B73F9FA4D5105259D753 /* libPods-GenSenseTool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACA856FD46018851A4217F88 /* libPods-GenSenseTool.a */; };
+		FA010B0F28742BDD00CE8281 /* PublicEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA010B0E28742BDD00CE8281 /* PublicEnum.swift */; };
 		FAAB4D6D286BF4980026A056 /* UIView+blink.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB4D6C286BF4980026A056 /* UIView+blink.swift */; };
 		FAAB4D72286C245A0026A056 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB4D6F286C245A0026A056 /* Animator.swift */; };
 		FAAB4D73286C245A0026A056 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB4D70286C245A0026A056 /* Animations.swift */; };
@@ -73,6 +74,7 @@
 		ACA856FD46018851A4217F88 /* libPods-GenSenseTool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GenSenseTool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE264CF3401A63183B7C86DB /* Pods-GenSClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSClip.release.xcconfig"; path = "Target Support Files/Pods-GenSClip/Pods-GenSClip.release.xcconfig"; sourceTree = "<group>"; };
 		C90A434C932256239F14A4EA /* Pods-GenSClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GenSClip.debug.xcconfig"; path = "Target Support Files/Pods-GenSClip/Pods-GenSClip.debug.xcconfig"; sourceTree = "<group>"; };
+		FA010B0E28742BDD00CE8281 /* PublicEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicEnum.swift; sourceTree = "<group>"; };
 		FA7A868A28473FB1002C020D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA7A868C28473FB1002C020D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FA7A868E28473FB1002C020D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		FAB3877D28280725008C6009 /* GenSenseTool */ = {
 			isa = PBXGroup;
 			children = (
+				FA010B0E28742BDD00CE8281 /* PublicEnum.swift */,
 				FAAB4D6E286C240C0026A056 /* TableAnimation */,
 				FAAB4D6C286BF4980026A056 /* UIView+blink.swift */,
 				FAD1D74F28363D8D0097276B /* Cubic_11_1.010_R.ttf */,
@@ -461,6 +464,7 @@
 				FAAB4D72286C245A0026A056 /* Animator.swift in Sources */,
 				FAAB4D73286C245A0026A056 /* Animations.swift in Sources */,
 				FAB3878128280725008C6009 /* SceneDelegate.swift in Sources */,
+				FA010B0F28742BDD00CE8281 /* PublicEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +661,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GenSenseTool/GenSenseTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GenSenseTool/Info.plist;
@@ -691,7 +695,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = GenSenseTool/GenSenseTool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GenSenseTool/Info.plist;
