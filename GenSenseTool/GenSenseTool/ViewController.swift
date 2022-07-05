@@ -126,13 +126,52 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      }
     //--
     
+    override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(animated)
+           timer.invalidate()
+    }
+    
     override  func viewDidAppear(_ animated: Bool) {
            super.viewDidAppear(animated)
            MarqueeLabel.controllerViewDidAppear(self)
        }
     
+    override  func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+     
+    @objc func reloadScan(){
+        print ("* reloadScan:\(appDelegate.mySaveType)")
+        if let typeString = appDelegate.mySaveType {
+            print ("* typeString=\(typeString)")
+            if typeString == "SCAN" {
+               perform(#selector(tapAdd), with: nil, afterDelay:1)
+            }
+        }
+    }
+    
+    var timer = Timer()
+    var checkHomeReady = false
+    
+    @objc func recheckAction() {
+        print("* waiting...")
+        if checkHomeReady {
+            print("* OK...")
+            tapAdd()
+            timer.invalidate()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadScan), name: .init(rawValue: "SCAN"), object: nil)
+        if ((appDelegate.mySaveType?.contains("SCAN")) != nil){
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(recheckAction), userInfo: nil, repeats: true)
+        }else{
+            print ("* appDelegate.mySaveType=\(appDelegate.mySaveType)")
+        }
+        
         homeManager.delegate = self
         tfOutput.text = ""
         tfOutput.isEditable = false
@@ -1772,8 +1811,11 @@ extension ViewController: HMHomeManagerDelegate {
         print ("* read home:\(home1)")
         genSense2(for: home1)
         print ("* findcharacteristics=\(findcharacteristics)")
+        
       }
-      
+      if manager.homes.count>0 {
+          checkHomeReady = true
+      }
   }
 }
 
@@ -1796,4 +1838,10 @@ extension HMAccessory {
       .flatMap { $0.characteristics }
       .first { $0.metadata?.format == characteristicType }
   }
+}
+
+extension UIViewController {
+    var appDelegate: AppDelegate {
+    return UIApplication.shared.delegate as! AppDelegate
+   }
 }
