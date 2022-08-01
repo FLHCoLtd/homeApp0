@@ -20,6 +20,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var pgProcess: UIProgressView!
     
     var homes = [HMHome]()
+    var mthomes = [HMMatterHome]()
     let homeManager = HMHomeManager()
     //--
     var home: HMHome?
@@ -284,7 +285,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             updateSense(for: selectedHome)
         }
         
-//        tableView.reloadData()    //not need
+        tableView.reloadData()    //Had need
         self.refreshControl.endRefreshing()
     }
     
@@ -309,7 +310,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             genSense2(for: selectedHome)
         }
         
-//      tableView.reloadData()   //not need
+        tableView.reloadData()   //had need
         self.refreshControl.endRefreshing()
     }
     
@@ -380,6 +381,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         //把情境中所有的actionSet找出來建立一陣列列表
         getActionsArray(home:home!)
+        
+        print ("*-- arrActionName:\(arrActionName)")
+        
         for accessorie in homeAccessories {
             print ("*- accessorie :\(accessorie)")
             print ("*- accessorie name:\(accessorie.name)")
@@ -396,12 +400,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 //找尋特定關鍵定條件
                 if accessorie.manufacturer == manufacturerKeyWord && accessorie.model == modelKeyWord
                 {
-//                    if !arrActionName.contains(accessorie.name) {
                         findcharacteristics.append(accsChara)
                         findAccessorys.append(accessorie)
                         findHomes.append(home)
                         totalCount+=1
-//                    }
                 }
             }
         }
@@ -415,7 +417,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     let accessoryName = findAccessorys[i].name
                     var createSenseName = accessoryName
 
-                            //建立判別情境是否有的旗標
+//                            //建立判別情境是否有的旗標
                             if arrActionName.contains(createSenseName) {
                                 print("*** Sense: \(createSenseName) had. ***")
                                 print("*** arrActionSet: \(arrActionSet) had. ***")
@@ -436,36 +438,36 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                 if findHomes[i] == home {
                                    var foundRoomPattern = false
                                    var retrimString = ""
-                                   for selectroom in home.rooms
-                                   {
-                                       retrimString=selectroom.name
-                                       //Match  XXXROOM Pattern 找有同房間的關鍵字
-                                       if accessoryName.contains(selectroom.name+" ")
-                                       {
-                                           // Accessory裝置設定到指定房間中
-                                           self.saveAccessoryGroup.enter()
-                                           findHomes[i]!.assignAccessory(findAccessorys[i], to: selectroom) { error in
-                                               if let error = error {
-                                                     print ("error: \(error)")
-                                   //                self.displayError(error)
-                                   //                self.didEncounterError = true
-                                               }
-                                               self.saveAccessoryGroup.leave()
-                                           }
-                                           self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
-                                            //
-                                           }
-                                           foundRoomPattern=true
-                                         break
-                                       }
-                                       
-                                   }
+//                                   for selectroom in home.rooms
+//                                   {
+//                                       retrimString=selectroom.name
+//                                       //Match  XXXROOM Pattern 找有同房間的關鍵字
+//                                       if accessoryName.contains(selectroom.name+" ")
+//                                       {
+//                                           // Accessory裝置設定到指定房間中
+//                                           self.saveAccessoryGroup.enter()
+//                                           findHomes[i]!.assignAccessory(findAccessorys[i], to: selectroom) { error in
+//                                               if let error = error {
+//                                                     print ("error: \(error)")
+//                                   //                self.displayError(error)
+//                                   //                self.didEncounterError = true
+//                                               }
+//                                               self.saveAccessoryGroup.leave()
+//                                           }
+//                                           self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+//                                            //
+//                                           }
+//                                           foundRoomPattern=true
+//                                         break
+//                                       }
+//
+//                                   }
                                     
-                                    // Accessory裝置改名
-                                    if foundRoomPattern {
-                                        createSenseName = accessoryName.replacingOccurrences(of:retrimString+" ", with: "")
-                                        self.updateName2(createSenseName, forAccessory: self.findAccessorys[i])
-                                    }
+//                                    // Accessory裝置改名
+//                                    if foundRoomPattern {
+//                                        createSenseName = accessoryName.replacingOccurrences(of:retrimString+" ", with: "")
+//                                        self.updateName2(createSenseName, forAccessory: self.findAccessorys[i])
+//                                    }
 
                                     // 建立相對應情境
                                     home.addActionSet(withName: createSenseName) { [self] actionSet, error in
@@ -495,6 +497,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         //把情境中所有的actionSet找出來建立一陣列列表
         getActionsArray(home:home!)
+        
+        
+        
+        print ("*-- arrActionName:\(arrActionName)")
+        
         for accessorie in homeAccessories {
             print ("*- accessorie :\(accessorie)")
             print ("*- accessorie name:\(accessorie.name)")
@@ -580,7 +587,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                             self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
                                         }
                                         self.saveActionSetGroup.leave()
-//                                        self.tableView.reloadData()
+                                        self.tableView.reloadData()
                                     }
                                 }
                             }
@@ -866,13 +873,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                    animateScaleIn(desiredView: popView)
                }
            }
-           //閃動
-           tableView.cellForRow(at: indexPath)?.blink()
+          
        }
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        lbNoHad.isHidden = (arrData.count > 0)
+        lbNoHad.isHidden = arrData.count != 0
+//        lbNoHad.isHidden = (arrData.count > 0)    remove animation
         
         searchController.searchBar.isHidden = !lbNoHad.isHidden
         
@@ -899,13 +906,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
     }
     
-    //加入動畫
-    func tableView(_ tableView: UITableView,willDisplay cell: UITableViewCell,forRowAt indexPath: IndexPath)
-    {
-        let animation = AnimationFactory.makeMoveUpWithFade(rowHeight: cell.frame.height, duration: 0.1, delayFactor: 0.03)
-        let animator = Animator(animation: animation)
-        animator.animate(cell: cell, at: indexPath, in: tableView)
-    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
@@ -1806,6 +1806,20 @@ extension ViewController: HMHomeManagerDelegate {
     addHomes(manager.homes)
       totalCount = 0
       badgeNumber = 0
+      
+      let hadMatterhomes = mthomes.map{home in
+          HMMatterHome(uuid: home.uuid, name: home.name)
+      }
+      
+      let topology = HMMatterTopology(homes: hadMatterhomes)
+      
+      let setupManger = HMAccessorySetupManager()
+      
+      let mtHome:HMMatterHome?
+      home?.addAndSetupAccessories(completionHandler: { err in
+          
+      })
+      
       for home1 in manager.homes {
         self.home = home1
         print ("(2)")
