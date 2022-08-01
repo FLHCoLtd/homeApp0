@@ -907,6 +907,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     
+    private func tableView(_ tableView: UITableView,willDisplay cell: UITableViewCell,forRowAt indexPath: IndexPath) -> UITableViewCell
+     {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
+        //重新
+        cell.lbSenseName.restartLabel()
+        return cell
+     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SenseTableViewCell
@@ -1806,19 +1814,6 @@ extension ViewController: HMHomeManagerDelegate {
     addHomes(manager.homes)
       totalCount = 0
       badgeNumber = 0
-      
-      let hadMatterhomes = mthomes.map{home in
-          HMMatterHome(uuid: home.uuid, name: home.name)
-      }
-      
-      let topology = HMMatterTopology(homes: hadMatterhomes)
-      
-      let setupManger = HMAccessorySetupManager()
-      
-      let mtHome:HMMatterHome?
-      home?.addAndSetupAccessories(completionHandler: { err in
-          
-      })
       
       for home1 in manager.homes {
         self.home = home1
