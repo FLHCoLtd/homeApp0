@@ -539,7 +539,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
 //            print ("ALL done")
 //            self.lbNoHad.text = ""
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+//            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
         
         if let home = home {
@@ -600,6 +600,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                             print("HomeKit: Error creating action set: \(error.localizedDescription)")
                                         }
                                         else {
+                                            self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+                                                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                                            }
                                             self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
                                         }
                                         self.saveActionSetGroup.leave()
@@ -768,6 +771,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         //這邊自己組裝
         let a = HMCharacteristicWriteAction(characteristic: chara, targetValue: 1 as NSCopying)
 
+     
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            
             saveActionSetGroup.enter()
             addAction(a, toActionSet: actionSet) { error in
                 if let error = error {
@@ -792,10 +798,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                   
                 }
                 self.saveActionSetGroup.leave()
-                
-//                self.saveActionSetGroup.notify(queue: DispatchQueue.main){
+             
+                self.saveActionSetGroup.notify(queue: DispatchQueue.main){
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
 //                    self.tableView.reloadData()
-//                }
+                }
             }
     }
     
