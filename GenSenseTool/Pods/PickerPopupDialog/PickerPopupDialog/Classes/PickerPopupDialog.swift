@@ -102,20 +102,20 @@ public class PickerPopupDialog: UIView,UIPickerViewDataSource, UIPickerViewDeleg
         dialogContainer.addSubview(lineView)
         
         // Button
-        let buttonWidth = dialogContainer.bounds.size.width / 2
+        let buttonWidth = dialogContainer.bounds.size.width 
         
-        self.cancelButton = UIButton(type: UIButtonType.custom) as UIButton
-        self.cancelButton.frame = CGRect(x: 0, y: dialogContainer.bounds.size.height - buttonHeight, width: buttonWidth, height: buttonHeight)
-        self.cancelButton.setTitleColor(cancelButtonColor, for: UIControlState())
-        self.cancelButton.setTitleColor(cancelButtonColor, for: UIControlState.highlighted)
-        self.cancelButton.titleLabel!.font =  cancelButtonFont
-        self.cancelButton.layer.cornerRadius = 7
-        self.cancelButton.addTarget(self, action: #selector(PickerPopupDialog.clickButton(_:)), for: UIControlEvents.touchUpInside)
-        dialogContainer.addSubview(self.cancelButton)
+//        self.cancelButton = UIButton(type: UIButtonType.custom) as UIButton
+//        self.cancelButton.frame = CGRect(x: 0, y: dialogContainer.bounds.size.height - buttonHeight, width: buttonWidth, height: buttonHeight)
+//        self.cancelButton.setTitleColor(cancelButtonColor, for: UIControlState())
+//        self.cancelButton.setTitleColor(cancelButtonColor, for: UIControlState.highlighted)
+//        self.cancelButton.titleLabel!.font =  cancelButtonFont
+//        self.cancelButton.layer.cornerRadius = 7
+//        self.cancelButton.addTarget(self, action: #selector(PickerPopupDialog.clickButton(_:)), for: UIControlEvents.touchUpInside)
+//        dialogContainer.addSubview(self.cancelButton)
         
         self.doneButton = UIButton(type: UIButtonType.custom) as UIButton
         self.doneButton.tag = doneButtonTag
-        self.doneButton.frame = CGRect(x: buttonWidth, y: dialogContainer.bounds.size.height - buttonHeight, width: buttonWidth, height: buttonHeight)
+        self.doneButton.frame = CGRect(x: 0, y: dialogContainer.bounds.size.height - buttonHeight, width: buttonWidth, height: buttonHeight)
         self.doneButton.setTitleColor(doneButtonColor, for: UIControlState())
         self.doneButton.setTitleColor(doneButtonColor, for: UIControlState.highlighted)
         self.doneButton.titleLabel!.font = doneButtonFont
@@ -124,7 +124,7 @@ public class PickerPopupDialog: UIView,UIPickerViewDataSource, UIPickerViewDeleg
         dialogContainer.addSubview(self.doneButton)
         
         self.doneButton.setTitle("OK", for: UIControlState())
-        self.cancelButton.setTitle("Cancel", for: UIControlState())
+//        self.cancelButton.setTitle("Cancel", for: UIControlState())
         
         return dialogContainer
     }
@@ -152,7 +152,7 @@ public class PickerPopupDialog: UIView,UIPickerViewDataSource, UIPickerViewDeleg
         
         self.titleLabel.text = title
         self.doneButton.setTitle(doneButtonTitle, for: UIControlState())
-        self.cancelButton.setTitle(cancelButtonTitle, for: UIControlState())
+//        self.cancelButton.setTitle(cancelButtonTitle, for: UIControlState())
         self.callback = callback
         
         UIApplication.shared.windows.first!.addSubview(self)

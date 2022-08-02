@@ -27,15 +27,9 @@
                             <tableView clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="a3F-Sn-wv7">
                                 <rect key="frame" x="0.0" y="50.5" width="375" height="554.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <progressView key="tableHeaderView" opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" verticalHuggingPriority="750" id="VZ9-Tj-zCz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="4"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="tintColor" systemColor="systemGray5Color"/>
-                                    <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.5"/>
-                                </progressView>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="110" id="Byr-3t-Yb5" customClass="SenseTableViewCell" customModule="GenSenseTool" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="48.5" width="375" height="110"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Byr-3t-Yb5" id="by1-dn-fvn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
@@ -191,6 +185,14 @@
                                     <action selector="tapAdd" destination="XYg-t6-RYg" eventType="touchUpInside" id="jzB-Yg-0DL"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-N5-KXK">
+                                <rect key="frame" x="0.0" y="66" width="375" height="1"/>
+                                <color key="tintColor" red="0.43921568630000002" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.69999999999999996"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="75R-f0-NqC"/>
+                                </constraints>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dSQ-aS-Pqz"/>
                         <color key="backgroundColor" red="0.76862752440000004" green="0.80000001190000003" blue="0.88235294819999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -202,11 +204,13 @@
                             <constraint firstAttribute="bottom" secondItem="h0s-cI-tnd" secondAttribute="bottom" id="BJE-t2-SxO"/>
                             <constraint firstItem="bqV-Ws-2Ux" firstAttribute="centerY" secondItem="xux-Qx-s62" secondAttribute="centerY" id="Cmv-jC-g4d"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Ag3-Y3-qmz" secondAttribute="trailing" constant="20" id="Hhv-s5-IhO"/>
+                            <constraint firstItem="F4D-N5-KXK" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" id="Jm6-JO-cKg"/>
                             <constraint firstItem="a3F-Sn-wv7" firstAttribute="top" secondItem="Zvq-05-r5l" secondAttribute="bottom" constant="8" symbolic="YES" id="NUw-Fp-4Rw"/>
                             <constraint firstItem="VGS-y6-9mG" firstAttribute="top" secondItem="dSQ-aS-Pqz" secondAttribute="top" constant="9" id="Rdg-sX-sWB"/>
                             <constraint firstItem="bqV-Ws-2Ux" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="TcJ-Oq-YMX"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="a3F-Sn-wv7" secondAttribute="trailing" id="Tjy-qs-uU0"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="Uwh-a4-Frv"/>
+                            <constraint firstItem="F4D-N5-KXK" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" constant="66" id="V09-OO-JoT"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="16" id="WcU-KO-vvQ"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="h0s-cI-tnd" secondAttribute="trailing" id="YCb-6c-zb0"/>
                             <constraint firstItem="h0s-cI-tnd" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" id="YIC-aA-zo6"/>
@@ -216,6 +220,7 @@
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="top" secondItem="a3F-Sn-wv7" secondAttribute="bottom" constant="-2" id="kRh-Sb-MJJ"/>
                             <constraint firstItem="JIM-74-Tg1" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="oQo-rf-EfG"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="pHr-mJ-bVb" secondAttribute="trailing" constant="16" id="pYI-zB-27h"/>
+                            <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="F4D-N5-KXK" secondAttribute="trailing" id="rR0-tF-b9z"/>
                             <constraint firstItem="h0s-cI-tnd" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" id="rVd-hN-sq3"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="Zvq-05-r5l" secondAttribute="trailing" constant="20" id="uIE-gJ-fNv"/>
                             <constraint firstItem="Zvq-05-r5l" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="20" id="w3B-Se-UYI"/>
@@ -226,7 +231,7 @@
                         <outlet property="btnOpenHomeApp" destination="Ag3-Y3-qmz" id="fdd-PS-7pc"/>
                         <outlet property="lbNoHad" destination="bqV-Ws-2Ux" id="0ad-PQ-V7k"/>
                         <outlet property="lbTitle" destination="Zvq-05-r5l" id="pE4-OM-u1M"/>
-                        <outlet property="pgProcess" destination="VZ9-Tj-zCz" id="YPe-Hx-Qmu"/>
+                        <outlet property="pgProcess" destination="F4D-N5-KXK" id="YMX-ld-G7l"/>
                         <outlet property="popView" destination="Irh-HL-PHC" id="3yu-eO-L36"/>
                         <outlet property="tableView" destination="a3F-Sn-wv7" id="tM9-nf-5Hb"/>
                         <outlet property="tfOutput" destination="pHr-mJ-bVb" id="ulc-jL-fNZ"/>
@@ -332,9 +337,6 @@
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemGroupedBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -30,7 +30,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var aAction: HMAction?
     //--Sense
     let targetValueMap = NSMapTable<HMCharacteristic, CellValueType>.strongToStrongObjects()
-    /// A dispatch group to wait for all of the individual components of the saving process.
+    // A dispatch group to wait for all of the individual components of the saving process.
+    let scanAccSetGroup = DispatchGroup()
+    let selectHomeSetGroup2 = DispatchGroup()
+    let selectHomeSetGroup = DispatchGroup()
     let newRoomSetGroup = DispatchGroup()
     let saveActionSetGroup = DispatchGroup()
     let saveAccessoryGroup = DispatchGroup()
@@ -502,6 +505,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         print ("*-- arrActionName:\(arrActionName)")
         
+        scanAccSetGroup.enter()
         for accessorie in homeAccessories {
             print ("*- accessorie :\(accessorie)")
             print ("*- accessorie name:\(accessorie.name)")
@@ -526,9 +530,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                     }
                 }
             }
+           
         }
+        self.scanAccSetGroup.leave()
         
         totalCount = findAccessorys.count
+    
+        self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
+//            print ("ALL done")
+//            self.lbNoHad.text = ""
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
         
         if let home = home {
             //我們要的Switch
@@ -536,13 +548,15 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                 for  (i,chara) in findcharacteristics.enumerated() {
                     let accessoryName = findAccessorys[i].name
                     var createSenseName = accessoryName
-
+                    
                             //建立判別情境是否有的旗標
                             if arrActionName.contains(createSenseName) {
                                 print("*** Sense: \(createSenseName) had. ***")
                             }else{
-                                print("*** \(createSenseName) had not. ***")
-                                
+                                print("*** \(createSenseName) had not. ***(2)")
+                                self.lbNoHad.text = ""
+                                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
                                 saveActionSetGroup.enter()
                                 if findHomes[i] == home {
                                    var foundRoomPattern = false
@@ -561,6 +575,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                    //                self.displayError(error)
                                    //                self.didEncounterError = true
                                                }
+
                                                self.saveAccessoryGroup.leave()
                                            }
                                            self.saveAccessoryGroup.notify(queue: DispatchQueue.main){
@@ -579,6 +594,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                     }
 
                                     // 建立相對應情境
+
                                     home.addActionSet(withName: createSenseName) { [self] actionSet, error in
                                         if let error = error {
                                             print("HomeKit: Error creating action set: \(error.localizedDescription)")
@@ -587,11 +603,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                                             self.saveActionSet2(actionSet!, chara: chara!,acc: self.findAccessorys[i],home:home)
                                         }
                                         self.saveActionSetGroup.leave()
+
                                         self.tableView.reloadData()
                                     }
                                 }
                             }
                 }
+            
+            self.saveActionSetGroup.notify(queue: DispatchQueue.main){
+                print ("ALL done: saveActionSetGroup")
+                self.lbNoHad.text = ""
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
         }
     }
     
@@ -890,12 +913,20 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         if arrData.count > 0{
             tableView.tableHeaderView?.isHidden = false
             tfOutput.isHidden = false
-            tfOutput.text = "創建了共\(arrData.count)組情境"
+            tfOutput.text = "目前建立\(arrData.count)組情境"
+            if totalCount>0 {
+                pgProcess.progress = Float(arrData.count) / Float(totalCount)
+            }else{
+                pgProcess.progress = 0.0
+            }
+//            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }else{
             tfOutput.isHidden = true
         }
         
-        
+        if arrData.count == 0 {
+            pgProcess.progress = 0.0
+        }
         
         if self.isShowSearchResult {
             // 若是有查詢結果則顯示查詢結果集合裡的資料
@@ -1658,11 +1689,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     var selectedHome:HMHome?
 @objc func tapChangeHome() {
-         
+    selectHomeSetGroup.enter()
            for home in homeManager.homes {
                arrHomePickerDataSource.append((home,home.name))
            }
-           arrHomePickerDataSource.append((Optional<HMHome>.none,"(All)"))  // nil , "家"
+//           arrHomePickerDataSource.append((Optional<HMHome>.none,"(All)"))  // nil , "家"
     
            self.pickerView.setDataSource(self.arrHomePickerDataSource)
            self.pickerView.reloadAll()
@@ -1685,7 +1716,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
                self.reloadEventTableView()                          //normal refresh
                
            }
-       
+    selectHomeSetGroup.leave()
                //close picker window
                self.dismiss(animated: true, completion: {
                    self.arrHomePickerDataSource.removeAll()
@@ -1811,18 +1842,36 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
 //更新完抓到所有的home ,first 
 extension ViewController: HMHomeManagerDelegate {
   func homeManagerDidUpdateHomes(_ manager: HMHomeManager) {
+      
+    DispatchQueue.main.async(execute: {
+      UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    })
+      
+    if (selectedHome == nil) {
+        tapChangeHome()
+    }
+
     addHomes(manager.homes)
       totalCount = 0
       badgeNumber = 0
       
-      for home1 in manager.homes {
-        self.home = home1
-        print ("(2)")
-        print ("* read home:\(home1)")
-        genSense2(for: home1)
-        print ("* findcharacteristics=\(findcharacteristics)")
-        
-      }
+      
+//      let cast = ["(All)", "Generate Scene Tool"]         //check status unset String
+//      let checkTitlehadAll = cast.contains(lbTitle.text!)
+//      if checkTitlehadAll {                         //all
+//          selectHomeSetGroup2.enter()
+//          for home1 in manager.homes {
+//            self.home = home1
+//            print ("(2)")
+//            print ("* read home:\(home1)")
+//            genSense2(for: home1)
+//            print ("* findcharacteristics=\(findcharacteristics)")
+//          }
+//          self.selectHomeSetGroup2.leave()
+//      }else{
+          genSense2(for: selectedHome)              //single
+//      }
+      
       if manager.homes.count>0 {
           checkHomeReady = true
       }
