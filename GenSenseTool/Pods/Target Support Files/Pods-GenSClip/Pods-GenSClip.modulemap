@@ -1,6 +1,0 @@
-module Pods_GenSClip {
-  umbrella header "Pods-GenSClip-umbrella.h"
-
-  export *
-  module * { export * }
-}

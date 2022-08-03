@@ -185,13 +185,14 @@
                                     <action selector="tapAdd" destination="XYg-t6-RYg" eventType="touchUpInside" id="jzB-Yg-0DL"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-N5-KXK">
+                            <progressView opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-N5-KXK" customClass="GradientProgressBar" customModule="GradientProgress">
                                 <rect key="frame" x="0.0" y="66" width="375" height="1"/>
                                 <color key="tintColor" red="0.43921568630000002" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.69999999999999996"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="75R-f0-NqC"/>
                                 </constraints>
+                                <color key="progressTintColor" systemColor="systemBrownColor"/>
                             </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dSQ-aS-Pqz"/>
@@ -334,6 +335,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBrownColor">
+            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray3Color">
             <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

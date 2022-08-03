@@ -8,6 +8,10 @@ import UIKit
 import HomeKit
 import PickerPopupDialog
 import MarqueeLabel
+import GradientProgress
+import GradientLoadingBar
+
+
 typealias CellValueType = NSCopying
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchResultsUpdating, UISearchBarDelegate, UIGestureRecognizerDelegate,HMHomeDelegate  {
@@ -17,7 +21,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var btnOpenHomeApp: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var lbNoHad: UILabel!
-    @IBOutlet weak var pgProcess: UIProgressView!
+    @IBOutlet weak var pgProcess: GradientProgressBar!
     
     var homes = [HMHome]()
     var mthomes = [HMMatterHome]()
@@ -269,6 +273,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     //刪除來的原來的已有的重覆情境後，等在重新建立產生
     @objc func deletereloadEventTableView() {
+
+     //網路在忙不一直重刷
+       if UIApplication.shared.isNetworkActivityIndicatorVisible
+        {
+           return
+        }
         print("* deletereloadEventTableView")
         clearVar()
         addHomes(homeManager.homes)
@@ -924,7 +934,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             if totalCount>0 {
                 pgProcess.progress = Float(arrData.count) / Float(totalCount)
             }else{
-                pgProcess.progress = 0.0
+                pgProcess.gradientColors = [UIColor.yellow.cgColor, UIColor.black.cgColor]
+                pgProcess.setProgress(1.0, animated: true)
+//                pgProcess.progress = 0.0
             }
 //            UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }else{

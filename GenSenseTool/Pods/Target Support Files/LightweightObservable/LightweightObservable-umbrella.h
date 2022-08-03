@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_GenSClipVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_GenSClipVersionString[];
+FOUNDATION_EXPORT double LightweightObservableVersionNumber;
+FOUNDATION_EXPORT const unsigned char LightweightObservableVersionString[];
 

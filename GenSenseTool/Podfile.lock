@@ -1,20 +1,32 @@
 PODS:
+  - GradientLoadingBar (2.3.1):
+    - LightweightObservable (~> 2.1)
+  - GradientProgress (1.0)
+  - LightweightObservable (2.2.1)
   - MarqueeLabel (4.3.0)
   - PickerPopupDialog (0.1.5)
 
 DEPENDENCIES:
+  - GradientLoadingBar (~> 2.0)
+  - GradientProgress
   - MarqueeLabel
   - PickerPopupDialog
 
 SPEC REPOS:
   trunk:
+    - GradientLoadingBar
+    - GradientProgress
+    - LightweightObservable
     - MarqueeLabel
     - PickerPopupDialog
 
 SPEC CHECKSUMS:
+  GradientLoadingBar: 86d26001466ce8ad44262d9b83fb9cdf6d60623c
+  GradientProgress: ee9c47443c80059b0367467d267b2dd9572de5e2
+  LightweightObservable: 64d0f623a4eec857e2680476380a08f3117a1a92
   MarqueeLabel: 02f5ac8fd6877c94564556cb93fa86c70c08baeb
   PickerPopupDialog: 3a9a3a0545ca3fd9a056db039fda04e63b0fc4cb
 
-PODFILE CHECKSUM: df625f6415e8c4ae09b63bf2731d7307d75e1dcf
+PODFILE CHECKSUM: f27ed7b4d461a4097acd280a56364359dc6eee45
 
 COCOAPODS: 1.11.2
