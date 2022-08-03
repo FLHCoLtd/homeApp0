@@ -185,8 +185,8 @@
                                     <action selector="tapAdd" destination="XYg-t6-RYg" eventType="touchUpInside" id="jzB-Yg-0DL"/>
                                 </connections>
                             </button>
-                            <progressView opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-N5-KXK" customClass="GradientProgressBar" customModule="GradientProgress">
-                                <rect key="frame" x="0.0" y="66" width="375" height="1"/>
+                            <progressView opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="F4D-N5-KXK" customClass="GradientProgressBar" customModule="GradientProgress">
+                                <rect key="frame" x="0.0" y="67.5" width="375" height="1.5"/>
                                 <color key="tintColor" red="0.43921568630000002" green="0.42745098040000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.69999999999999996"/>
                                 <constraints>
@@ -211,7 +211,7 @@
                             <constraint firstItem="bqV-Ws-2Ux" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="TcJ-Oq-YMX"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="a3F-Sn-wv7" secondAttribute="trailing" id="Tjy-qs-uU0"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="centerX" secondItem="xux-Qx-s62" secondAttribute="centerX" id="Uwh-a4-Frv"/>
-                            <constraint firstItem="F4D-N5-KXK" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" constant="66" id="V09-OO-JoT"/>
+                            <constraint firstItem="F4D-N5-KXK" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" constant="68" id="V09-OO-JoT"/>
                             <constraint firstItem="pHr-mJ-bVb" firstAttribute="leading" secondItem="dSQ-aS-Pqz" secondAttribute="leading" constant="16" id="WcU-KO-vvQ"/>
                             <constraint firstItem="dSQ-aS-Pqz" firstAttribute="trailing" secondItem="h0s-cI-tnd" secondAttribute="trailing" id="YCb-6c-zb0"/>
                             <constraint firstItem="h0s-cI-tnd" firstAttribute="top" secondItem="xux-Qx-s62" secondAttribute="top" id="YIC-aA-zo6"/>

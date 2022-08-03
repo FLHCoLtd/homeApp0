@@ -277,8 +277,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      //網路在忙不一直重刷
        if UIApplication.shared.isNetworkActivityIndicatorVisible
         {
+           self.badgeNumber = 0
+           self.refreshControl.endRefreshing()
            return
         }
+        
         print("* deletereloadEventTableView")
         clearVar()
         addHomes(homeManager.homes)
