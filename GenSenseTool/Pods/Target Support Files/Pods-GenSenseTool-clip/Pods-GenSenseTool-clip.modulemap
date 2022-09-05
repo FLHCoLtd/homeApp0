@@ -1,0 +1,6 @@
+module Pods_GenSenseTool_clip {
+  umbrella header "Pods-GenSenseTool-clip-umbrella.h"
+
+  export *
+  module * { export * }
+}
