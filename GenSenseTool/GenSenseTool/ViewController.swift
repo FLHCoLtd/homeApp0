@@ -10,6 +10,8 @@ import PickerPopupDialog
 import MarqueeLabel
 import GradientProgress
 
+import Matter
+import MatterSupport
 
 
 typealias CellValueType = NSCopying
@@ -24,7 +26,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var pgProcess: GradientProgressBar!
     
     var homes = [HMHome]()
-    var mthomes = [HMMatterHome]()
+  //  var mthomes = [HMMatterHome]()  //iOS16 no name
     let homeManager = HMHomeManager()
     //--
     var home: HMHome?
@@ -61,8 +63,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var findHomes = [HMHome?]()
     
     //Keyword
-    let manufacturerKeyWord = "Fibaro Scene"
-    let modelKeyWord = "Fibaro Scene"
+//    let manufacturerKeyWord = "Fibaro Scene"
+//    let modelKeyWord = "Fibaro Scene"
+    
+    //Matter
+    //目前有二種韌體
+    let manufacturerKeyWords = Set(["TEST_VENDOR","Nabu Casa"])
+    let modelKeyWords = Set(["TEST_PRODUCT","ESP32-C3-DevKitM-1 Lighting App"])
+    
     
     //--Infomation
     @IBOutlet var  blurView:UIVisualEffectView!
@@ -406,7 +414,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print ("*- accessorie manufacturer:\(accessorie.manufacturer ?? "")")
             print ("*- accessorie model:\(accessorie.model ?? "")")
             //以Switch條件
-            let accsChara = accessorie.find(serviceType: HMServiceTypeSwitch , characteristicType: HMCharacteristicMetadataFormatBool)
+            let accsChara = accessorie.find(serviceType: HMServiceTypeLightbulb , characteristicType: HMCharacteristicMetadataFormatBool)
             print ("*- accs:\(accsChara)")
             print ("*- accessorie services:\(accessorie.services)")
             print ("*-   accessorie.model:\(accessorie.model)")
@@ -414,7 +422,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print ("*----")
             if accsChara != nil{
                 //找尋特定關鍵定條件
-                if accessorie.manufacturer == manufacturerKeyWord && accessorie.model == modelKeyWord
+//                if manufacturerKeyWords.contains(accessorie.manufacturer!) && modelKeyWords.contains(accessorie.model!)
+                if accessorie.name.contains("Matter")
                 {
                         findcharacteristics.append(accsChara)
                         findAccessorys.append(accessorie)
@@ -503,7 +512,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     
-    //以Accessorie去找
+    //以Accessorie去找:修改版 
     func genSense2(for home: HMHome?) {
 //        self.home = home
 
@@ -525,7 +534,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print ("*- accessorie manufacturer:\(accessorie.manufacturer ?? "")")
             print ("*- accessorie model:\(accessorie.model ?? "")")
             //以Switch條件
-            let accsChara = accessorie.find(serviceType: HMServiceTypeSwitch , characteristicType: HMCharacteristicMetadataFormatBool)
+            let accsChara = accessorie.find(serviceType: HMServiceTypeLightbulb , characteristicType: HMCharacteristicMetadataFormatBool)
             print ("*- accs:\(accsChara)")
             print ("*- accessorie services:\(accessorie.services)")
             print ("*-   accessorie.model:\(accessorie.model)")
@@ -533,7 +542,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print ("*----")
             if accsChara != nil{
                 //找尋特定關鍵定條件
-                if accessorie.manufacturer == manufacturerKeyWord && accessorie.model == modelKeyWord
+                //                if manufacturerKeyWords.contains(accessorie.manufacturer!) && modelKeyWords.contains(accessorie.model!)
+                if accessorie.name.contains("Matter")
                 {
                     if !arrActionName.contains(accessorie.name) {
                         findcharacteristics.append(accsChara)

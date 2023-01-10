@@ -7,6 +7,7 @@ The list of accessories found in the home.
 
 import UIKit
 import HomeKit
+import MatterSupport
 
 /// - Tag: HomeView
 class HomeView: UITableViewController {
@@ -83,11 +84,21 @@ class HomeView: UITableViewController {
         }
     }
     
-    // MARK: - View Lifecycle
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        let request = MatterAddDeviceRequest(
+//            topology: .init(ecosystemName: "Acme SmartHome", homes: [
+//                .init(displayName: "Default Acme Home"),
+//            ])
+//        )
+//
+//        do {
+//            try await request.perform()
+//            print("Successfully set up a device!")
+//        } catch {
+//            print("Failed to set up a device with error: \(error)")
+//        }
         // Volunteer to handle any changes detected in the HomeKit database's list of homes.
         HomeStore.shared.homeManager.delegate = self
 
@@ -127,13 +138,32 @@ class HomeView: UITableViewController {
     
     /// Begins the search for new accessories.
     @IBAction func tapAddAccessory(_ sender: UIBarButtonItem) {
-        home?.addAndSetupAccessories { error in
-            if let error = error {
-                print(error)
-            } else {
-                // Make no assumption about changes; just reload everything.
-                self.resetDisplay(for: self.home)
+        Task { @MainActor in
+            
+
+            let request = MatterAddDeviceRequest(
+                topology: .init(ecosystemName: "Homekit Testing", homes: [
+                    .init(displayName: "Homekit Testing"),
+                ])
+            )
+            
+            do {
+                try await request.perform()
+                print("Successfully set up a device!")
+            } catch {
+                print("Failed to set up a device with error: \(error)")
             }
+            
+//            request.setupPayload(<#T##HMHome#>, didAdd: <#T##HMAccessory#>)
+            
+            //        home?.addAndSetupAccessories { error in
+            //            if let error = error {
+            //                print(error)
+            //            } else {
+            //                // Make no assumption about changes; just reload everything.
+            //                self.resetDisplay(for: self.home)
+            //            }
+            //        }
         }
     }
     
