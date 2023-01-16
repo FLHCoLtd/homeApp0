@@ -123,10 +123,12 @@ class AccessoryViewController: BaseCollectionViewController {
     collectionView.deselectItem(at: indexPath, animated: true)
 
     let accessory = accessories[indexPath.row]
-    
+ 
+     
       //HMServiceTypeLightbulb 燈泡
       //HMServiceTypeSwitch    開關
     print ("*accessory1: \(accessory)")
+    
     guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) else {
       return
     }
@@ -169,22 +171,22 @@ class AccessoryViewController: BaseCollectionViewController {
       return
     }
 
-    for accessory in homeAccessories {
-      if let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) {
-        
-          //找出Matter裝置
-//          if  accessory.name.contains("Matter"){
-              accessories.append(accessory)
-              accessory.delegate = self
-              characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-                  if error != nil {
-                      print("Something went wrong when enabling notification for a chracteristic.")
-                  }
-              })
-//          }
+      for accessory in homeAccessories {
+          if let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) {
+              
+              //找出Matter裝置
+              if  accessory.name.contains("Matter"){
+                  accessories.append(accessory)
+                  accessory.delegate = self
+                  characteristic.enableNotification(true, completionHandler: { (error) -> Void in
+                      if error != nil {
+                          print("Something went wrong when enabling notification for a chracteristic.")
+                      }
+                  })
+              }
+          }
           
       }
-    }
 
     collectionView?.reloadData()
   }
