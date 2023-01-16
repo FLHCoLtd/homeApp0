@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  GenActiontool
 //
-//  Created by alex on 2022/5/6.
+//  Created by Alex on 2022/5/6.
 //
 import UIKit
 import HomeKit

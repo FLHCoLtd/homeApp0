@@ -17,6 +17,7 @@
 		42EF773220643526000BD17B /* AccessoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EF773020643526000BD17B /* AccessoryViewController.swift */; };
 		42EF7736206435E0000BD17B /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF7735206435E0000BD17B /* HomeKit.framework */; };
 		42EF7738206438D5000BD17B /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EF7737206438D5000BD17B /* BaseCollectionViewController.swift */; };
+		FA23F81E2974EB8700C4DE03 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23F81D2974EB8700C4DE03 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		42EF7733206435E0000BD17B /* LightSwitch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LightSwitch.entitlements; sourceTree = "<group>"; };
 		42EF7735206435E0000BD17B /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		42EF7737206438D5000BD17B /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
+		FA23F81D2974EB8700C4DE03 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				4227F38B208FA04F002C55F6 /* HomeCell.swift */,
 				4227F38D208FA106002C55F6 /* AccessoryCell.swift */,
 				42EF7721206434E6000BD17B /* Main.storyboard */,
+				FA23F81D2974EB8700C4DE03 /* DetailViewController.swift */,
 				42EF7724206434E6000BD17B /* Assets.xcassets */,
 				42EF7726206434E6000BD17B /* LaunchScreen.storyboard */,
 				42EF7729206434E6000BD17B /* Info.plist */,
@@ -173,6 +176,7 @@
 				42EF773220643526000BD17B /* AccessoryViewController.swift in Sources */,
 				4227F38E208FA106002C55F6 /* AccessoryCell.swift in Sources */,
 				42EF7738206438D5000BD17B /* BaseCollectionViewController.swift in Sources */,
+				FA23F81E2974EB8700C4DE03 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,8 +321,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
 				INFOPLIST_FILE = LightSwitch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.LightSwitch00504;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.LightSwitch0821;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -333,8 +338,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
 				INFOPLIST_FILE = LightSwitch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.LightSwitch00504;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.LightSwitch0821;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

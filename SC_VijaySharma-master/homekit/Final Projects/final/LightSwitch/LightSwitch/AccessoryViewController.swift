@@ -38,12 +38,29 @@ class AccessoryViewController: BaseCollectionViewController {
   let browser = HMAccessoryBrowser()
   var discoveredAccessories = [HMAccessory]()
 
+  var passCharacteristic:HMCharacteristic?
+  var passOnoff = false
+  var passBright = 0
+    
+   
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    NotificationCenter.default.addObserver(self, selector: #selector(reloadCollectionView), name: Notification.Name("ReloadCollectionView"), object: nil)
+      
+  let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+      collectionView?.addGestureRecognizer(longPressGesture)
+      
     title = "\(home?.name ?? "") Accessories"
-    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(discoverAccessories(sender:)))
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(discoverAccessories(sender:)))
 
+
+      let scan = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanBarcode(sender:)))
+      let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(discoverAccessories(sender:)))
+      navigationItem.rightBarButtonItems = [search , scan]  //由右->往左
+      
+      
     loadAccessories()
   }
 
@@ -55,32 +72,96 @@ class AccessoryViewController: BaseCollectionViewController {
     let accessory = accessories[indexPath.row]
 
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! AccessoryCell
+      print("* accessory:\(accessory)")
 	cell.accessory = accessory
 	
     return cell
   }
 
+    
+  @objc func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+            switch gesture.state {
+            case .began:
+                guard let selectedIndexPath = collectionView?.indexPathForItem(at: gesture.location(in: collectionView)) else {
+                    break
+                }
+                //===
+                let accessory = accessories[selectedIndexPath.row]
+
+                  guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) else {
+                    return
+                  }
+                    if let _ = characteristic.value {     //安全解包
+                        let brightInt = (characteristic.value as! Int)
+                        print("brightInt=\(brightInt)")
+                        passBright = brightInt
+                     
+            //            performSegue(withIdentifier: "toDetail", sender: nil)
+                        self.passCharacteristic = characteristic
+                        characteristic.writeValue(NSNumber(value: passBright), completionHandler: { (error) -> Void in
+                            if error != nil {
+                                print("Something went wrong when attempting to update the service characteristic.")
+                            }
+                            self.collectionView?.reloadData()
+                        })
+                    }
+                collectionView?.beginInteractiveMovementForItem(at: selectedIndexPath)
+            case .changed:
+                collectionView?.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            case .ended:
+                collectionView?.endInteractiveMovement()
+               
+           performSegue(withIdentifier: "toDetail", sender: nil)
+                
+            default:
+                collectionView?.cancelInteractiveMovement()
+            }
+        }
+    
+    
   override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     collectionView.deselectItem(at: indexPath, animated: true)
 
     let accessory = accessories[indexPath.row]
-
-    guard let characteristic = accessory.find(serviceType: HMServiceTypeSwitch ,characteristicType: HMCharacteristicMetadataFormatBool) else {
+    
+      //HMServiceTypeLightbulb 燈泡
+      //HMServiceTypeSwitch    開關
+    print ("*accessory1: \(accessory)")
+    guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) else {
       return
     }
-      
-    guard let characteristic = accessory.find(serviceType: HMServiceTypeSwitch, characteristicType: HMCharacteristicMetadataFormatBool) else {
-        return
-    }
-
-    let toggleState = (characteristic.value as! Bool) ? false : true
-    
-    characteristic.writeValue(NSNumber(value: toggleState), completionHandler: { (error) -> Void in
-      if error != nil {
-        print("Something went wrong when attempting to update the service characteristic.")
+      passCharacteristic = characteristic
+      if let _ = characteristic.value {     //安全解包
+        
+          let toggleState = (characteristic.value as! Bool) ? false : true
+          passOnoff = toggleState
+          characteristic.writeValue(NSNumber(value: toggleState), completionHandler: { (error) -> Void in
+              if error != nil {
+                  print("Something went wrong when attempting to update the service characteristic.")
+              }
+              collectionView.reloadData()
+          })
       }
-      collectionView.reloadData()
-    })
+      
+//    //===
+//      guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) else {
+//        return
+//      }
+//        if let _ = characteristic.value {     //安全解包
+//            let brightInt = (characteristic.value as! Int)
+//            print("brightInt=\(brightInt)")
+//            passBright = brightInt
+//
+////            performSegue(withIdentifier: "toDetail", sender: nil)
+//            self.passCharacteristic = characteristic
+//            characteristic.writeValue(NSNumber(value: passBright), completionHandler: { (error) -> Void in
+//                if error != nil {
+//                    print("Something went wrong when attempting to update the service characteristic.")
+//                }
+//                collectionView.reloadData()
+//            })
+//        }
+      
   }
 
   private func loadAccessories() {
@@ -89,24 +170,45 @@ class AccessoryViewController: BaseCollectionViewController {
     }
 
     for accessory in homeAccessories {
-      if let characteristic = accessory.find(serviceType: HMServiceTypeSwitch, characteristicType: HMCharacteristicMetadataFormatBool) {
-        accessories.append(accessory)
-        accessory.delegate = self
-        characteristic.enableNotification(true, completionHandler: { (error) -> Void in
-          if error != nil {
-            print("Something went wrong when enabling notification for a chracteristic.")
-          }
-        })
+      if let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) {
+        
+          //找出Matter裝置
+//          if  accessory.name.contains("Matter"){
+              accessories.append(accessory)
+              accessory.delegate = self
+              characteristic.enableNotification(true, completionHandler: { (error) -> Void in
+                  if error != nil {
+                      print("Something went wrong when enabling notification for a chracteristic.")
+                  }
+              })
+//          }
+          
       }
     }
 
     collectionView?.reloadData()
   }
 
+    @objc func reloadCollectionView()
+    {
+        collectionView?.reloadData()
+    }
+    
+    @objc func scanBarcode(sender: UIBarButtonItem) {
+        home?.addAndSetupAccessories(completionHandler: { error in
+              if let error = error {
+                  print(error)
+              } else {
+                  // Make no assumption about changes; just reload everything.
+               
+              }
+          })
+      }
+    
   @objc func discoverAccessories(sender: UIBarButtonItem) {
     activityIndicator.startAnimating()
-    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
-
+//    navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+      navigationItem.rightBarButtonItems?[0] = UIBarButtonItem(customView: activityIndicator)
     discoveredAccessories.removeAll()
     browser.delegate = self
     browser.startSearchingForNewAccessories()
@@ -141,6 +243,15 @@ class AccessoryViewController: BaseCollectionViewController {
       }
     }
   }
+//第一個 view controller 中
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDetail" {
+            let secondVC = segue.destination as! DetailViewController
+            secondVC.PrevVC = self
+//            secondVC.data = "Hello, World!"
+        }
+    }
+    
 }
 
 extension AccessoryViewController: HMAccessoryDelegate {

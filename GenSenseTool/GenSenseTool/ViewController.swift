@@ -416,10 +416,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             //以Switch條件
             let accsChara = accessorie.find(serviceType: HMServiceTypeLightbulb , characteristicType: HMCharacteristicMetadataFormatBool)
             print ("*- accs:\(accsChara)")
+        
+     
             print ("*- accessorie services:\(accessorie.services)")
             print ("*-   accessorie.model:\(accessorie.model)")
-          
             print ("*----")
+            
             if accsChara != nil{
                 //找尋特定關鍵定條件
 //                if manufacturerKeyWords.contains(accessorie.manufacturer!) && modelKeyWords.contains(accessorie.model!)

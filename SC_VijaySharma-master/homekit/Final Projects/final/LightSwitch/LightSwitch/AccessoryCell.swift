@@ -44,17 +44,29 @@ class AccessoryCell: UICollectionViewCell {
 		label.text = accessory.name
 		
 		let state = getLightbulbState(accessory)
+        let stateBL = getLightbulbBrightness(accessory)
+        print ("* state:\(state)")
+        print ("* stateBL:\(stateBL)")
 		imageView.image = UIImage(named: state.rawValue)
       }
     }
   }
 	
   private func getLightbulbState(_ accessory: HMAccessory) -> LightbulbState {
-    guard let characteristic = accessory.find(serviceType: HMServiceTypeSwitch, characteristicType: HMCharacteristicMetadataFormatBool),
+      
+    guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool),
 	let value = characteristic.value as? Bool else {
 		return .off
 	}
-
 	return value ? .on : .off
   }
+    
+    private func getLightbulbBrightness(_ accessory: HMAccessory) -> Int {
+        guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicTypeBrightness),
+              let value = characteristic.value as? Int else {
+                return 0
+        }
+        return value
+    }
+
 }
