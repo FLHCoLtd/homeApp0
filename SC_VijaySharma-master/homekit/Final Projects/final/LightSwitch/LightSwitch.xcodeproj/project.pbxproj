@@ -18,6 +18,11 @@
 		42EF7736206435E0000BD17B /* HomeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42EF7735206435E0000BD17B /* HomeKit.framework */; };
 		42EF7738206438D5000BD17B /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EF7737206438D5000BD17B /* BaseCollectionViewController.swift */; };
 		FA23F81E2974EB8700C4DE03 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA23F81D2974EB8700C4DE03 /* DetailViewController.swift */; };
+		FAD8023D29764C2C007BC8A8 /* BrightnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8023829764C2C007BC8A8 /* BrightnessView.swift */; };
+		FAD8023E29764C2C007BC8A8 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8023929764C2C007BC8A8 /* ColorUtils.swift */; };
+		FAD8023F29764C2C007BC8A8 /* SwiftHSVColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8023A29764C2C007BC8A8 /* SwiftHSVColorPicker.swift */; };
+		FAD8024029764C2C007BC8A8 /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8023B29764C2C007BC8A8 /* ColorWheel.swift */; };
+		FAD8024129764C2C007BC8A8 /* SelectedColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD8023C29764C2C007BC8A8 /* SelectedColorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +40,11 @@
 		42EF7735206435E0000BD17B /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		42EF7737206438D5000BD17B /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
 		FA23F81D2974EB8700C4DE03 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		FAD8023829764C2C007BC8A8 /* BrightnessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessView.swift; sourceTree = "<group>"; };
+		FAD8023929764C2C007BC8A8 /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		FAD8023A29764C2C007BC8A8 /* SwiftHSVColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHSVColorPicker.swift; sourceTree = "<group>"; };
+		FAD8023B29764C2C007BC8A8 /* ColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheel.swift; sourceTree = "<group>"; };
+		FAD8023C29764C2C007BC8A8 /* SelectedColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedColorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +79,7 @@
 		42EF771C206434E6000BD17B /* LightSwitch */ = {
 			isa = PBXGroup;
 			children = (
+				FAD8023729764C2C007BC8A8 /* ColorPicker */,
 				42EF7733206435E0000BD17B /* LightSwitch.entitlements */,
 				42EF771D206434E6000BD17B /* AppDelegate.swift */,
 				42EF7737206438D5000BD17B /* BaseCollectionViewController.swift */,
@@ -91,6 +102,18 @@
 				42EF7735206435E0000BD17B /* HomeKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAD8023729764C2C007BC8A8 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				FAD8023829764C2C007BC8A8 /* BrightnessView.swift */,
+				FAD8023929764C2C007BC8A8 /* ColorUtils.swift */,
+				FAD8023A29764C2C007BC8A8 /* SwiftHSVColorPicker.swift */,
+				FAD8023B29764C2C007BC8A8 /* ColorWheel.swift */,
+				FAD8023C29764C2C007BC8A8 /* SelectedColorView.swift */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,11 +193,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD8023E29764C2C007BC8A8 /* ColorUtils.swift in Sources */,
 				42EF771E206434E6000BD17B /* AppDelegate.swift in Sources */,
 				42EF773120643526000BD17B /* HomeViewController.swift in Sources */,
+				FAD8023F29764C2C007BC8A8 /* SwiftHSVColorPicker.swift in Sources */,
+				FAD8024029764C2C007BC8A8 /* ColorWheel.swift in Sources */,
 				4227F38C208FA04F002C55F6 /* HomeCell.swift in Sources */,
+				FAD8023D29764C2C007BC8A8 /* BrightnessView.swift in Sources */,
 				42EF773220643526000BD17B /* AccessoryViewController.swift in Sources */,
 				4227F38E208FA106002C55F6 /* AccessoryCell.swift in Sources */,
+				FAD8024129764C2C007BC8A8 /* SelectedColorView.swift in Sources */,
 				42EF7738206438D5000BD17B /* BaseCollectionViewController.swift in Sources */,
 				FA23F81E2974EB8700C4DE03 /* DetailViewController.swift in Sources */,
 			);
@@ -252,7 +280,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -305,7 +333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -321,7 +349,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
 				INFOPLIST_FILE = LightSwitch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.LightSwitch0821;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -338,7 +366,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BMAENCBPZB;
 				INFOPLIST_FILE = LightSwitch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.LightSwitch0821;
 				PRODUCT_NAME = "$(TARGET_NAME)";

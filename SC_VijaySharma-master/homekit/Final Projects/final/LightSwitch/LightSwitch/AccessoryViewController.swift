@@ -28,6 +28,8 @@
 
 import UIKit
 import HomeKit
+import Matter
+import MatterSupport
 
 class AccessoryViewController: BaseCollectionViewController {
   let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
@@ -38,12 +40,15 @@ class AccessoryViewController: BaseCollectionViewController {
   let browser = HMAccessoryBrowser()
   var discoveredAccessories = [HMAccessory]()
 
+  var passCharacteristicH:HMCharacteristic?
+  var passCharacteristicS:HMCharacteristic?
+  var passCharacteristicB:HMCharacteristic?
   var passCharacteristic:HMCharacteristic?
   var passOnoff = false
   var passBright = 0
-    
-   
-
+  var passHue = 0
+  var passSat = 0
+  var passTemper = 0
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -95,15 +100,61 @@ class AccessoryViewController: BaseCollectionViewController {
                         let brightInt = (characteristic.value as! Int)
                         print("brightInt=\(brightInt)")
                         passBright = brightInt
-                     
-            //            performSegue(withIdentifier: "toDetail", sender: nil)
+                        self.passCharacteristicB = characteristic
+//                        characteristic.writeValue(NSNumber(value: passBright), completionHandler: { (error) -> Void in
+//                            if error != nil {
+//                                print("Something went wrong when attempting to update the service characteristic.")
+//                            }
+//                            self.collectionView?.reloadData()
+//                        })
+                    }
+                //===
+                guard let characteristic = accessory.findX(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicTypeHue) else {
+                    return
+                  }
+                    if let _ = characteristic.value {     //安全解包
+                        let HueInt = (characteristic.value as! Int)
+                        print("HueInt=\(HueInt)")
+                        passHue = HueInt
+                        self.passCharacteristicH = characteristic
+//                        characteristic.writeValue(NSNumber(value: passHue), completionHandler: { (error) -> Void in
+//                            if error != nil {
+//                                print("Something went wrong when attempting to update the service characteristic.")
+//                            }
+//                            self.collectionView?.reloadData()
+//                        })
+                    }
+                //===
+                guard let characteristic = accessory.findX(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicTypeSaturation) else {
+                    return
+                  }
+                    if let _ = characteristic.value {     //安全解包
+                        let SatInt = (characteristic.value as! Int)
+                        print("SatInt=\(SatInt)")
+                        passSat = SatInt
+                        self.passCharacteristicS = characteristic
+//                        characteristic.writeValue(NSNumber(value: passHue), completionHandler: { (error) -> Void in
+//                            if error != nil {
+//                                print("Something went wrong when attempting to update the service characteristic.")
+//                            }
+//                            self.collectionView?.reloadData()
+//                        })
+                    }
+                //===
+                guard let characteristic = accessory.findX(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicTypeColorTemperature) else {
+                    return
+                  }
+                    if let _ = characteristic.value {     //安全解包
+                        let valueInt = (characteristic.value as! Int)
+                        print("passTemper=\(valueInt)")
+                        passTemper = valueInt
                         self.passCharacteristic = characteristic
-                        characteristic.writeValue(NSNumber(value: passBright), completionHandler: { (error) -> Void in
-                            if error != nil {
-                                print("Something went wrong when attempting to update the service characteristic.")
-                            }
-                            self.collectionView?.reloadData()
-                        })
+//                        characteristic.writeValue(NSNumber(value: passHue), completionHandler: { (error) -> Void in
+//                            if error != nil {
+//                                print("Something went wrong when attempting to update the service characteristic.")
+//                            }
+//                            self.collectionView?.reloadData()
+//                        })
                     }
                 collectionView?.beginInteractiveMovementForItem(at: selectedIndexPath)
             case .changed:
@@ -196,15 +247,30 @@ class AccessoryViewController: BaseCollectionViewController {
         collectionView?.reloadData()
     }
     
-    @objc func scanBarcode(sender: UIBarButtonItem) {
-        home?.addAndSetupAccessories(completionHandler: { error in
-              if let error = error {
-                  print(error)
-              } else {
-                  // Make no assumption about changes; just reload everything.
-               
-              }
-          })
+    @objc func scanBarcode(sender: UIBarButtonItem) async {
+        
+        let request = MatterAddDeviceRequest(
+            topology: .init(ecosystemName: "Acme SmartHome", homes: [
+                .init(displayName: "Default Acme Home"),
+            ])
+        )
+    
+        // Perform the request
+        do {
+            try await request.perform()
+            print("Successfully set up a device!")
+        } catch {
+            print("Failed to set up a device with error: \(error)")
+        }
+        
+//        home?.addAndSetupAccessories(completionHandler: { error in
+//              if let error = error {
+//                  print(error)
+//              } else {
+//                  // Make no assumption about changes; just reload everything.
+//
+//              }
+//          })
       }
     
   @objc func discoverAccessories(sender: UIBarButtonItem) {
@@ -268,12 +334,25 @@ extension AccessoryViewController: HMAccessoryBrowserDelegate {
   }
 }
 
+
+
 extension HMAccessory {
+    
+  //資料內容 Find
   func find(serviceType: String, characteristicType: String) -> HMCharacteristic? {
     return services.lazy
       .filter { $0.serviceType == serviceType }
       .flatMap { $0.characteristics }
       .first { $0.metadata?.format == characteristicType }
   }
+    
+  //資料Type Find
+    func findX(serviceType: String, characteristicType: String) -> HMCharacteristic? {
+      return services.lazy
+        .filter { $0.serviceType == serviceType}
+        .flatMap { $0.characteristics }
+        .first { $0.characteristicType == characteristicType }
+    }
+    
 }
 
