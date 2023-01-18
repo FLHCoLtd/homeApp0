@@ -35,6 +35,7 @@ class AccessoryCell: UICollectionViewCell {
 	case off
   }
 
+  @IBOutlet private weak var imgMatterICON: UIImageView!
   @IBOutlet private weak var imageView: UIImageView!
   @IBOutlet private weak var label: UILabel!
 	
@@ -48,6 +49,10 @@ class AccessoryCell: UICollectionViewCell {
         print ("* state:\(state)")
         print ("* stateBL:\(stateBL)")
 		imageView.image = UIImage(named: state.rawValue)
+        if accessory.matterNodeID != nil{
+            imgMatterICON.image = UIImage(named: "matter")
+        }
+     
       }
     }
   }

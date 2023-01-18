@@ -93,6 +93,13 @@ class AccessoryViewController: BaseCollectionViewController {
                 //===
                 let accessory = accessories[selectedIndexPath.row]
 
+                  print("accessory.matterNodeID: \(accessory.matterNodeID)")
+//                accessory.MatterAddDeviceRequest
+           
+                    
+                
+                      
+ 
                   guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) else {
                     return
                   }
@@ -179,8 +186,13 @@ class AccessoryViewController: BaseCollectionViewController {
       //HMServiceTypeLightbulb 燈泡
       //HMServiceTypeSwitch    開關
     print ("*accessory1: \(accessory)")
-    
-    guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) else {
+    print("accessory.matterNodeID: \(accessory.matterNodeID)")
+//    print("accessory.matterPayload: \(accessory.matterPayload)")
+//    print("accessory.matterControllerID: \(accessory.matterControllerID)")
+    //accessory.MatterAddDeviceRequest
+ 
+          
+      guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatBool) else {
       return
     }
       passCharacteristic = characteristic
@@ -226,7 +238,7 @@ class AccessoryViewController: BaseCollectionViewController {
           if let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) {
               
               //找出Matter裝置
-              if  accessory.name.contains("Matter"){
+//              if  accessory.name.contains("Matter"){
                   accessories.append(accessory)
                   accessory.delegate = self
                   characteristic.enableNotification(true, completionHandler: { (error) -> Void in
@@ -234,7 +246,7 @@ class AccessoryViewController: BaseCollectionViewController {
                           print("Something went wrong when enabling notification for a chracteristic.")
                       }
                   })
-              }
+//              }
           }
           
       }
