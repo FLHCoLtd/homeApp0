@@ -75,11 +75,11 @@ class AccessoryViewController: BaseCollectionViewController {
 
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let accessory = accessories[indexPath.row]
-
+      
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "itemCell", for: indexPath) as! AccessoryCell
       print("* accessory:\(accessory)")
 	cell.accessory = accessory
-	
+    
     return cell
   }
 
@@ -95,9 +95,20 @@ class AccessoryViewController: BaseCollectionViewController {
 
                   print("accessory.matterNodeID: \(accessory.matterNodeID)")
 //                accessory.MatterAddDeviceRequest
-           
-                    
                 
+                
+                let identifier: NSCopying? = "\(accessory.matterNodeID!)" as NSCopying
+                let mtrControllor = MTRDeviceController.sharedController(withId: identifier, xpcConnect: { () -> NSXPCConnection in
+                    let connection = NSXPCConnection()
+                    // configure the connection
+                    
+                    return connection
+                })
+
+                
+   
+                print ("* mtrControllor \(mtrControllor)")
+               
                       
  
                   guard let characteristic = accessory.find(serviceType: HMServiceTypeLightbulb, characteristicType: HMCharacteristicMetadataFormatInt) else {

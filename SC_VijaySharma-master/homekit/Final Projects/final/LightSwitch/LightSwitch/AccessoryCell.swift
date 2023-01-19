@@ -51,7 +51,15 @@ class AccessoryCell: UICollectionViewCell {
 		imageView.image = UIImage(named: state.rawValue)
         if accessory.matterNodeID != nil{
             imgMatterICON.image = UIImage(named: "matter")
+        }else{
+            imgMatterICON.image = UIImage(named: "non-matter")
         }
+        
+          if accessory.isReachable{
+              imageView.alpha = 1.0
+          }else{
+              imageView.alpha = 0.2
+          }
      
       }
     }
