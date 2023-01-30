@@ -58,12 +58,14 @@ class AccessoryViewController: BaseCollectionViewController {
       collectionView?.addGestureRecognizer(longPressGesture)
       
     title = "\(home?.name ?? "") Accessories"
-//    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(discoverAccessories(sender:)))
+//      navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanBarcode(sender:)))
+
+      navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "barcode"), style: .plain, target: self, action: #selector(scanBarcode(sender:)))
 
 
-      let scan = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanBarcode(sender:)))
-      let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(discoverAccessories(sender:)))
-      navigationItem.rightBarButtonItems = [search , scan]  //由右->往左
+//      let scan = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(scanBarcode(sender:)))
+//      let search = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(discoverAccessories(sender:)))
+//      navigationItem.rightBarButtonItems = [scan]  //由右->往左
       
       
     loadAccessories()
@@ -93,6 +95,7 @@ class AccessoryViewController: BaseCollectionViewController {
                 //===
                 let accessory = accessories[selectedIndexPath.row]
 
+                
                   print("accessory.matterNodeID: \(accessory.matterNodeID)")
 //                accessory.MatterAddDeviceRequest
                 
@@ -101,7 +104,8 @@ class AccessoryViewController: BaseCollectionViewController {
                 let mtrControllor = MTRDeviceController.sharedController(withId: identifier, xpcConnect: { () -> NSXPCConnection in
                     let connection = NSXPCConnection()
                     // configure the connection
-                    
+//                    connection.serviceName
+                    print ("  connection.serviceName:\(  connection.serviceName)")
                     return connection
                 })
 
@@ -270,8 +274,9 @@ class AccessoryViewController: BaseCollectionViewController {
         collectionView?.reloadData()
     }
     
-    @objc func scanBarcode(sender: UIBarButtonItem) async {
+    @objc func scanBarcode(sender: UIBarButtonItem)  {
         
+        /*此段已沒有效果
         let request = MatterAddDeviceRequest(
             topology: .init(ecosystemName: "Acme SmartHome", homes: [
                 .init(displayName: "Default Acme Home"),
@@ -285,7 +290,11 @@ class AccessoryViewController: BaseCollectionViewController {
         } catch {
             print("Failed to set up a device with error: \(error)")
         }
+         */
         
+        //使用Homekit掃描介面
+        
+        //iOS15.4
 //        home?.addAndSetupAccessories(completionHandler: { error in
 //              if let error = error {
 //                  print(error)
@@ -294,6 +303,21 @@ class AccessoryViewController: BaseCollectionViewController {
 //
 //              }
 //          })
+         
+         
+        //iOS 16
+        let setupManager = HMAccessorySetupManager()
+        let accessorySetupRequest = HMAccessorySetupRequest()
+        setupManager.performAccessorySetup(using: accessorySetupRequest) { (result, error) in
+          if let error = error {
+              print("Error setting up accessory: \(error)")
+          } else {
+              // Accessory setup was successful.
+          }
+        }
+
+      
+        
       }
     
   @objc func discoverAccessories(sender: UIBarButtonItem) {
